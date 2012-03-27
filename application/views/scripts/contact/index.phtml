@@ -1,0 +1,11 @@
+<div id="main_image">
+</div>
+<div id="main_content">
+
+<p class="main_text">
+    <?php foreach ($this->entries as $entry): ?>
+    <?php echo nl2br($this->escape($entry->getContent()))	 ?>
+    <?php endforeach ?>
+</p>
+</div>
+

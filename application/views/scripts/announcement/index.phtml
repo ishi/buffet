@@ -1,0 +1,26 @@
+<div id="main_content_announcement">
+
+<dl>
+    <?php foreach ($this->entries as $entry): ?>
+    
+	<dt class="announcement">
+	<div id="main_content_announcement_picture"><img class="announcement" src="../pictures/2.jpg" /></div><br />
+    <div id="main_content_announcement_cont">
+    <p class="announcement_title"><?php echo $this->escape($entry->getTitle()) ?></p>
+    <p class="announcement_pre_content"><?php echo nl2br($this->escape($entry->getPreContentPl())) ?></p>
+    <p class="announcement_pre_content"><?php echo nl2br($this->escape($entry->getPictureId())) ?></p>
+    </div>
+    </dt>
+    <?php endforeach ?>
+</dl>
+
+<br /><br /><br /><br /><br /><br /><br /><br />
+<p><a href="<?php echo $this->url(
+    array(
+        'controller' => 'news',
+        'action'     => 'sign'
+    ),
+    'default',
+    true) ?>">Sign Our Guestbook</a></p>
+
+</div>

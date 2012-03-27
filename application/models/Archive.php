@@ -1,0 +1,140 @@
+<?php
+
+// application/models/Archive.php
+
+class Application_Model_Archive
+{
+    protected $_content_pl;
+    protected $_title;
+    protected $_id;
+    protected $_pre_content_pl;
+    protected $_picture_id;
+    protected $_event_news;
+    protected $_event_announcement;
+    protected $_picture_name;
+
+    public function __construct(array $options = null)
+    {
+        if (is_array($options)) {
+            $this->setOptions($options);
+        }
+    }
+
+    public function __set($name, $value)
+    {
+        $method = 'set' . $name;
+        if (('mapper' == $name) || !method_exists($this, $method)) {
+            throw new Exception('Invalid archive property');
+        }
+        $this->$method($value);
+    }
+
+    public function __get($name)
+    {
+        $method = 'get' . $name;
+        if (('mapper' == $name) || !method_exists($this, $method)) {
+            throw new Exception('Invalid archive property');
+        }
+        return $this->$method();
+    }
+
+    public function setOptions(array $options)
+    {
+        $methods = get_class_methods($this);
+        foreach ($options as $key => $value) {
+            $method = 'set' . ucfirst($key);
+            if (in_array($method, $methods)) {
+                $this->$method($value);
+            }
+        }
+        return $this;
+    }
+
+    public function setContentPl($text)
+    {
+        $this->_content_pl = (string) $text;
+        return $this;
+    }
+
+    public function getContentPl()
+    {
+        return $this->_content_pl;
+    }
+    
+public function setPreContentPl($text)
+    {
+        $this->_pre_content_pl = (string) $text;
+        return $this;
+    }
+
+    public function getPreContentPl()
+    {
+        return $this->_pre_content_pl;
+    }
+
+    public function setTitle($title)
+    {
+        $this->_title = (string) $title;
+        return $this;
+    }
+
+    public function getTitle()
+    {
+        return $this->_title;
+    }
+
+       public function setId($id)
+    {
+        $this->_id = (int) $id;
+        return $this;
+    }
+
+    public function getId()
+    {
+        return $this->_id;
+    }
+    
+public function setPictureId($picture_id)
+    {
+        $this->_picture_id= (int) $picture_id;
+        return $this;
+    }
+
+    public function getPictureId()
+    {
+        return $this->_picture_id;
+    }
+    
+	public function setEventNews($text)
+    {
+        $this->_event_news = (string) $text;
+        return $this;
+    }
+
+    public function getEventNews()
+    {
+        return $this->_event_news;
+    }
+    
+	public function setEventAnnouncement($text)
+    {
+        $this->_event_announcement = (string) $text;
+        return $this;
+    }
+
+    public function getEventAnnouncement()
+    {
+        return $this->_event_announcement;
+    }
+    
+public function setPictureName($text)
+    {
+        $this->_picture_name = (string) $text;
+        return $this;
+    }
+
+    public function getPictureName()
+    {
+        return $this->_picture_name;
+    }
+}
