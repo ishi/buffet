@@ -38,12 +38,12 @@
 		<div id="image1011">
 			<div id="menu_left">
 					<ul class="menu_pionowe">
-						<li class="menu_pionowe"><a href="offer">OFERTA</a></li>
-						<li class="menu_pionowe"><a href="partners">PARTNERZY</a></li>
-						<li class="menu_pionowe"><a href="newsletter">NEWSLETTER</a></li>
+						<li class="menu_pionowe"><a href="<?php echo $this->url(array('controller'=>'offer')); ?>">OFERTA</a></li>
+						<li class="menu_pionowe"><a href="<?php echo $this->url(array('controller'=>'partners')); ?>">PARTNERZY</a></li>
+						<li class="menu_pionowe"><a href="<?php echo $this->url(array('controller'=>'newsletter')); ?>">NEWSLETTER</a></li>
 						<li class="menu_pionowe"><a href="http://www.facebook.com/BUFFETklub" target="_blank">FACEBOOK</a></li>
 						<li class="menu_pionowe"><a href="http://vimeo.com/" target="_blank">VIMEO</a></li>
-						<li class="menu_pionowe"><a href="podcast">PODCAST</a></li>
+						<li class="menu_pionowe"><a href="<?php echo $this->url(array('controller'=>'podcast')); ?>">PODCAST</a></li>
 					</ul>
 			</div>
 			<div id="image11">
@@ -62,38 +62,38 @@
 					<div id="menu_top">
 						<ul class="menu_poziome">
 							<li class="menu_poziome">
-								<a href="<?= $this->url(array('controller'=>'index')); ?>">HOME</a>
+								<a href="<?php echo $this->url(array('controller'=>'index')); ?>">HOME</a>
 							</li>
 							<li class="menu_poziome">
-								<a href="<?= $this->url(array('controller'=>'news')); ?>">NEWS</a>
+								<a href="<?php echo $this->url(array('controller'=>'news')); ?>">NEWS</a>
 							</li>
 							<li class="menu_poziome">
-								<a href="<?= $this->url(array('controller'=>'announcement')); ?>">ZAPOWIEDZI</a>
+								<a href="<? echo $this->url(array('controller'=>'announcement')); ?>">ZAPOWIEDZI</a>
 							</li>
 							<li class="menu_poziome">
-								<a href="<?= $this->url(array('controller'=>'foto')); ?>">FOTO</a>
+								<a href="<?php echo  $this->url(array('controller'=>'foto')); ?>">FOTO</a>
 							</li>
 							<li class="menu_poziome">
-								<a href="<?= $this->url(array('controller'=>'video')); ?>">VIDEO</a>
+								<a href="<?php echo $this->url(array('controller'=>'video')); ?>">VIDEO</a>
 							</li>
 							<li class="menu_poziome">
-								<a href="<?= $this->url(array('controller'=>'card')); ?>">KARTA</a>
+								<a href="<?php echo $this->url(array('controller'=>'card')); ?>">KARTA</a>
 							</li>
 							<li class="menu_poziome">
-								<a href="<?= $this->url(array('controller'=>'archive')); ?>">ARCHIWUM</a>
+								<a href="<?php echo $this->url(array('controller'=>'archive')); ?>">ARCHIWUM</a>
 							</li>
 							<li class="menu_poziome">
-								<a href="<?= $this->url(array('controller'=>'contact')); ?>">KONTAKT</a>
+								<a href="<?php echo $this->url(array('controller'=>'contact')); ?>">KONTAKT</a>
 							</li>
 						</ul>
 					</div>
 					<div id="menu_top_lng">
 						<ul class="menu_poziome2">
 							<li class="menu_poziome2">
-								<a href="<?= $this->url(array('controller'=>'index')); ?>">PL</a>
+								<a href="<?php echo $this->url(array('controller'=>'index')); ?>">PL</a>
 							</li>
 							<li class="menu_poziome2">
-								<a href="<?= $this->url(array('controller'=>'index')); ?>">EN</a>
+								<a href="<?php echo $this->url(array('controller'=>'index')); ?>">EN</a>
 							</li>
 						</ul>	
 					</div>
