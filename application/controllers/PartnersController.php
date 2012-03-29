@@ -10,6 +10,9 @@ class PartnersController extends Zend_Controller_Action
 
     public function indexAction()
     {
+    	
+    	$picture = new Application_Model_PictureMapper();
+        $this->view->entries2 = $picture->fetchAll();
     }
 
 }

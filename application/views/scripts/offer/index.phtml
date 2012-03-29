@@ -1,5 +1,11 @@
-<div id="main_image">
+<div id="main_image"> 
+	<?php foreach ($this->entries2 as $entry2): ?>
+	<?php $sciezka = $this->escape($entry2->getName());
+    echo "<img class=\"main\" src=\"/pictures/wiosna1.jpg\" id=\"imgField\" />" ?>
+	<?php endforeach ?>
 </div>
+
+
 <div id="main_content">
 
 <p class="main_text">

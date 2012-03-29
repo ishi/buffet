@@ -14,6 +14,9 @@ class ContactController extends Zend_Controller_Action
         //$this->view->tables = $this->getInvokeArg('bootstrap')->getResource('db')->listTables();
         $information = new Application_Model_InformationMapper();
         $this->view->entries = $information->fetchAll("type='kontakt'");
+        
+        $picture = new Application_Model_PictureMapper();
+        $this->view->entries2 = $picture->fetchAll();
     }
 
 }

@@ -4,17 +4,22 @@
     <?php foreach ($this->entries as $entry): ?>
     <dt class="news">
     
+    <div id="main_content_news_picture">
     <?php 
     $sciezka = $this->escape($entry->getPictureName());
-//    $sciezka = "D:/wiosna.jpg";
-//    $sciezka = "/pictures/wiosna.jpg";
     echo "<img  class=\"news\" src=\"$sciezka\">" ?>
+    </div>
     
-    <br />
+    <div id="main_content_news_cont">
     <p class="news_title"><?php echo $this->escape($entry->getTitle()) ?></p>
     <p class="news_pre_content"><?php echo nl2br($this->escape($entry->getPreContentPl())) ?></p>
-    <p class="news_pre_content"><?php echo $this->escape($entry->getPictureId()) ?></p>
-    <p class="news_pre_content"><?php echo $this->escape($entry->getPictureName()) ?></p>
+    </div>
+    
+    <div id="main_content_news_go">
+    	<div id="main_content_go">... </div>
+    	<a href="<?php echo $this->url(array('controller'=>'details', 'action'=>'index', 'id'=>$entry->getId()), null, true);?>"><div id="main_content_rectangle_go"></div></a>
+    </div>
+    
     </dt>
     <?php endforeach ?>
 </dl>
