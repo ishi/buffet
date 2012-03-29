@@ -1,0 +1,25 @@
+<div id="details">
+
+
+	<?php foreach ($this->entries as $entry): ?>
+
+	<div id="details_picture">
+		<?php 
+    	$sciezka = $this->escape($entry->getPictureName());
+    	echo "<img  class=\"details\" src=\"$sciezka\">" 
+    	?>
+	</div>
+	
+	<div id="details_cont">
+	<div id="details_title">
+		<?php echo nl2br($this->escape($entry->getTitle())) ?>
+	</div>
+    
+    <div id="details_content">
+    	<?php echo nl2br($this->escape($entry->getContentPl())) ?>
+    </div>
+    </div>
+    <?php endforeach ?>
+    
+    
+</div>

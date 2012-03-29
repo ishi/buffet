@@ -31,12 +31,24 @@
 			<div id="image8"></div>
 			<div id="menu_left">
 				<ul>
-					<li><a href="offer">OFERTA</a></li>
-					<li><a href="partners">PARTNERZY</a></li>
-					<li><a href="newsletter">NEWSLETTER</a></li>
-					<li><a href="http://www.facebook.com/BUFFETklub" target="_blank">FACEBOOK</a></li>
-					<li><a href="http://vimeo.com/" target="_blank">VIMEO</a></li>
-					<li><a href="podcast">PODCAST</a></li>
+					<li>
+						<a href="<?php echo $this->url(array('controller'=>'offer'), null, true); ?>">OFERTA</a>
+					</li>
+					<li>
+						<a href="<?php echo $this->url(array('controller'=>'partners'), null, true); ?>">PARTNERZY</a>
+					</li>
+					<li>
+						<a href="<?php echo $this->url(array('controller'=>'newsletter'), null, true); ?>">NEWSLETTER</a>
+					</li>
+					<li>
+						<a href="http://www.facebook.com/BUFFETklub" target="_blank">FACEBOOK</a>
+					</li>
+					<li>
+						<a href="http://vimeo.com/" target="_blank">VIMEO</a>
+					</li>
+					<li>
+						<a href="<?php echo $this->url(array('controller'=>'podcast'), null, true); ?>">PODCAST</a>
+					</li>
 				</ul>
 			</div>
 		</div>

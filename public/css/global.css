@@ -205,7 +205,26 @@ padding-bottom: 50px;
 }
 #main_content_archive_break{
 height: 25px;
-}	
+}
+
+#details{
+width	: 723px;
+padding-bottom	: 50px;
+}
+
+#details_picture{
+float	: left;
+width	: 370px;
+height	: 517px;
+padding-bottom	: 50px;
+}
+
+#details_cont{
+float	: left;
+width	: 353px;
+height	: 517px;
+padding-bottom	: 50px;
+}
 	
 ul.menu_poziome li.menu_poziome{
 display		: block;
@@ -362,6 +381,11 @@ height: 169px;
 img.archive{
 width: 257px;
 height: 62px;	
+}
+
+img.details{
+width	: 370px;
+height	: 517px;
 }
 
 #main_content_announcement_picture{

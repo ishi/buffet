@@ -66,9 +66,9 @@ class Application_Model_NewsMapper
                   ->setPictureName($row->picture_name);
     }
 
-    public function fetchAll()
+    public function fetchAll($where)
     {
-        $resultSet = $this->getDbTable()->fetchAll();
+        $resultSet = $this->getDbTable()->fetchAll($where);
         $entries   = array();
         foreach ($resultSet as $row) {
             $entry = new Application_Model_News();
