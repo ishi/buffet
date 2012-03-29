@@ -1,41 +1,41 @@
-*{
-padding		: 0;
-margin		: 0;
-border		: 0;
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
 }
 
-body, html{
-margin		: 0;
-padding		: 0;
-height: 100%;
+body, html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
 
-#container{
-
-margin		: 0;
-padding		: 0;
-height: 100%;
-background-image	: url("/images/www_leyout_buffet_12.gif");
-background-repeat: repeat-y;
-display: table;
+#container {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background-image: url(/images/www_leyout_buffet_red_line.gif);
+	background-repeat: repeat-y;
+	display: table;
 }
 
 #left{
-width		: 234px;
-display: table-cell;
-vertical-align: top;
+	width: 234px;
+	display: table-cell;
+	vertical-align: top;
 }
 
 #right{
-display: table-cell;
-vertical-align: top;
+	display: table-cell;
+	vertical-align: top;
 }
 
 #image8{
 margin-top: 140px;
 width		: 234px;
 height		: 62px;
-background-image	: url(../images/www_leyout_buffet_08.gif);
+background-image	: url(/images/www_leyout_buffet_blue_line.gif);
 }
 
 #image1011{
@@ -72,15 +72,16 @@ position: relative;
 }
 
 #image2356{
-width		: 723px;
-height		: 96px;	
+	width: 723px;
+	height: 96px;
+	margin-bottom: 44px;
 }
 
 #image2{
 float		: left;
 width		: 215px;
 height		: 96px;
-background-image	: url(../images/www_leyout_buffet_02.gif);	
+background-image	: url(/images/www_leyout_buffet_buffet_text.gif);	
 }
 
 #image356{
@@ -89,15 +90,10 @@ width		: 508px;
 height		: 96px;	
 }
 
-#image3{
-width		: 508px;
-height		: 75px;
-background-image	: url(../images/www_leyout_buffet_03.gif);
-}
-
 #image56{
-width		: 508px;
-height		: 21px;	
+	width: 508px;
+	height: 21px;
+	margin-top: 75px;
 }
 
 #menu_top{
@@ -128,19 +124,9 @@ position	: relative;
 	right:0;
 }
 
-#image7{
-width		: 723px;
-height		: 44px;
-background-image	: url(../images/www_leyout_buffet_07.gif);
-}
-
-#main{
-}
-
 #main_image{
-width		: 723px;
-height		: 291px;
-background-image	: url(../images/www_leyout_buffet_09.gif);
+	width		: 723px;
+	height		: 291px;
 }
 
 #main_content{
