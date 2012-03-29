@@ -61,20 +61,40 @@
 				<div id="image56">
 					<div id="menu_top">
 						<ul class="menu_poziome">
-							<li class="menu_poziome"><a href="index">HOME</a></li>
-							<li class="menu_poziome"><a href="news">NEWS</a></li>
-							<li class="menu_poziome"><a href="announcement">ZAPOWIEDZI</a></li>
-							<li class="menu_poziome"><a href="foto">FOTO</a></li>
-							<li class="menu_poziome"><a href="video">VIDEO</a></li>
-							<li class="menu_poziome"><a href="card">KARTA</a></li>
-							<li class="menu_poziome"><a href="archive">ARCHIWUM</a></li>
-							<li class="menu_poziome"><a href="contact">KONTAKT</a></li>
+							<li class="menu_poziome">
+								<a href="<?= $this->url(array('controller'=>'index')); ?>">HOME</a>
+							</li>
+							<li class="menu_poziome">
+								<a href="<?= $this->url(array('controller'=>'news')); ?>">NEWS</a>
+							</li>
+							<li class="menu_poziome">
+								<a href="<?= $this->url(array('controller'=>'announcement')); ?>">ZAPOWIEDZI</a>
+							</li>
+							<li class="menu_poziome">
+								<a href="<?= $this->url(array('controller'=>'foto')); ?>">FOTO</a>
+							</li>
+							<li class="menu_poziome">
+								<a href="<?= $this->url(array('controller'=>'video')); ?>">VIDEO</a>
+							</li>
+							<li class="menu_poziome">
+								<a href="<?= $this->url(array('controller'=>'card')); ?>">KARTA</a>
+							</li>
+							<li class="menu_poziome">
+								<a href="<?= $this->url(array('controller'=>'archive')); ?>">ARCHIWUM</a>
+							</li>
+							<li class="menu_poziome">
+								<a href="<?= $this->url(array('controller'=>'contact')); ?>">KONTAKT</a>
+							</li>
 						</ul>
 					</div>
 					<div id="menu_top_lng">
 						<ul class="menu_poziome2">
-							<li class="menu_poziome2"><a href="index">PL</a></li>
-							<li class="menu_poziome2"><a href="index">EN</a></li>
+							<li class="menu_poziome2">
+								<a href="<?= $this->url(array('controller'=>'index')); ?>">PL</a>
+							</li>
+							<li class="menu_poziome2">
+								<a href="<?= $this->url(array('controller'=>'index')); ?>">EN</a>
+							</li>
 						</ul>	
 					</div>
 				</div>
