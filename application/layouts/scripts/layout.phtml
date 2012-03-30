@@ -3,26 +3,25 @@
 <head>
 	<meta charset="utf-8">
 	<title>Buffet</title>
-    <?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
+	<?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
 	
 	<script type="text/javascript">
-   var imgs = new Array('wiosna1.jpg', 'wiosna2.jpg', 'wiosna3.jpg', 'wiosna4.jpg', 'wiosna6.jpg');
-   var pos  = 0;
+		imgs = [];
+		var pos  = 0;
 
-   function chImg()
-   {
-      var i = document.getElementById( 'imgField' );
+		function chImg() {
+			var i = document.getElementById( 'imgField' );
+			if (!i || !imgs.length) return;
+	
+			i.src = imgs[ pos++ ];
+	
+			if( pos >= imgs.length ) {
+				pos = 0;
+			}
 
-      i.src = 'pictures/' + imgs[ pos++ ];
-
-      if( pos >= 4 )
-      {
-         pos = 0;
-      }
-
-      window.setTimeout( 'chImg()', 5000 );
-   }
-</script>    
+			window.setTimeout( 'chImg()', 5000 );
+		}
+	</script>
 </head>
 
 <body onload=chImg();>
