@@ -11,10 +11,15 @@ class ArchiveController extends Zend_Controller_Action
     public function indexAction()
     {
         $archive = new Application_Model_ArchiveMapper();
-        $this->view->entries = $archive->fetchAll();
-        
+        $this->view->entries = $archive->fetchAll("id");  
     }
 
+	public function detailsAction()
+    {
+    	$news = new Application_Model_ArchiveMapper();
+    	$id = $this->_getParam('id', 1);
+        $this->view->entries = $news->fetchAll("id=$id");
+    }
 
 }
 

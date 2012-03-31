@@ -19,7 +19,6 @@ class NewsController extends Zend_Controller_Action
     	$news = new Application_Model_NewsMapper();
     	$id = $this->_getParam('id', 1);
         $this->view->entries = $news->fetchAll("id=$id");
-    	
     }
 
 
