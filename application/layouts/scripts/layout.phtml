@@ -1,41 +1,34 @@
 <?php echo $this->doctype() ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8">
 	<title>Buffet</title>
-    <?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
+	<?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
 	
 	<script type="text/javascript">
-   var imgs = new Array('wiosna1.jpg', 'wiosna2.jpg', 'wiosna3.jpg', 'wiosna4.jpg', 'wiosna6.jpg');
-   var pos  = 0;
+		imgs = [];
+		var pos  = 0;
 
-   function chImg()
-   {
-      var i = document.getElementById( 'imgField' );
-
-      i.src = 'pictures/' + imgs[ pos++ ];
-
-      if( pos >= 4 )
-      {
-         pos = 0;
-      }
+		function chImg() {
+			var i = document.getElementById( 'imgField' );
+			if (!i || !imgs.length) return;
+	
+			i.src = imgs[ pos++ ];
+	
+			if( pos >= imgs.length ) {
+				pos = 0;
+			}
 
       window.setTimeout( 'chImg()', 3000 );
    }
-</script>    
+
+	</script>
 </head>
 
 <body onload=chImg();>
-
-<div id="container">
-	
-	<div id="left">
-		<div id="image1">
-		</div>
-		<div id="image8">
-		</div>
-		<div id="image1011">
+	<div id="container">
+		<div id="left">
+			<div id="image8"></div>
 			<div id="menu_left">
 					<ul class="menu_pionowe">
 						<li class="menu_pionowe"><a href="<?php echo $this->url(array('controller'=>'offer'), null, true); ?>">OFERTA</a></li>
@@ -96,23 +89,85 @@
 								<a href="<?php echo $this->url(array('controller'=>'index'), null, true); ?>">EN</a>
 							</li>
 						</ul>	
+=======
+				<ul>
+					<li>
+						<a href="<?php echo $this->url(array('controller'=>'offer'), null, true); ?>">OFERTA</a>
+					</li>
+					<li>
+						<a href="<?php echo $this->url(array('controller'=>'partners'), null, true); ?>">PARTNERZY</a>
+					</li>
+					<li>
+						<a href="<?php echo $this->url(array('controller'=>'newsletter'), null, true); ?>">NEWSLETTER</a>
+					</li>
+					<li>
+						<a href="http://www.facebook.com/BUFFETklub" target="_blank">FACEBOOK</a>
+					</li>
+					<li>
+						<a href="http://vimeo.com/" target="_blank">VIMEO</a>
+					</li>
+					<li>
+						<a href="<?php echo $this->url(array('controller'=>'podcast'), null, true); ?>">PODCAST</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="right">
+			<div id="image2356">
+				<div id="image2"></div>
+				<div id="image356">
+					<div id="image56">
+						<div id="menu_top">
+							<ul class="menu_poziome">
+								<li class="menu_poziome">
+									<a href="<?= $this->url(array('controller'=>'index'), null, true); ?>">HOME</a>
+								</li>
+								<li class="menu_poziome">
+									<a href="<?= $this->url(array('controller'=>'news'), null, true); ?>">NEWS</a>
+								</li>
+								<li class="menu_poziome">
+									<a href="<?= $this->url(array('controller'=>'announcement'), null, true); ?>">ZAPOWIEDZI</a>
+								</li>
+								<li class="menu_poziome">
+									<a href="<?= $this->url(array('controller'=>'foto'), null, true); ?>">FOTO</a>
+								</li>
+								<li class="menu_poziome">
+									<a href="<?= $this->url(array('controller'=>'video'), null, true); ?>">VIDEO</a>
+								</li>
+								<li class="menu_poziome">
+									<a href="<?= $this->url(array('controller'=>'card'), null, true); ?>">KARTA</a>
+								</li>
+								<li class="menu_poziome">
+									<a href="<?= $this->url(array('controller'=>'archive'), null, true); ?>">ARCHIWUM</a>
+								</li>
+								<li class="menu_poziome">
+									<a href="<?= $this->url(array('controller'=>'contact'), null, true); ?>">KONTAKT</a>
+								</li>
+							</ul>
+						</div>
+						<div id="menu_top_lng">
+							<ul class="menu_poziome2">
+								<li class="menu_poziome2">
+									<a href="<?= $this->url(array('controller'=>'index'), null, true); ?>">PL</a>
+								</li>
+								<li class="menu_poziome2">
+									<a href="<?= $this->url(array('controller'=>'index'), null, true); ?>">EN</a>
+								</li>
+							</ul>	
+						</div>
+>>>>>>> f798e82b87eadfec2d2dca957600ecbbe7e2a073
 					</div>
 				</div>
 			</div>
-		</div>
-		<div id="image7">
-		</div>
-		<div id="main">
+			<div id="main">
+				<?php echo $this->layout()->content ?>
+			</div>
 			
-			<?php echo $this->layout()->content ?>
 		</div>
-		
+		<div style="clear: both;"></div>
 	</div>
-	<div style="clear: both;"></div>
-</div>
-
 </body>
-
 </html>
 
 				

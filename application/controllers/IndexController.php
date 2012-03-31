@@ -16,7 +16,7 @@ class IndexController extends Zend_Controller_Action
         $this->view->entries = $home->fetchAll("type='home'");
         
         $picture = new Application_Model_PictureMapper();
-        $this->view->entries2 = $picture->fetchAll();
+        $this->view->pictures = $picture->fetchAll();
     }
 
 }
