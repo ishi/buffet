@@ -1,13 +1,13 @@
 <div id="main_image"> 
 	<?php if ($this->pictures) : ?>
-		<img class="main" src="<?= $this->escape($this->pictures[0]->getName()) ?>" id="imgField" />
+		<img class="main" src="<?php echo $this->escape($this->pictures[0]->getName()) ?>" id="imgField" />
 		<?php
 		$imagesNames = array();
 		foreach ($this->pictures as $picture) {
 			$imagesNames[] = '"' . $this->escape($picture->getName()) . '"';
 		} ?>
 		<script type="text/javascript">
-			imgs = [<?= implode(', ', $imagesNames)?>];
+			imgs = [<?php echo implode(', ', $imagesNames)?>];
 		</script>
 	<?php endif ?>
 </div>
