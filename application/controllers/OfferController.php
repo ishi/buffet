@@ -16,7 +16,7 @@ class OfferController extends Zend_Controller_Action
         $this->view->entries = $offer->fetchAll("type='oferta'");
         
         $picture = new Application_Model_PictureMapper();
-        $this->view->entries2 = $picture->fetchAll();
+        $this->view->entries2 = $picture->fetchAll("information='main'");
     }
 
 }

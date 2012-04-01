@@ -12,6 +12,7 @@ class Application_Model_Archive
     protected $_event_news;
     protected $_event_announcement;
     protected $_picture_name;
+    protected $_date_from;
 
     public function __construct(array $options = null)
     {
@@ -61,7 +62,7 @@ class Application_Model_Archive
         return $this->_content_pl;
     }
     
-public function setPreContentPl($text)
+	public function setPreContentPl($text)
     {
         $this->_pre_content_pl = (string) $text;
         return $this;
@@ -94,7 +95,7 @@ public function setPreContentPl($text)
         return $this->_id;
     }
     
-public function setPictureId($picture_id)
+	public function setPictureId($picture_id)
     {
         $this->_picture_id= (int) $picture_id;
         return $this;
@@ -127,7 +128,7 @@ public function setPictureId($picture_id)
         return $this->_event_announcement;
     }
     
-public function setPictureName($text)
+	public function setPictureName($text)
     {
         $this->_picture_name = (string) $text;
         return $this;
@@ -136,5 +137,16 @@ public function setPictureName($text)
     public function getPictureName()
     {
         return $this->_picture_name;
+    }
+    
+	public function setDateFrom($text)
+    {
+        $this->_date_from = (string) $text;
+        return $this;
+    }
+
+    public function getDateFrom()
+    {
+        return $this->_date_from;
     }
 }

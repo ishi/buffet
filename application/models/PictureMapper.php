@@ -54,9 +54,9 @@ class Application_Model_PictureMapper
                   ->setName($row->name);
     }
 
-    public function fetchAll()
+    public function fetchAll($where)
     {
-        $resultSet = $this->getDbTable()->fetchAll();
+        $resultSet = $this->getDbTable()->fetchAll($where);
         $entries   = array();
         foreach ($resultSet as $row) {
             $entry = new Application_Model_Picture();

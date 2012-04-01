@@ -16,7 +16,7 @@ class ContactController extends Zend_Controller_Action
         $this->view->entries = $information->fetchAll("type='kontakt'");
         
         $picture = new Application_Model_PictureMapper();
-        $this->view->entries2 = $picture->fetchAll();
+        $this->view->entries2 = $picture->fetchAll("information='main'");
     }
 
 }

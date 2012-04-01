@@ -12,6 +12,7 @@
 	
 	<div id="details_cont">
 		<div id="details_title">
+			<?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom())) )?>
 			<?php echo nl2br($this->escape($entry->getTitle())) ?>
 		</div>
     

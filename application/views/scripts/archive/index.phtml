@@ -13,7 +13,11 @@
     
 	
     <div id="main_content_archive_cont">
-    <p class="archive_title"><?php echo $this->escape($entry->getTitle()) ?></p>
+    <p class="archive_title">
+    	<?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom())) )?>
+    	<?php echo $this->escape($entry->getTitle()) ?>	
+    </p>
+    
     <p class="archive_pre_content"><?php echo nl2br($this->escape($entry->getPreContentPl())) ?></p>
     </div>
     <div id=main_content_archive_break">

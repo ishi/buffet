@@ -131,7 +131,6 @@ position	: relative;
 
 #main_content{
 width		: 663px;
-height		: 703px absolute;
 padding-left	: 30px;
 padding-top		: 25px;
 padding-right	: 30px;
@@ -179,7 +178,7 @@ margin-top	: 5px;
 
 #main_content_announcement{
 width		: 723px;
-padding-bottom: 50px;
+padding-bottom: 100px;
 }
 
 #main_content_announcement_go{
@@ -424,7 +423,6 @@ height	: 517px;
 float: left;
 width: 369px;
 height: 169px;
-
 }
 
 #main_content_announcement_cont{

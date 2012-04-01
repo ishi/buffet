@@ -36,6 +36,7 @@ class Application_Model_ArchiveMapper
 	        	'event_news' => $archive->getEventNews(),
 	        	'event_announcement' => $archive->getEventAnnouncement(),
 	        	'picture_name' => $archive->getPictureName(),
+	        	'date_from' => $archive->getDateFrom(),
 	        );
 	
 	        if (null === ($id = $archive->getId())) {
@@ -63,7 +64,8 @@ class Application_Model_ArchiveMapper
                   ->setPictureId($row->picture_id)
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
-                  ->setPictureName($row->picture_name);
+                  ->setPictureName($row->picture_name)
+                  ->setDateFrom($row->date_from);
     }
 
     public function fetchAll($where)
@@ -79,7 +81,8 @@ class Application_Model_ArchiveMapper
                   ->setPictureId($row->picture_id)
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
-                  ->setPictureName($row->picture_name);
+                  ->setPictureName($row->picture_name)
+                  ->setDateFrom($row->date_from);
             $entries[] = $entry;
         }
         return $entries;
