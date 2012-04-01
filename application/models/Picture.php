@@ -6,6 +6,7 @@ class Application_Model_Picture
 {
     protected $_id;
     protected $_name;
+    protected $_link;
 
     public function __construct(array $options = null)
     {
@@ -66,6 +67,17 @@ class Application_Model_Picture
     public function getId()
     {
         return $this->_id;
+    }
+    
+	public function setLink($link)
+    {
+        $this->_link = (string) $link;
+        return $this;
+    }
+
+    public function getLink()
+    {
+        return $this->_link;
     }
     
 }

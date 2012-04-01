@@ -134,7 +134,16 @@ width		: 663px;
 padding-left	: 30px;
 padding-top		: 25px;
 padding-right	: 30px;
+padding-bottom	: 50px;
+}
+
+#card_button{
+width		: 663px;
+padding-left	: 30px;
+padding-top		: 15px;
+padding-right	: 30px;
 padding-bottom: 50px;
+text-align	: center;
 }
 
 #main_content_news {
@@ -177,8 +186,7 @@ margin-top	: 5px;
 }
 
 #main_content_announcement{
-width		: 723px;
-padding-bottom: 100px;
+width		: 870px;
 }
 
 #main_content_announcement_go{
@@ -197,8 +205,6 @@ padding-right: 3px;
 width		: 798px;
 padding-bottom: 50px;
 }
-
-
 
 #details{
 width	: 723px;
@@ -258,7 +264,22 @@ width	: 12px;
 background-color	:#FF0000;
 vertical-align: bottom;
 margin-top	: 5px;
-}	
+}
+	
+#partners_content{
+width		: 736px;
+padding-left	: 27px;
+padding-top		: 30px;
+margin-bottom	: 50px;
+}
+
+#partner_picture{
+float	: left;
+width	: 137px;
+height	: 45px;
+padding-right: 40px;
+padding-bottom: 27px;
+}
 	
 ul.menu_poziome li.menu_poziome{
 display		: block;
@@ -367,6 +388,17 @@ padding-top	: 0px;
 margin-top	: 0px;
 }
 
+p.card_button{
+height	: 20px;
+width	: 663px;
+font-size	: 8pt;
+font-family	: Arial;
+text-align	: center;
+padding-top	: 5px;
+margin-top	: 0px;
+
+}
+
 dt.news{
 width: 257px;
 padding-right: 10px;
@@ -379,6 +411,7 @@ width: 257px;
 
 dt.announcement{
 height: 169px;
+width: 354px;
 float: left;
 margin-bottom: 8px;
 }
@@ -419,6 +452,11 @@ width	: 370px;
 height	: 517px;
 }
 
+img.partner{
+width	: 137px;
+height	: 45px;
+}
+
 #main_content_announcement_picture{
 float: left;
 width: 369px;
@@ -427,7 +465,6 @@ height: 169px;
 
 #main_content_announcement_cont{
 float: left;
-width: 354px;
 }
 
 #main_content_archive_picture{
@@ -437,9 +474,17 @@ height: 62px;
 
 #main_content_archive_cont{
 width: 257px;
+background-color: pink;
 }
 
-
+span{
+padding-left: 25px;
+padding-right: 25px;
+padding-top: 5px;
+padding-bottom: 5px;
+background-color	:#0000FF;
+color		: #FFFFFF;	
+}
 
 #left > div > img {
 }

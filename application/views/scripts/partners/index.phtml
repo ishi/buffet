@@ -1,9 +1,15 @@
 <?php echo $this->partial('shared/main_images.phtml', array('pictures' => $this->entries2)); ?>
 
-<div id="main_content">
+<div id="partners_content">
+	<?php foreach ($this->partners as $partner): ?>
+	
+	<div id="partner_picture">
+	<?php 
+    $sciezka = $this->escape($partner->getName());
+    $link = $this->escape($partner->getLink());
+    echo "<a href=$link target=\"_blank\"><img  class=\"partner\" src=\"$sciezka\"></a>" ?>
+	</div>
 
-<p class="main_text">
-
-</p>
+    <?php endforeach ?>
 </div>
 

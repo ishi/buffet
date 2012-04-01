@@ -29,7 +29,8 @@ class Application_Model_PictureMapper
     {
     	try {
 	        $data = array(
-	            'name'   => $picture->getName(),
+	            'name' => $picture->getName(),
+	        	'link' => $picture->getLink(),
 	        );
 	
 	        if (null === ($id = $picture->getId())) {
@@ -51,7 +52,8 @@ class Application_Model_PictureMapper
         }
         $row = $result->current();
         $picture->setId($row->id)
-                  ->setName($row->name);
+                  ->setName($row->name)
+                  ->setLink($row->link);
     }
 
     public function fetchAll($where)
@@ -61,7 +63,8 @@ class Application_Model_PictureMapper
         foreach ($resultSet as $row) {
             $entry = new Application_Model_Picture();
             $entry->setId($row->id)
-                  ->setName($row->name);
+                  ->setName($row->name)
+                  ->setLink($row->link);
             $entries[] = $entry;
         }
         return $entries;

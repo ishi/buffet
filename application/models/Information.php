@@ -6,6 +6,7 @@ class Application_Model_Information
 {
     protected $_content;
     protected $_id;
+    protected $_picture_name;
 
     public function __construct(array $options = null)
     {
@@ -65,4 +66,16 @@ class Application_Model_Information
     {
         return $this->_id;
     }
+    
+	public function setPictureName($text)
+    {
+        $this->_picture_name = (string) $text;
+        return $this;
+    }
+
+    public function getPictureName()
+    {
+        return $this->_picture_name;
+    }
+    
 }

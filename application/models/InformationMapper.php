@@ -30,6 +30,7 @@ class Application_Model_InformationMapper
     	try {
 	        $data = array(
 	            'content' => $information->getContent(),
+	        	'picture_name' => $information->getPictureName(),
 	        );
 	
 	        if (null === ($id = $information->getId())) {
@@ -51,7 +52,8 @@ class Application_Model_InformationMapper
         }
         $row = $result->current();
         $information->setId($row->id)
-                  ->setContent($row->content);
+                  ->setContent($row->content)
+                  ->setPictureName($row->picture_name);
     }
 
     public function fetchAll($where)
@@ -61,7 +63,8 @@ class Application_Model_InformationMapper
         foreach ($resultSet as $row) {
             $entry = new Application_Model_Information();
             $entry->setId($row->id)
-                  ->setContent($row->content);
+                  ->setContent($row->content)
+                  ->setPictureName($row->picture_name);
             $entries[] = $entry;
         }
         return $entries;

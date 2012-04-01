@@ -68,9 +68,9 @@ class Application_Model_NewsMapper
                   ->setDateFrom($row->date_from);
     }
 
-    public function fetchAll($where)
+    public function fetchAll($where, $order)
     {
-        $resultSet = $this->getDbTable()->fetchAll($where);
+        $resultSet = $this->getDbTable()->fetchAll($where, $order);
         $entries   = array();
         foreach ($resultSet as $row) {
             $entry = new Application_Model_News();

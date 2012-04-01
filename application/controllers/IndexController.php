@@ -18,6 +18,17 @@ class IndexController extends Zend_Controller_Action
         $picture = new Application_Model_PictureMapper();
         $this->view->pictures = $picture->fetchAll("information='main'");
     }
+    
+	public function indexenAction()
+	{
+		$this -> _helper->layout()->setLayout("layout_en");
+		
+		$home = new Application_Model_InformationMapper();
+        $this->view->entries = $home->fetchAll("type='home'");
+        
+        $picture = new Application_Model_PictureMapper();
+        $this->view->pictures = $picture->fetchAll("information='main'");
+	}
 
 }
 

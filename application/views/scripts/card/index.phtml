@@ -1,9 +1,20 @@
+<?php foreach ($this->entries as $entry): ?>
+	<?php $sciezka = $this->escape($entry->getPictureName());
+    echo "<img  class=\"main\" src=\"$sciezka\">" ?>
+<?php endforeach ?>
 
 <div id="main_content">
 
 <p class="main_text">
-    <?php foreach ($this->entries as $entry): ?>
+    <?php foreach ($this->entries as $entry): ?>    
     <?php echo nl2br($this->escape($entry->getContent()))	 ?>
     <?php endforeach ?>
 </p>
+
+<div id="card_button">
+	<a href="/files/regulamin.pdf"><p class="card_button"><span>REGULAMIN</span></p></a>
 </div>
+
+</div>
+
+

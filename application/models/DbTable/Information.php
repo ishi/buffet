@@ -2,7 +2,7 @@
 
 class Application_Model_DbTable_Information extends Zend_Db_Table_Abstract
 {
-    protected $_name = 'information';
+    protected $_name = 'information_view';
 	protected $_primary = 'id';
 }
 
