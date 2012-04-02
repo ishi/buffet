@@ -1,0 +1,83 @@
+[1mdiff --git a/application/controllers/DetailsController.php b/application/controllers/DetailsController.php[m
+[1mdeleted file mode 100644[m
+[1mindex 1c4aba5..0000000[m
+[1m--- a/application/controllers/DetailsController.php[m
+[1m+++ /dev/null[m
+[36m@@ -1,18 +0,0 @@[m
+[31m-<?php[m
+[31m-[m
+[31m-class DetailsController extends Zend_Controller_Action[m
+[31m-{[m
+[31m-[m
+[31m-    public function init()[m
+[31m-    {[m
+[31m-        /* Initialize action controller here */[m
+[31m-    }[m
+[31m-[m
+[31m-    public function indexAction()[m
+[31m-    {[m
+[31m-        [m
+[31m-    }[m
+[31m-[m
+[31m-[m
+[31m-}[m
+[31m-[m
+[1mdiff --git a/application/views/scripts/ index_default/index.phtml b/application/views/scripts/ index_default/index.phtml[m
+[1mdeleted file mode 100644[m
+[1mindex e3ae35c..0000000[m
+[1m--- a/application/views/scripts/ index_default/index.phtml[m	
+[1m+++ /dev/null[m
+[36m@@ -1,44 +0,0 @@[m
+[31m-<style>[m
+[31m-    a:link,[m
+[31m-    a:visited[m
+[31m-    {[m
+[31m-        color: #0398CA;[m
+[31m-    }[m
+[31m-[m
+[31m-    span#zf-name[m
+[31m-    {[m
+[31m-        color: #91BE3F;[m
+[31m-    }[m
+[31m-[m
+[31m-    div#welcome[m
+[31m-    {[m
+[31m-        color: #FFFFFF;[m
+[31m-        background-image: url(http://framework.zend.com/images/bkg_header.jpg);[m
+[31m-        width:  600px;[m
+[31m-        height: 400px;[m
+[31m-        border: 2px solid #444444;[m
+[31m-        overflow: hidden;[m
+[31m-        text-align: center;[m
+[31m-    }[m
+[31m-[m
+[31m-    div#more-information[m
+[31m-    {[m
+[31m-        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);[m
+[31m-        height: 100%;[m
+[31m-    }[m
+[31m-</style>[m
+[31m-<div id="welcome">[m
+[31m-    <h1>Welcome to the <span id="zf-name">Zend Framework!</span></h1>[m
+[31m-[m
+[31m-    <h3>This is your project's main page Ola 123</h3>[m
+[31m-[m
+[31m-    <div id="more-information">[m
+[31m-        <p><img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /></p>[m
+[31m-        <p>[m
+[31m-            Helpful Links: <br />[m
+[31m-            <a href="http://framework.zend.com/">Zend Framework Website</a> |[m
+[31m-            <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>[m
+[31m-            [m
+[31m-        </p>[m
+[31m-    </div>[m
+[31m-</div>[m
+\ No newline at end of file[m
+[1mdiff --git a/application/views/scripts/details/index.phtml b/application/views/scripts/details/index.phtml[m
+[1mdeleted file mode 100644[m
+[1mindex 7ef850c..0000000[m
+[1m--- a/application/views/scripts/details/index.phtml[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-Ola123[m
+\ No newline at end of file[m

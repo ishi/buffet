@@ -21,7 +21,7 @@
     
     <div id="main_content_announcement_go">
     	<div id="announcement_content_go">...</div>
-    	<a href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'details', 'id'=>$entry->getId()), null, true);?>"><div id="main_content_rectangle_go"></div></a>
+    	<a href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>"><div id="main_content_rectangle_go"></div></a>
     </div>
     
     </dt>
