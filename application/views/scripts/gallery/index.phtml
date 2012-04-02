@@ -1,5 +1,12 @@
 <div id="main_content_announcement">
-
-Podstrona GALERIA
-
+<?php foreach ($this->galleries as $gallery) : ?>
+	<?php 
+		$photos = $gallery->getPhotos();
+		if (!$photos) continue;
+	 ?>
+	<?php foreach ($gallery->getPhotos() as $photo) : ?>
+		<?php echo $photo->getName() ?>
+		<?php echo $photo->getMainPicture() ?><br />
+	<?php endforeach; ?>
+<?php endforeach; ?>
 </div>
