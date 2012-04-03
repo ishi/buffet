@@ -10,6 +10,30 @@ body, html {
 	height: 100%;
 }
 
+/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+
+.clearfix:before, .clearfix:after {
+	content: '\0020';
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+/*
+  The following zoom:1 rule is specifically for IE6 + IE7.
+  Move to separate stylesheet if invalid CSS is a problem.
+*/
+
+.clearfix {
+	zoom: 1;
+}
+
 #container {
 	margin: 0;
 	padding: 0;
@@ -486,4 +510,38 @@ color		: #FFFFFF;
 }
 
 #left > div > img {
+}
+
+#galleries {
+	height: 600px;
+	background: blue;
+	overflow: hidden
+}
+
+#galleries .gallery {
+	float: left;
+	width: 620px;
+}
+
+#galleries .gallery .preview {
+	width: 500px;
+	float: left;
+	overflow: hidden;
+}
+
+#galleries .gallery .preview img {
+	height: 600px;
+}
+
+#galleries .gallery .thumbnail {
+	float: left;
+	width: 50px;
+	overflow: hidden;
+	margin: 5px;
+}
+
+#galleries .gallery .thumbnail img {
+	height: 50px;
+	display: block;
+	margin: auto;
 }

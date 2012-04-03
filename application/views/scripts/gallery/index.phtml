@@ -1,12 +1,12 @@
-<div id="main_content_announcement">
-<?php foreach ($this->galleries as $gallery) : ?>
-	<?php 
-		$photos = $gallery->getPhotos();
-		if (!$photos) continue;
-	 ?>
-	<?php foreach ($gallery->getPhotos() as $photo) : ?>
-		<?php echo $photo->getName() ?>
-		<?php echo $photo->getMainPicture() ?><br />
-	<?php endforeach; ?>
-<?php endforeach; ?>
+<div id="galleries" class="clearfix">
+	<?php foreach ($this->galleries as $gallery) : ?>
+		<div class="gallery">
+			<div class="preview">
+				<img src="<?php echo $this->escape($gallery->getMainPhoto()->getName()) ?>" />
+			</div>
+			<?php foreach ($gallery->getPhotos() as $photo) : ?>
+				<div class="thumbnail"><img src="<?php echo $photo->getName() ?>" /></div>
+			<?php endforeach ?>
+		</div>
+		<?php endforeach ?>
 </div>

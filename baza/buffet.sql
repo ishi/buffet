@@ -139,6 +139,15 @@ CREATE TABLE IF NOT EXISTS `galery` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
 
+--
+-- Zrzut danych tabeli `information`
+--
+
+INSERT INTO `galery` (`id`, `folder_name`, `folder_date`, `folder_content`, `arch_date`, `user`) VALUES
+(1, 'Pierwsza galeria', '2012-03-31 13:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis luctus scelerisque. Sed rhoncus sapien at purus condimentum tincidunt quis sed erat. Fusce non magna sed justo viverra porta sed rhoncus ante. Suspendisse in sapien sed nisi posuere porta. Donec dignissim, velit quis gravida iaculis, dui purus facilisis ipsum, non eleifend diam tellus posuere lorem. Suspendisse potenti. Etiam libero nulla, sagittis nec pellentesque quis, euismod id risus. Cras elit dui, venenatis sed gravida vel, pulvinar eget eros. Integer consequat rhoncus quam, interdum vehicula turpis ullamcorper at. Vivamus suscipit, erat at pharetra commodo, risus arcu aliquet quam, sit amet pellentesque felis enim id ipsum.', '0000-00-00 00:00:00', 'seta'),
+(3, 'Galeria 2', '2012-03-31 00:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis luctus scelerisque. Sed rhoncus sapien at purus condimentum tincidunt quis sed erat. Fusce non magna sed justo viverra porta sed rhoncus ante. Suspendisse in sapien sed nisi posuere porta. Donec dignissim, velit quis gravida iaculis, dui purus facilisis ipsum, non eleifend diam tellus posuere lorem. Suspendisse potenti. Etiam libero nulla, sagittis nec pellentesque quis, euismod id risus. Cras elit dui, venenatis sed gravida vel, pulvinar eget eros. Integer consequat rhoncus quam, interdum vehicula turpis ullamcorper at. Vivamus suscipit, erat at pharetra commodo, risus arcu aliquet quam, sit amet pellentesque felis enim id ipsum.', '2012-03-31 00:00:00', 'seta'),
+(4, 'Galeria 3', '2012-03-31 00:00:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis luctus scelerisque. Sed rhoncus sapien at purus condimentum tincidunt quis sed erat. Fusce non magna sed justo viverra porta sed rhoncus ante. Suspendisse in sapien sed nisi posuere porta. Donec dignissim, velit quis gravida iaculis, dui purus facilisis ipsum, non eleifend diam tellus posuere lorem. Suspendisse potenti. Etiam libero nulla, sagittis nec pellentesque quis, euismod id risus. Cras elit dui, venenatis sed gravida vel, pulvinar eget eros. Integer consequat rhoncus quam, interdum vehicula turpis ullamcorper at. Vivamus suscipit, erat at pharetra commodo, risus arcu aliquet quam, sit amet pellentesque felis enim id ipsum.', '2012-03-31 00:00:00', 'seta');
+
 -- --------------------------------------------------------
 
 --
@@ -257,7 +266,31 @@ INSERT INTO `picture` (`id`, `name`, `information`, `main_picture`, `gallery_id`
 (32, '/pictures/partners/facebook.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:31:24', 'root', 'http://www.facebook.pl'),
 (33, '/pictures/partners/mbank.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:32:21', 'root', 'http://www.mbank.pl'),
 (34, '/pictures/partners/youtube.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:32:45', 'root', 'http://www.youtube.pl'),
-(35, '/pictures/partners/o2.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:33:01', 'root', 'http://www.o2.pl');
+(35, '/pictures/partners/o2.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:33:01', 'root', 'http://www.o2.pl'),
+(36, '/galleries/1/photo1.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(37, '/galleries/1/photo2.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(38, '/galleries/1/photo3.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(39, '/galleries/1/photo4.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(40, '/galleries/1/photo5.jpg', NULL, 'Y', 1, '2012-03-31 00:00:00', 'seta', NULL),
+(41, '/galleries/1/photo6.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(42, '/galleries/1/photo7.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(43, '/galleries/1/photo8.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(44, '/galleries/1/photo9.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(45, '/galleries/1/photo10.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(46, '/galleries/1/photo11.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(47, '/galleries/1/photo12.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(48, '/galleries/1/photo13.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(49, '/galleries/1/photo14.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(50, '/galleries/1/photo15.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(51, '/galleries/1/photo16.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(52, '/galleries/1/photo17.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(53, '/galleries/1/photo18.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(54, '/galleries/1/photo19.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(55, '/galleries/1/photo20.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(56, '/galleries/1/photo21.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(57, '/galleries/1/photo22.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(58, '/galleries/1/photo23.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL);
+
 
 -- --------------------------------------------------------
 

@@ -25,17 +25,21 @@ class Core_Model_Abstract {
 			$method = null;
 		}
 		
-		if ($method) {
-			array_unshift($params, strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $name)));
-			return call_user_func_array(array($this, "__$method"), $params);
+		try {
+			if ($method) {
+				array_unshift($params, strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $name)));
+				return call_user_func_array(array($this, "__$method"), $params);
+			}
+		} catch (Exception $e) {
+			/* Wyjątek oznacza że nie było parametru więc ostatecznie wyrzucamy wyjątek o braku metody */
 		}
 		
-		throw new BadMethodCallException('Brak metody: ' . get_class($this) . "->$name()");
+		throw new BadMethodCallException('Invalid method: ' . get_class($this) . "->$name()");
 	}
 	
 	public function __set($name, $value) {
 		if (('mapper' == $name) || !in_array($name, $this->_params)) {
-			throw new Exception('Invalid property');
+			throw new Exception('Invalid property ' . get_class($this) . "->$name");
 		}
 
 		$method = 'set' . $name;
@@ -44,7 +48,7 @@ class Core_Model_Abstract {
 
 	public function __get($name) {
 		if (('mapper' == $name) || !in_array($name, $this->_params)) {
-			throw new Exception('Invalid property');
+			throw new Exception('Invalid property ' . get_class($this) . "->$name");
 		}
 
 		$method = 'get' . $name;
