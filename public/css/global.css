@@ -140,12 +140,14 @@ height		: 21px;
 vertical-align		: bottom;
 text-align	: right;
 position	: relative;
+color: 000000;
 }
 
 #menu_top_lng > ul.menu_poziome2 {
 	position: absolute;
 	bottom: 0;
 	right:0;
+	color: 000000;
 }
 
 #main_image{
@@ -326,6 +328,26 @@ font-size	: 6.5pt;
 font-family	: Arial;
 text-align	: right;
 vertical-align	: bottom;
+}
+
+ul.menu_poziome2 li{
+display		: block;
+list-style	: none;
+margin		: 0;
+padding-left: 5px;
+display		: inline;
+font-size	: 6.5pt;
+font-family	: Arial;
+text-align	: right;
+vertical-align	: bottom;
+}
+
+#menu_top_lng ul.menu_poziome2 li a{
+color: #000000;	
+}
+
+#menu_top_lng ul.menu_poziome2 li.menu_poziome2 a{
+color: #FF0000;	
 }
 
 a{
