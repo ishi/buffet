@@ -30,8 +30,11 @@ class Application_Model_NewsMapper
     	try {
 	        $data = array(
 	            'title'   => $news->getTitle(),
+	        	'title_en'   => $news->getTitleEn(),
 	            'content_pl' => $news->getContentPl(),
+	        	'content_en' => $news->getContentEn(),
 	        	'pre_content_pl' => $news->getPreContentPl(),
+	        	'pre_content_en' => $news->getPreContentEn(),
 	        	'picture_id' => $news->getPictureId(),
 	        	'event_news' => $news->getEventNews(),
 	        	'event_announcement' => $news->getEventAnnouncement(),
@@ -59,8 +62,11 @@ class Application_Model_NewsMapper
         $row = $result->current();
         $news->setId($row->id)
                   ->setTitle($row->title)
+                  ->setTitleEn($row->title_en)
                   ->setContentPl($row->content_pl)
+                  ->setContentEn($row->content_en)
                   ->setPreContentPl($row->pre_content_pl)
+                  ->setPreContentEn($row->pre_content_en)
                   ->setPictureId($row->picture_id)
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
@@ -76,8 +82,11 @@ class Application_Model_NewsMapper
             $entry = new Application_Model_News();
             $entry->setId($row->id)
                   ->setTitle($row->title)
+                  ->setTitleEn($row->title_en)
                   ->setContentPl($row->content_pl)
+                  ->setContentEn($row->content_en)
                   ->setPreContentPl($row->pre_content_pl)
+                  ->setPreContentEn($row->pre_content_en)
                   ->setPictureId($row->picture_id)
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)

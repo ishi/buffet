@@ -13,10 +13,10 @@
     <div id="main_content_news_cont">
     <p class="news_title">
     <?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom())) )?>
-    <?php echo $this->escape($entry->getTitle())?>
+    <?php echo $this->escape($entry->getTitleLng())?>
     
     </p>
-    <p class="news_pre_content"><?php echo nl2br($this->escape($entry->getPreContentPl())) ?></p>
+    <p class="news_pre_content"><?php echo nl2br($this->escape($entry->getPreContent())) ?></p>
     </div>
     
     <div id="main_content_news_go">

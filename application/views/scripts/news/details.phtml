@@ -13,11 +13,11 @@
 	<div id="details_cont">
 		<div id="details_title">
 			<?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom())) )?>
-			<?php echo nl2br($this->escape($entry->getTitle())) ?>
+			<?php echo nl2br($this->escape($entry->getTitleLng())) ?>
 		</div>
     
     	<div id="details_content">
-    		<?php echo nl2br($this->escape($entry->getContentPl())) ?>
+    		<?php echo nl2br($this->escape($entry->getContent())) ?>
     	</div>
     	
     	<div id="details_main_back">

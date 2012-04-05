@@ -5,6 +5,7 @@
 class Application_Model_Information
 {
     protected $_content;
+    protected $_content_en;
     protected $_id;
     protected $_picture_name;
 
@@ -56,6 +57,17 @@ class Application_Model_Information
         return $this->_content;
     }
     
+	public function setContentEn($text)
+    {
+        $this->_content_en = (string) $text;
+        return $this;
+    }
+
+    public function getContentEn()
+    {
+        return $this->_contentEn;
+    }
+    
        public function setId($id)
     {
         $this->_id = (int) $id;
@@ -78,4 +90,14 @@ class Application_Model_Information
         return $this->_picture_name;
     }
     
+// funkcja do pobierania tresci informacji w zaleznosci od tego czy jest menu polskie czy angielskie
+	public function getContentLng()
+    {
+    	if ($_SESSION['lang']=='en'){
+        	return $this->_content_en;
+        }
+        else{
+        	return $this->_content;
+        }
+    }
 }

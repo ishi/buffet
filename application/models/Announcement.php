@@ -5,9 +5,12 @@
 class Application_Model_Announcement
 {
     protected $_content_pl;
+    protected $_content_en;
     protected $_title;
+    protected $_title_en;
     protected $_id;
     protected $_pre_content_pl;
+    protected $_pre_content_en;
     protected $_picture_id;
     protected $_event_news;
     protected $_event_announcement;
@@ -62,7 +65,18 @@ class Application_Model_Announcement
         return $this->_content_pl;
     }
     
-public function setPreContentPl($text)
+	public function setContentEn($text)
+    {
+        $this->_content_en = (string) $text;
+        return $this;
+    }
+
+    public function getContentEn()
+    {
+        return $this->_content_en;
+    }
+    
+	public function setPreContentPl($text)
     {
         $this->_pre_content_pl = (string) $text;
         return $this;
@@ -71,6 +85,17 @@ public function setPreContentPl($text)
     public function getPreContentPl()
     {
         return $this->_pre_content_pl;
+    }
+    
+	public function setPreContentEn($text)
+    {
+        $this->_pre_content_en = (string) $text;
+        return $this;
+    }
+
+    public function getPreContentEn()
+    {
+        return $this->_pre_content_en;
     }
 
     public function setTitle($title)
@@ -82,6 +107,17 @@ public function setPreContentPl($text)
     public function getTitle()
     {
         return $this->_title;
+    }
+    
+    public function setTitleEn($title)
+    {
+        $this->_title_en = (string) $title;
+        return $this;
+    }
+
+    public function getTitleEn()
+    {
+        return $this->_title_en;
     }
 
        public function setId($id)
@@ -149,4 +185,37 @@ public function setPreContentPl($text)
     {
         return $this->_date_from;
     }
+    
+    // funkcja do pobierania tresci zapowiedzi w zaleznosci od tego czy jest menu polskie czy angielskie
+	public function getContent()
+    {
+    	if ($_SESSION['lang']=='en'){
+        	return $this->_content_en;
+        }
+        else{
+        	return $this->_content_pl;
+        }
+    }
+    
+// funkcja do pobierania zajawki zapowiedzi w zaleznosci od tego czy jest menu polskie czy angielskie
+	public function getPreContent()
+    {
+    	if ($_SESSION['lang']=='en'){
+        	return $this->_pre_content_en;
+        }
+        else{
+        	return $this->_pre_content_pl;
+        }
+    }
+
+// funkcja do pobierania tytulu zapowiedzi w zaleznosci od tego czy jest menu polskie czy angielskie
+	public function getTitleLng()
+    {
+    	if ($_SESSION['lang']=='en'){
+        	return $this->_title_en;
+        }
+        else{
+        	return $this->_title;
+        }
+    }  
 }

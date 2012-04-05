@@ -30,6 +30,7 @@ class Application_Model_InformationMapper
     	try {
 	        $data = array(
 	            'content' => $information->getContent(),
+	        	'content_en' => $information->getContentEn(),
 	        	'picture_name' => $information->getPictureName(),
 	        );
 	
@@ -53,6 +54,7 @@ class Application_Model_InformationMapper
         $row = $result->current();
         $information->setId($row->id)
                   ->setContent($row->content)
+                  ->setContentEn($row->content_en)
                   ->setPictureName($row->picture_name);
     }
 
@@ -64,6 +66,7 @@ class Application_Model_InformationMapper
             $entry = new Application_Model_Information();
             $entry->setId($row->id)
                   ->setContent($row->content)
+                  ->setContentEn($row->content_en)
                   ->setPictureName($row->picture_name);
             $entries[] = $entry;
         }

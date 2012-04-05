@@ -30,8 +30,11 @@ class Application_Model_ArchiveMapper
     	try {
 	        $data = array(
 	            'title'   => $archive->getTitle(),
+	        	'title_en'   => $archive->getTitleEn(),
 	            'content_pl' => $archive->getContentPl(),
+	        	'content_en' => $archive->getContentEn(),
 	        	'pre_content_pl' => $archive->getPreContentPl(),
+	        	'pre_content_en' => $archive->getPreContentEn(),
 	        	'picture_id' => $archive->getPictureId(),
 	        	'event_news' => $archive->getEventNews(),
 	        	'event_announcement' => $archive->getEventAnnouncement(),
@@ -59,8 +62,11 @@ class Application_Model_ArchiveMapper
         $row = $result->current();
         $archive->setId($row->id)
                   ->setTitle($row->title)
+                  ->setTitleEn($row->title_en)
                   ->setContentPl($row->content_pl)
+                  ->setContentEn($row->content_en)
                   ->setPreContentPl($row->pre_content_pl)
+                  ->setPreContentEn($row->pre_content_en)
                   ->setPictureId($row->picture_id)
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
@@ -76,8 +82,11 @@ class Application_Model_ArchiveMapper
             $entry = new Application_Model_Archive();
             $entry->setId($row->id)
                   ->setTitle($row->title)
+                  ->setTitleEn($row->title_en)
                   ->setContentPl($row->content_pl)
+                  ->setContentEn($row->content_en)
                   ->setPreContentPl($row->pre_content_pl)
+                  ->setPreContentEn($row->pre_content_en)
                   ->setPictureId($row->picture_id)
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
