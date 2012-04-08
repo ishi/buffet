@@ -15,6 +15,14 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+	set_include_path(
+	        '.' . PATH_SEPARATOR .
+	        './library/' . PATH_SEPARATOR .
+	        './application/modules/' . PATH_SEPARATOR .
+	        get_include_path()
+	);
+
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 

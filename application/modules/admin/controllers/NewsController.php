@@ -1,6 +1,6 @@
 <?php
 
-class Admin_IndexController extends Zend_Controller_Action
+class Admin_NewsController extends Zend_Controller_Action
 {
 
     public function init()
@@ -10,10 +10,7 @@ class Admin_IndexController extends Zend_Controller_Action
     }
 
     public function indexAction()
-    {	
-    	$news = new Application_Model_NewsMapper();
-        $order = 'date_from DESC';
-        $this->view->entries = $news->fetchAll("id", $order);
+    {
         // action body
         //$this->view->tables = $this->getInvokeArg('bootstrap')->getResource('db')->listTables();
         /*$home = new Application_Model_InformationMapper();
@@ -23,13 +20,6 @@ class Admin_IndexController extends Zend_Controller_Action
         $this->view->pictures = $picture->fetchAll("information='main'");
         */
     }
-    
-	public function detailsAction()
-    {
-    	$news = new Application_Model_NewsMapper();
-    	$id = $this->_getParam('id', 1);
-        $this->view->entries = $news->fetchAll("id=$id", "id");
-    }    
     
 	
 

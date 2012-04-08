@@ -69,7 +69,7 @@ height		: 229px;
 
 #menu_left{
 float		: left;
-width		: 171px;
+width		: 172px;
 height		: 229px;
 position: relative;
 }
@@ -85,6 +85,34 @@ position: relative;
 }
 
 #menu_left li {
+	margin: 0px;
+	padding: 0px;
+	padding-top: 7px;
+	padding-right: 15px;
+	display: block;
+	font-size	: 6.5pt;
+	font-family	: Arial;
+	text-align	: right;
+}
+
+#menu_left_admin{
+float		: left;
+width		: 172px;
+height		: 229px;
+position: relative;
+}
+
+#menu_left_admin ul {
+	margin		: 0px;
+	padding		: 0px;	
+	vertical-align		: bottom;
+	list-style	: none;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+#menu_left_admin li {
 	margin: 0px;
 	padding: 0px;
 	padding-top: 7px;
@@ -567,3 +595,39 @@ color		: #FFFFFF;
 	display: block;
 	margin: auto;
 }
+
+input{
+border-top-left-radius:3px;
+border-top-right-radius:3px;
+border-bottom-left-radius:3px;
+border-bottom-right-radius:3px;
+border: 1px solid;
+}
+table#event{
+margin: 20px;
+border: 1px solid;
+border-collapse: collapse;
+}
+
+table#event tr#naglowek{
+background-color: pink;
+padding: 2px;
+}
+
+table#event td{
+border: 1px solid black;
+padding: 5px;	
+}
+
+table#event td#tytul{
+width: 300px;
+border: 1px solid black;
+padding: 5px;
+}
+
+table#event td#pre_content{
+width: 490px;
+border: 1px solid black;
+padding: 5px;
+}
+
