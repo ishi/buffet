@@ -470,7 +470,12 @@ font-family	: Arial;
 text-align	: center;
 padding-top	: 5px;
 margin-top	: 0px;
+}
 
+p.admin_tytul{
+font-size	: 10pt;
+font-family	: Arial;
+font-style: italic;
 }
 
 dt.news{
@@ -596,6 +601,10 @@ color		: #FFFFFF;
 	margin: auto;
 }
 
+#admin_event{
+padding-left: 20px;
+}
+
 input{
 border-top-left-radius:3px;
 border-top-right-radius:3px;
@@ -604,14 +613,16 @@ border-bottom-right-radius:3px;
 border: 1px solid;
 }
 table#event{
-margin: 20px;
 border: 1px solid;
 border-collapse: collapse;
+font-size	: 9pt;
+font-family	: Arial;
 }
 
 table#event tr#naglowek{
 background-color: pink;
 padding: 2px;
+font-weight: bold;
 }
 
 table#event td{
@@ -620,7 +631,7 @@ padding: 5px;
 }
 
 table#event td#tytul{
-width: 300px;
+width: 320px;
 border: 1px solid black;
 padding: 5px;
 }
