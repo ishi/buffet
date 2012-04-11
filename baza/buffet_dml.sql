@@ -140,7 +140,25 @@ INSERT INTO `picture` (`id`, `name`, `information`, `main_picture`, `gallery_id`
 (55, '/galleries/1/photo20.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
 (56, '/galleries/1/photo21.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
 (57, '/galleries/1/photo22.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(58, '/galleries/1/photo23.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL);
+(58, '/galleries/1/photo23.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
+(59, '/galleries/1/photo1.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
+(60, '/galleries/1/photo2.jpg', NULL, 'Y', 3, '2012-03-31 00:00:00', 'seta', NULL),
+(61, '/galleries/1/photo3.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
+(62, '/galleries/1/photo4.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
+(63, '/galleries/1/photo5.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
+(64, '/galleries/1/photo6.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
+(65, '/galleries/1/photo7.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
+(66, '/galleries/1/photo8.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
+(67, '/galleries/1/photo9.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
+(68, '/galleries/1/photo10.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
+(69, '/galleries/1/photo11.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
+(70, '/galleries/1/photo12.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
+(71, '/galleries/1/photo13.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
+(72, '/galleries/1/photo14.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
+(73, '/galleries/1/photo15.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
+(74, '/galleries/1/photo16.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
+(75, '/galleries/1/photo17.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
+(76, '/galleries/1/photo18.jpg', NULL, 'Y', 4, '2012-03-31 00:00:00', 'seta', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

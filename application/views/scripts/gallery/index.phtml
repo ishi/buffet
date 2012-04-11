@@ -1,12 +1,20 @@
-<div id="galleries" class="clearfix">
-	<?php foreach ($this->galleries as $gallery) : ?>
-		<div class="gallery">
-			<div class="preview">
-				<img src="<?php echo $this->escape($gallery->getMainPhoto()->getName()) ?>" />
+<table id="galleries">
+	<tr>
+		<?php foreach ($this->galleries as $gallery) : ?>
+		<td>
+			<div class="gallery">
+				<div class="clearfix">
+					<div class="preview">
+						<img src="<?php echo $this->escape($gallery->getMainPhoto()->getName()) ?>" />
+					</div>
+					<div class="thumbnails clearfix">
+						<?php foreach ($gallery->getPhotos() as $photo) : ?>
+							<div class="thumbnail"><img src="<?php echo $photo->getName() ?>" /></div>
+						<?php endforeach ?>
+					</div>
+				</div>
 			</div>
-			<?php foreach ($gallery->getPhotos() as $photo) : ?>
-				<div class="thumbnail"><img src="<?php echo $photo->getName() ?>" /></div>
-			<?php endforeach ?>
-		</div>
+		</td>
 		<?php endforeach ?>
-</div>
+	</tr>
+</table>
