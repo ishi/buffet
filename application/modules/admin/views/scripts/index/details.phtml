@@ -1,1 +1,6 @@
 Ola 123
+
+<?php foreach ($this->entries as $entry): ?>
+<?php echo $this->escape($entry->getId())?>
+<?php echo $this->escape($entry->getTitle())?>
+<?php endforeach ?>
