@@ -14,6 +14,14 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		}
 		$mapper = new Application_Model_GalleryMapper();
 		$this->view->entry = $mapper->find($id);
+		$this->view->form = $this->_getForm();
+		$this->view->form->populate($this->view->entry->toArray());
+	}
+	
+	private function _getForm() {
+		$form = new Admin_Form_Gallery();
+		$form->setAction($this->_helper->url('save'));
+		return $form;
 	}
 }
 
