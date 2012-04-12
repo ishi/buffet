@@ -99,18 +99,8 @@ position: relative;
 float		: left;
 width		: 172px;
 height		: 229px;
-position: relative;
 }
 
-#menu_left_admin ul {
-	margin		: 0px;
-	padding		: 0px;	
-	vertical-align		: bottom;
-	list-style	: none;
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
 
 #menu_left_admin li {
 	margin: 0px;
@@ -476,6 +466,31 @@ p.admin_tytul{
 font-size	: 10pt;
 font-family	: Arial;
 font-style: italic;
+border-top-left-radius:5px;
+border-top-right-radius:5px;
+border-bottom-left-radius:5px;
+border-bottom-right-radius:5px;
+border: 1px solid;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 5px;
+margin-bottom: 5px;
+background-color: #FFFFCC;
+}
+
+p.admin_main{
+font-size	: 10pt;
+font-family	: Arial;
+font-style: italic;
+border-top-left-radius:5px;
+border-top-right-radius:5px;
+border-bottom-left-radius:5px;
+border-bottom-right-radius:5px;
+border: 1px solid;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 5px;
+background-color: #FFFFCC;
 }
 
 dt.news{
@@ -603,6 +618,12 @@ color		: #FFFFFF;
 
 #admin_event{
 padding-left: 20px;
+padding-right: 20px;
+}
+
+#admin_main{
+padding-left: 20px;
+padding-right: 20px;
 }
 
 input{
@@ -617,10 +638,11 @@ border: 1px solid;
 border-collapse: collapse;
 font-size	: 9pt;
 font-family	: Arial;
+background-color: #FFFFFF;
 }
 
 table#event tr#naglowek{
-background-color: pink;
+background-color: #FFFF99;
 padding: 2px;
 font-weight: bold;
 }
