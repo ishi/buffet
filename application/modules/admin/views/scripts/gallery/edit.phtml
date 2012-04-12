@@ -1,0 +1,35 @@
+<div id="admin_event">
+	<p class="admin_tytul">Edycja podstrony NEWS</p>
+	
+	<?php if (!$this->entry) : ?>
+		Brak żądanej galerii
+		<?php return ?>
+	<?php endif ?>
+	
+	<table id="event">
+		<tr id="naglowek">
+			<td>Lp.</td>
+			<td>Tytul</td>
+			<td>Data od</td>
+			<td>Skrocona tresc</td>
+			<td>Edytuj</td>
+			<td>Usun</td>
+		</tr>
+	
+		<?php $lp = 1 ?>
+		<tr onMouseOver="this.style.background='#FFFFCC'" onMouseOut="this.style.background='none'">
+			<td><?php echo $lp++ ?></td>
+			<td id="tytul"><?php echo $this->escape($this->entry->getFolderName())?></td>
+			<td><?php echo date('d.m.Y', strtotime($this->escape($this->entry->getFolderDate())) )?></td>
+			<td id="pre_content"><?php echo substr(nl2br($this->escape($this->entry->getFolderContent())),0, 80) ?></td>
+			<td>
+				<a href="<?php echo $this->url(array('action' => 'show', 'id' => $this->entry->getId()));?>">
+					<img src="/images/edit.jpg" />
+				</a>
+			</td>
+			<td><a href="#"><img src="/images/drop.jpg" /></a></td>
+		</tr>
+	
+	</table>
+
+</div>

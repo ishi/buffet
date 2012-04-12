@@ -51,13 +51,13 @@ class Core_Model_MapperAbstract {
 	}
 
 	public function find($id) {
-		$result = $this->getDbTable()->find($id);
-		if (0 == count($result)) {
+		$resultSet = $this->getDbTable()->find($id);
+		if (!$resultSet->count()) {
 			return;
 		}
-		$row = $result->current();
+		$row = $resultSet->current();
 		$modelClass = self::$modelPrefix . $this->_modelName;
-		$model = new $modelClass($row->toArray());
+		return new $modelClass($row->toArray());
 	}
 
 	public function fetchAll($where = null, $order = null, $count = null, $offset = null) {
