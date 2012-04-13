@@ -39,15 +39,26 @@ class Core_Model_MapperAbstract {
 			$data = $model->toArray();
 			
 			$primaryKey = $this->getDbTable()->getPrimary();
-			if (null === ($id = $data[$primaryKey])) {
+			if (!($id = $data[$primaryKey])) {
 				unset($data[$primaryKey]);
-				$this->getDbTable()->insert($data);
+				$model->{$primaryKey} = $this->getDbTable()->insert($data);
 			} else {
 				$this->getDbTable()->update($data, array("$primaryKey = ?" => $id));
 			}
 		} catch (Exception $e) {
-
+			return false;
 		}
+		return true;
+	}
+	
+	public function delete($id) {
+		try {
+			$primaryKey = $this->getDbTable()->getPrimary();
+			$this->getDbTable()->delete(array("$primaryKey = ?" => $id));
+		} catch (Exception $e) {
+			return false;
+		}
+		return true;
 	}
 
 	public function find($id) {
