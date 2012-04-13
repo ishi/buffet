@@ -7,15 +7,53 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		$this->view->entries = $mapper->fetchAll(null, 'folder_name ASC');
 	}
 	
+	public function addAction() {
+		$this->view->form = $this->_getForm();
+		$this->render('edit');
+	}
+	
 	public function editAction() {
 		if (!($id = $this->_getParam('id'))) {
 			$this->_helper->redirector->gotoSimple('index');
 			return;
 		}
 		$mapper = new Application_Model_GalleryMapper();
-		$this->view->entry = $mapper->find($id);
+		$entry = $mapper->find($id);
 		$this->view->form = $this->_getForm();
-		$this->view->form->populate($this->view->entry->toArray());
+		$this->view->form->populate($entry->toArray());
+	}
+	
+	public function removeAction() {
+		if (!($id = $this->_getParam('id'))) {
+			$this->view->priorityMessenger('Brak id galerii');
+			$this->_helper->redirector->gotoSimple('index');
+			return;
+		}
+		$mapper = new Application_Model_GalleryMapper();
+		if (!$mapper->delete($id)) {
+			$this->view->priorityMessenger('Błąd przy usuwaniu galerii');
+		} else {
+			$this->view->priorityMessenger('Usunięto galerię z bazy danych');
+		}
+		$this->_helper->redirector->gotoSimple('index');
+	}
+	
+	public function saveAction() {
+		$this->view->form = $this->_getForm();
+		if (!$this->view->form->isValid($this->_getAllParams())) {
+			$this->render('edit');
+			return;
+		}
+		
+		$gallery = new Application_Model_Gallery($this->_getAllParams());
+		$mapper = new Application_Model_GalleryMapper();
+		if (!$mapper->save($gallery)) {
+			$this->render('edit');
+			return;
+		}
+		
+		$this->view->priorityMessenger('Zapisano galerię w bazie danych');
+		$this->_helper->redirector->gotoSimple('index');
 	}
 	
 	private function _getForm() {
