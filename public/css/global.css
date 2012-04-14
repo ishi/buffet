@@ -589,14 +589,14 @@ color		: #FFFFFF;
 
 #galleries .gallery {
 	width: 230px;
-	height: 600px;
+	height: 500px;
 	overflow: hidden;
 	margin: 4px;
 	margin-top: 0px;
 }
 
 #galleries .gallery > div {
-	width: 620px;
+	width: 590px;
 	text-align: center;
 	margin-left: -55%;
 }
@@ -610,39 +610,35 @@ color		: #FFFFFF;
 }
 
 #galleries .gallery.active {
-	width: 620px;
+	width: 550px;
 }
 
 #galleries .gallery .preview {
-	width: 500px;
+	width: 450px;
 	float: left;
 	overflow: hidden;
 	position: relative;
 }
 
-#galleries .gallery.active .preview {
-	left: 0;
-}
-
 #galleries .gallery .preview img {
-	height: 600px;
+	height: 500px;
 }
 
 #galleries .gallery .thumbnails {
 	float: left;
-	width: 120px;
+	width: 100px;
 	overflow: hidden;
 }
 
 #galleries .gallery .thumbnail {
 	float: left;
-	width: 50px;
+	width: 40px;
 	overflow: hidden;
 	margin: 5px;
 }
 
 #galleries .gallery .thumbnail img {
-	height: 50px;
+	height: 40px;
 	display: block;
 	margin: auto;
 }
@@ -657,7 +653,7 @@ padding-left: 20px;
 padding-right: 20px;
 }
 
-input{
+input, textarea {
 border-top-left-radius:3px;
 border-top-right-radius:3px;
 border-bottom-left-radius:3px;

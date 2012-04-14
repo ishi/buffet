@@ -35,20 +35,15 @@ class Core_Model_MapperAbstract {
 	}
 	
 	public function save(Core_Model_Abstract $model) {
-		try {
-			$data = $model->toArray();
-			
-			$primaryKey = $this->getDbTable()->getPrimary();
-			if (!($id = $data[$primaryKey])) {
-				unset($data[$primaryKey]);
-				$model->{$primaryKey} = $this->getDbTable()->insert($data);
-			} else {
-				$this->getDbTable()->update($data, array("$primaryKey = ?" => $id));
-			}
-		} catch (Exception $e) {
-			return false;
+		$data = $model->toArray();
+		
+		$primaryKey = $this->getDbTable()->getPrimary();
+		if (!($id = $data[$primaryKey])) {
+			unset($data[$primaryKey]);
+			$model->{$primaryKey} = $this->getDbTable()->insert($data);
+		} else {
+			$this->getDbTable()->update($data, array("$primaryKey = ?" => $id));
 		}
-		return true;
 	}
 	
 	public function delete($id) {

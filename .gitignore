@@ -2,3 +2,4 @@ library/Zend/
 .settings/
 .project
 .buildpath
+/nbproject/private/
