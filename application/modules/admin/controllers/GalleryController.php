@@ -9,7 +9,6 @@ class Admin_GalleryController extends Zend_Controller_Action {
 	
 	public function addAction() {
 		$this->view->form = $this->_getForm();
-		$this->render('edit');
 	}
 	
 	public function editAction() {
@@ -47,13 +46,18 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		
 		$gallery = new Application_Model_Gallery($this->_getAllParams());
 		$mapper = new Application_Model_GalleryMapper();
-		if (!$mapper->save($gallery)) {
+		try {
+			$gallery->setFolderDate(new Zend_Db_Expr('CURDATE()'));
+			$gallery->setArchDate(new Zend_Db_Expr('CURDATE()'));
+			$gallery->setUser('seta');
+			$mapper->save($gallery);
+			$this->view->priorityMessenger('Zapisano galerię w bazie danych');
+			$this->_helper->redirector->gotoSimple('index');
+		} catch (Exception $e) {
+			$this->view->priorityMessenger('Problemy przy zapisie do bazy: ' 
+					. $e->getMessage());
 			$this->render('edit');
-			return;
 		}
-		
-		$this->view->priorityMessenger('Zapisano galerię w bazie danych');
-		$this->_helper->redirector->gotoSimple('index');
 	}
 	
 	private function _getForm() {

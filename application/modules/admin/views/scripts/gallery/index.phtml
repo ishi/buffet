@@ -1,21 +1,5 @@
-<div id="priority_messages">
-	<ul>
-	<?php foreach ($this->priorityMessenger() as $label => $messages) : ?>
-		<?php if (count($messages)) : ?> 
-			<li class="<?php echo $label ?>_message">
-				<ul class="<?php echo $label ?>_message">
-				<?php foreach ($messages as $message) : ?>
-					<li><?php echo $message ?></li>
-				<?php endforeach; ?>
-				</ul>
-			</li>
-		<?php endif; ?>
-	<?php endforeach; ?>
-	</ul>
-</div>
-
 <div id="admin_event">
-	<p class="admin_tytul">Edycja podstrony NEWS</p>
+	<p class="admin_tytul">Edycja podstrony FOTO</p>
 	<a href="<?php echo $this->url(array('action' => 'add')) ?>">Dodaj nową galerię</a>
 	<table id="event">
 		<tr id="naglowek">

@@ -8,6 +8,8 @@ class Admin_Form_Gallery extends Zend_Form {
 
 		$folderName = $this->createElement('text', 'folder_name')
 			->setLabel('Nazwa Galerii');
+		$folderContent = $this->createElement('textarea', 'folder_content')
+			->setLabel('Opis Galerii');
 		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Zapisz galerię');
@@ -15,6 +17,7 @@ class Admin_Form_Gallery extends Zend_Form {
 		$this->addElements(array(
 			$id,
 			$folderName,
+			$folderContent,
 			$submit
 		));
 
