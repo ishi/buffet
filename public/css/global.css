@@ -664,6 +664,14 @@ border-bottom-left-radius:3px;
 border-bottom-right-radius:3px;
 border: 1px solid;
 }
+textarea{
+border-top-left-radius:3px;
+border-top-right-radius:3px;
+border-bottom-left-radius:3px;
+border-bottom-right-radius:3px;
+border: 1px solid;
+}
+
 table#event{
 border: 1px solid;
 border-collapse: collapse;

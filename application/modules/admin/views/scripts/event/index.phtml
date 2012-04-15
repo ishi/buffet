@@ -1,6 +1,17 @@
 <div id="admin_event">
 
-<p class="admin_tytul">Edycja podstrony NEWS</p>
+<?php 
+if($_SESSION['event_kind']=='news'){
+	echo "<p class='admin_tytul'>Edycja podstrony NEWS</p>";
+}
+elseif ($_SESSION['event_kind']=='archive'){
+	echo "<p class='admin_tytul'>Edycja podstrony ARCHIWUM</p>";
+}
+elseif ($_SESSION['event_kind']=='announcement'){
+	echo "<p class='admin_tytul'>Edycja podstrony ZAPOWIEDZI</p>";
+}
+?>
+
 
 <table id="event">
 	<tr id="naglowek">
@@ -18,7 +29,7 @@
     <td id="tytul"><?php echo $this->escape($entry->getTitle())?></td>
     <td><?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom())) )?></td>
 	<td id="pre_content"><?php echo substr(nl2br($this->escape($entry->getPreContentPl())),0, 75) ?> ...</td>
-	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'index', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>'pl'), null, true);?>"><img src="/images/edit.jpg" /></a></td>
+	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>'pl'), null, true);?>"><img src="/images/edit.jpg" /></a></td>
 	<td><a href="#"><img src="/images/drop.jpg" /></a></td>
     
     </tr>

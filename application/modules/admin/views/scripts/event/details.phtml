@@ -1,6 +1,18 @@
-Ola 123
 
-<?php foreach ($this->entries as $entry): ?>
-<?php echo $this->escape($entry->getId())?>
-<?php echo $this->escape($entry->getTitle())?>
+
+<?php foreach ($this->entries as $entry):
+	$id = $this->escape($entry->getId());
+	$title = $this->escape($entry->getTitle());
+	$content_pl = $this->escape($entry->getContentPl());
+	?>
+	Id:
+	<?php echo "<input type='text' name='id' value=$id />" ?> 
+	<br />
+	Tytuł:
+	<?php echo "<input type='text' name='title' value=$title >" ?>
+	<br />
+	Treść:
+	<textarea  name='content' cols="100" rows="10"><?php echo $content_pl ?></textarea>
+	
+	
 <?php endforeach ?>
