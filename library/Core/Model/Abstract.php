@@ -4,6 +4,12 @@ class Core_Model_Abstract {
 	protected $_params = array();
 	private $_values = array();
 
+	public function __construct(array $options = null) {
+		if (is_array($options)) {
+			$this->setOptions($options);
+		}
+	}
+	
 	public function setOptions(array $options) {
 		foreach ($options as $key => $value) {
 			if (in_array($key, $this->_params)) {

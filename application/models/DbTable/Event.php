@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_DbTable_Event extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Event extends Core_Model_DbTable_Abstract
 {
     protected $_name = 'event';
 	protected $_primary = 'id';

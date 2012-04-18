@@ -14,7 +14,7 @@
 	
     <div id="main_content_archive_cont">
     <p class="archive_title">
-    	<?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom())) )?>
+    	<?php echo $this->escape($entry->getDate()) ?>
     	<?php echo $this->escape($entry->getTitleLng()) ?>	
     </p>
     

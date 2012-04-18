@@ -1,30 +1,9 @@
 <?php 
 // application/models/EventMapper.php
 
-class Application_Model_EventMapper
+class Application_Model_EventMapper extends Core_Model_MapperAbstract
 {
-    protected $_dbTable;
-
-    public function setDbTable($dbTable)
-    {
-        if (is_string($dbTable)) {
-            $dbTable = new $dbTable();
-        }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
-            throw new Exception('Invalid table data gateway provided');
-        }
-        $this->_dbTable = $dbTable;
-        return $this;
-    }
-
-    public function getDbTable()
-    {
-        if (null === $this->_dbTable) {
-            $this->setDbTable('Application_Model_DbTable_Event');
-        }
-        return $this->_dbTable;
-    }
-
+	/*
     public function save(Application_Model_Event $event)
     {
     	try {
@@ -39,6 +18,7 @@ class Application_Model_EventMapper
 	        	'event_news' => $event->getEventNews(),
 	        	'event_announcement' => $event->getEventAnnouncement(),
 	        	'date_from' => $event->getDateFrom(),
+	        	'date_to' => $event->getDateTo(),
 	        );
 	
 	        if (null === ($id = $event->getId())) {
@@ -51,7 +31,8 @@ class Application_Model_EventMapper
     		
     	}
     }
-
+	*/
+    /*
     public function find($id, Application_Model_Event $event)
     {
         $result = $this->getDbTable()->find($id);
@@ -71,26 +52,28 @@ class Application_Model_EventMapper
                   ->setEventAnnouncement($row->event_announcement)
                   ->setDateFrom($row->date_from);
     }
-
-    public function fetchAll($where, $order)
-    {
-        $resultSet = $this->getDbTable()->fetchAll($where, $order);
-        $entries   = array();
-        foreach ($resultSet as $row) {
-            $entry = new Application_Model_Event();
-            $entry->setId($row->id)
-                  ->setTitle($row->title)
-                  ->setTitleEn($row->title_en)
-                  ->setContentPl($row->content_pl)
-                  ->setContentEn($row->content_en)
-                  ->setPreContentPl($row->pre_content_pl)
-                  ->setPreContentEn($row->pre_content_en)
-                  ->setPictureId($row->picture_id)
-                  ->setEventNews($row->event_news)
-                  ->setEventAnnouncement($row->event_announcement)
-                  ->setDateFrom($row->date_from);
-            $entries[] = $entry;
-        }
-        return $entries;
-    }
+	*/
+	
+//    public function fetchAll($where, $order)
+//    {
+//        $resultSet = $this->getDbTable()->fetchAll($where, $order);
+//        $entries   = array();
+//        foreach ($resultSet as $row) {
+//            $entry = new Application_Model_Event();
+//            $entry->setId($row->id)
+//                  ->setTitle($row->title)
+//                  ->setTitleEn($row->title_en)
+//                  ->setContentPl($row->content_pl)
+//                  ->setContentEn($row->content_en)
+//                  ->setPreContentPl($row->pre_content_pl)
+//                  ->setPreContentEn($row->pre_content_en)
+//                  ->setPictureId($row->picture_id)
+//                  ->setEventNews($row->event_news)
+//                  ->setEventAnnouncement($row->event_announcement)
+//                  ->setDateFrom($row->date_from);
+//            $entries[] = $entry;
+//        }
+//        return $entries;
+//    }
+    
 }

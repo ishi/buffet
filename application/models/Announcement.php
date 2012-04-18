@@ -16,6 +16,7 @@ class Application_Model_Announcement
     protected $_event_announcement;
     protected $_picture_name;
     protected $_date_from;
+    protected $_date_to;
 
     public function __construct(array $options = null)
     {
@@ -186,6 +187,17 @@ class Application_Model_Announcement
         return $this->_date_from;
     }
     
+	public function setDateTo($text)
+    {
+        $this->_date_to = (string) $text;
+        return $this;
+    }
+
+    public function getDateTo()
+    {
+        return $this->_date_to;
+    }
+    
     // funkcja do pobierania tresci zapowiedzi w zaleznosci od tego czy jest menu polskie czy angielskie
 	public function getContent()
     {
@@ -218,4 +230,22 @@ class Application_Model_Announcement
         	return $this->_title;
         }
     }  
+    
+    //funkcja do wybierania daty od (jak jest podana jedna data) lub zakredu dat (jak są podane obie daty)
+    public function getDate()
+    {
+    	$data_od = date('d.m.Y', strtotime($this->getDateFrom()) );
+    	$data_do = strtotime($this->getDateTo());
+    	
+    	if ($data_do >0){
+    		$data_do = date('d.m.Y', strtotime($this->getDateTo()) );
+    		$data = $data_od." - ".$data_do;
+    	}
+    	else{
+    		$data = $data_od;
+    		
+    	}
+    	
+    	return $data;
+    }
 }

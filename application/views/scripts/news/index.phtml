@@ -12,7 +12,7 @@
     
     <div id="main_content_news_cont">
     <p class="news_title">
-    <?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom())) )?>
+    <?php echo $this->escape($entry->getDate()) ?>
     <?php echo $this->escape($entry->getTitleLng())?>
     
     </p>

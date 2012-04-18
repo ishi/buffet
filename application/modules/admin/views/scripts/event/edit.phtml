@@ -1,0 +1,16 @@
+<div id="admin_event">
+<?php
+if ($_SESSION['event_kind']=='news'){
+	echo "<p class='admin_tytul'>Edycja NEWSA</p>";
+} 
+elseif ($_SESSION['event_kind']=='announcement'){
+	echo "<p class='admin_tytul'>Edycja ZAPOWIEDZI</p>";
+}
+elseif ($_SESSION['event_kind']=='archive'){
+	echo "<p class='admin_tytul'>Edycja ZAPOWIEDZI w ARCHIWUM</p>";
+}
+?>	
+	
+	<?php echo $this->form ?>
+
+</div>

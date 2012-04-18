@@ -9,12 +9,6 @@ class Application_Model_Gallery extends Core_Model_Abstract {
 	 */
 	private $_photos;
 
-	public function __construct(array $options = null) {
-		if (is_array($options)) {
-			$this->setOptions($options);
-		}
-	}
-	
 	public function getPhotos() {
 		if (!$this->_photos) {
 			$mapper = new Application_Model_PhotoMapper();

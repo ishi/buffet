@@ -52,7 +52,7 @@
 			<div id="menu_left_admin">
 				<ul>
 					<li>
-						<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'index', 'action'=>'index', 'lang'=>'pl'), null, true); ?>">Strona HOME</a>
+						<a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index', 'lang'=>'pl')); ?>">Strona HOME</a>
 					</li>
 					<li>
 						<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'index', 'lang'=>'pl', 'where'=>'news'), null, true); ?>">Strona NEWS</a>
@@ -60,8 +60,8 @@
 					<li>
 						<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'index', 'lang'=>'pl', 'where'=>'announcement'), null, true); ?>">Strona ZAPOWIEDZI</a>
 					</li>
-                                        <li>
-						<a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'index')); ?>">Strona FOTO</a>
+                    <li>
+						<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'gallery', 'action'=>'index', 'lang'=>'pl')); ?>">Strona FOTO</a>
 					</li>
 					<li>
 						<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'index', 'lang'=>'pl', 'where'=>'archive'), null, true); ?>">Strona ARCHIWUM</a>
@@ -93,7 +93,7 @@
 						<div id="menu_top">
 							<ul class="menu_poziome">
 								<li class="menu_poziome">
-									<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'add', 'lang'=>'pl', 'where'=>$_SESSION['event_kind']), null, true); ?>">DODAJ NOWY</a>
+									<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'add', 'lang'=>'pl'), null, true); ?>">DODAJ NOWY EVENT</a>
 								</li>
 							</ul>
 						</div>

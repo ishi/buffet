@@ -30,7 +30,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		}
 		$mapper = new Application_Model_GalleryMapper();
 		if (!$mapper->delete($id)) {
-			$this->view->priorityMessenger('Błąd przy usuwaniu galerii');
+			$this->view->priorityMessenger('Błąd przy usuwaniu galerii', 'info');
 		} else {
 			$this->view->priorityMessenger('Usunięto galerię z bazy danych');
 		}
