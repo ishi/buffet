@@ -10,27 +10,30 @@
 			<td>Edytuj</td>
 			<td>Usun</td>
 		</tr>
-	
-		<?php $lp = 1 ?>
-		<?php foreach ($this->entries as $entry): ?>
-		<tr onMouseOver="this.style.background='#FFFFCC'" onMouseOut="this.style.background='none'">
-			<td><?php echo $lp++ ?></td>
-			<td id="tytul"><?php echo $this->escape($entry->getFolderName())?></td>
-			<td><?php echo date('d.m.Y', strtotime($this->escape($entry->getFolderDate())) )?></td>
-			<td id="pre_content"><?php echo substr(nl2br($this->escape($entry->getFolderContent())),0, 80) ?></td>
-			<td>
-				<a href="<?php echo $this->url(array('action' => 'edit', 'id' => $entry->getId()));?>">
-					<img src="/images/edit.jpg" />
-				</a>
-			</td>
-			<td>
-				<a href="<?php echo $this->url(array('action' => 'remove', 'id' => $entry->getId()));?>">
-					<img src="/images/drop.jpg" />
-				</a>
-			</td>
-		</tr>
+
+		<?php foreach ($this->entries as $lp => $entry): ?>
+			<tr onMouseOver="this.style.background='#FFFFCC'" onMouseOut="this.style.background='none'">
+				<td><?php echo $lp + 1 ?></td>
+				<td id="tytul">
+					<a href="<?php echo $this->url(array('action' => 'show', 'id' => $entry->getId())); ?>">
+						<?php echo $this->escape($entry->getFolderName()) ?>
+					</a>
+				</td>
+				<td><?php echo date('d.m.Y', strtotime($this->escape($entry->getFolderDate()))) ?></td>
+				<td id="pre_content"><?php echo substr(nl2br($this->escape($entry->getFolderContent())), 0, 80) ?></td>
+				<td>
+					<a href="<?php echo $this->url(array('action' => 'edit', 'id' => $entry->getId())); ?>">
+						<img src="/images/edit.jpg" />
+					</a>
+				</td>
+				<td>
+					<a href="<?php echo $this->url(array('action' => 'remove', 'id' => $entry->getId())); ?>">
+						<img src="/images/drop.jpg" />
+					</a>
+				</td>
+			</tr>
 		<?php endforeach ?>
-	
+
 	</table>
 
 </div>
