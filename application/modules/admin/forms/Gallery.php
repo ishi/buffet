@@ -23,7 +23,7 @@ class Admin_Form_Gallery extends Zend_Form {
 
 		$this->setDecorators(array(
 				'FormElements',
-				array('HtmlTag', array('tag' => 'table')),
+				array('HtmlTag', array('tag' => 'table', 'class' => 'gallery')),
 				'Form'
 		));
 		

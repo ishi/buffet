@@ -1,10 +1,11 @@
 <?php
+
 class Core_Model_MapperAbstract {
-	
+
 	protected $_dbTable;
 	protected $_modelName;
 	public static $modelPrefix = 'Application_Model_';
-	
+
 	public function __construct($modelName = null) {
 		$this->_modelName = $modelName;
 	}
@@ -19,24 +20,25 @@ class Core_Model_MapperAbstract {
 		$this->_dbTable = $dbTable;
 		return $this;
 	}
-	
+
+	public function getModelName() {
+		if (!$this->_modelName) {
+			$mapperClass = explode('_', get_class($this));
+			$this->_modelName = str_replace('Mapper', '', array_pop($mapperClass));
+		}
+		return $this->_modelName;
+	}
+
 	public function getDbTable() {
 		if (null === $this->_dbTable) {
-			
-			if (!$this->_modelName) {
-				$mapperClass = explode('_', get_class($this));
-				$this->_modelName = str_replace('Mapper', '', array_pop($mapperClass));
-			}
-			
-			
-			$this->setDbTable(self::$modelPrefix . 'DbTable_' . $this->_modelName);
+			$this->setDbTable(self::$modelPrefix . 'DbTable_' . $this->getModelName());
 		}
 		return $this->_dbTable;
 	}
-	
+
 	public function save(Core_Model_Abstract $model) {
 		$data = $model->toArray();
-		
+
 		$primaryKey = $this->getDbTable()->getPrimary();
 		if (!($id = $data[$primaryKey])) {
 			unset($data[$primaryKey]);
@@ -45,7 +47,7 @@ class Core_Model_MapperAbstract {
 			$this->getDbTable()->update($data, array("$primaryKey = ?" => $id));
 		}
 	}
-	
+
 	public function delete($id) {
 		try {
 			$primaryKey = $this->getDbTable()->getPrimary();
@@ -62,14 +64,14 @@ class Core_Model_MapperAbstract {
 			return;
 		}
 		$row = $resultSet->current();
-		$modelClass = self::$modelPrefix . $this->_modelName;
+		$modelClass = self::$modelPrefix . $this->getModelName();
 		return new $modelClass($row->toArray());
 	}
 
 	public function fetchAll($where = null, $order = null, $count = null, $offset = null) {
 		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
-		$entries   = array();
-		$modelClass = self::$modelPrefix . $this->_modelName;
+		$entries = array();
+		$modelClass = self::$modelPrefix . $this->getModelName();
 		foreach ($resultSet as $row) {
 			$entries[] = new $modelClass($row->toArray());
 		}

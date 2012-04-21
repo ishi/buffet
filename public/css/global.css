@@ -702,9 +702,27 @@ border: 1px solid black;
 padding: 5px;
 }
 
+td#tytul a {
+    text-decoration: underline;
+}
+
 table#event td#pre_content{
 width: 490px;
 border: 1px solid black;
 padding: 5px;
 }
 
+.gallery {
+	border-collapse: collapse;
+	margin: 10px;
+}
+
+.gallery td {
+	vertical-align: top;
+	padding: 5px;
+}
+
+.gallery td:first-child {
+	width: 100px;
+	font-weight: bold;
+}
