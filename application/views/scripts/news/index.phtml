@@ -6,8 +6,16 @@
     
     <div id="main_content_news_picture">
     <?php 
+    if ($entry->getPictureName() == null)
+    {
+    	echo "<img  class=\"news\" src=\"/images/www_leyout_buffet_buffet_text.gif\">";
+    }
+    else
+    {
     $sciezka = $this->escape($entry->getPictureName());
-    echo "<img  class=\"news\" src=\"$sciezka\">" ?>
+    echo "<img  class=\"news\" src=\"$sciezka\">" ;
+    }
+    ?>
     </div>
     
     <div id="main_content_news_cont">

@@ -20,7 +20,7 @@ class IndexController extends Zend_Controller_Action
     {
         // action body
         //$this->view->tables = $this->getInvokeArg('bootstrap')->getResource('db')->listTables();
-        $home = new Application_Model_InformationMapper();
+        $home = new Application_Model_InformationViewMapper();
         $this->view->entries = $home->fetchAll("type='home'");
         
         $picture = new Application_Model_PictureMapper();

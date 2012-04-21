@@ -1,8 +1,8 @@
 <?php
 
-class Application_Model_DbTable_Information extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Information extends Core_Model_DbTable_Abstract
 {
-    protected $_name = 'information_view';
+    protected $_name = 'information';
 	protected $_primary = 'id';
 }
 

@@ -73,9 +73,11 @@ class Admin_EventController extends Zend_Controller_Action
 		try {
 			$event->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$event->setUser('ola');
-			$event->getEventNews();
-			$event->getEventAnnouncement();
 			$event->getPictureId();
+			if ($event->getDateTo() == null)
+			{
+				$event->setDateTo(null);
+			};
 			
 			$mapper->save($event);
 			$this->view->priorityMessenger('Zapisano event w bazie danych');

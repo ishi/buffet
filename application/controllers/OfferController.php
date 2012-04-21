@@ -19,7 +19,7 @@ class OfferController extends Zend_Controller_Action
     {
         // action body
         //$this->view->tables = $this->getInvokeArg('bootstrap')->getResource('db')->listTables();
-        $offer = new Application_Model_InformationMapper();
+        $offer = new Application_Model_InformationViewMapper();
         $this->view->entries = $offer->fetchAll("type='oferta'");
         
         $picture = new Application_Model_PictureMapper();

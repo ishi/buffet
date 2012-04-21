@@ -677,7 +677,7 @@ border-bottom-right-radius:3px;
 border: 1px outset;
 }
 
-table#event{
+table#event, table#information{
 border: 1px solid;
 border-collapse: collapse;
 font-size	: 9pt;
@@ -691,7 +691,13 @@ padding: 2px;
 font-weight: bold;
 }
 
-table#event td{
+table#information tr#naglowek{
+background-color: #FFFF99;
+padding: 2px;
+font-weight: bold;
+}
+
+table#event td, table#information td{
 border: 1px solid black;
 padding: 5px;	
 }
@@ -700,6 +706,10 @@ table#event td#tytul{
 width: 320px;
 border: 1px solid black;
 padding: 5px;
+}
+
+table#information  td#content{
+width: 1500px;	
 }
 
 td#tytul a {
