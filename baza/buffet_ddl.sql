@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 05 Kwi 2012, 16:39
--- Wersja serwera: 5.5.20
--- Wersja PHP: 5.3.10
+-- Czas wygenerowania: 22 Kwi 2012, 02:22
+-- Wersja serwera: 5.5.22
+-- Wersja PHP: 5.3.10-1ubuntu2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -170,11 +170,12 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `information` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   `main_picture` varchar(1) COLLATE utf8_polish_ci DEFAULT NULL,
   `gallery_id` int(10) DEFAULT NULL,
+  `visible` tinyint(1) NOT NULL DEFAULT '0',
   `arch_date` datetime NOT NULL,
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   `link` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=77 ;
 
 -- --------------------------------------------------------
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 05 Kwi 2012, 16:39
--- Wersja serwera: 5.5.20
--- Wersja PHP: 5.3.10
+-- Czas wygenerowania: 22 Kwi 2012, 02:22
+-- Wersja serwera: 5.5.22
+-- Wersja PHP: 5.3.10-1ubuntu2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -82,83 +82,42 @@ INSERT INTO `information` (`id`, `type`, `content`, `picture_id`, `arch_date`, `
 -- Zrzut danych tabeli `picture`
 --
 
-INSERT INTO `picture` (`id`, `name`, `information`, `main_picture`, `gallery_id`, `arch_date`, `user`, `link`) VALUES
-(1, '/pictures/wiosna.jpg', 'MAIN', NULL, NULL, '2012-03-25 22:51:14', 'root', NULL),
-(2, '/pictures/wiosna2.jpg', 'MAIN', NULL, NULL, '2012-03-27 00:28:42', 'root', NULL),
-(3, '/pictures/wiosna3.jpg', 'MAIN', NULL, NULL, '2012-03-27 22:05:25', 'root', NULL),
-(4, '/pictures/wiosna4.jpg', 'MAIN', NULL, NULL, '2012-03-27 22:05:32', 'root', NULL),
-(5, '/pictures/wiosna5.jpg', NULL, NULL, NULL, '2012-03-27 22:05:37', 'root', NULL),
-(6, '/pictures/wiosna6.jpg', NULL, NULL, NULL, '2012-03-27 22:05:43', 'root', NULL),
-(7, '/pictures/wiosna7.jpg', NULL, NULL, NULL, '2012-03-27 22:05:49', 'root', NULL),
-(8, '/pictures/wiosna8.jpg', NULL, NULL, NULL, '2012-03-27 22:10:27', 'root', NULL),
-(9, '/pictures/wiosna9.jpg', NULL, NULL, NULL, '2012-03-27 22:10:27', 'root', NULL),
-(10, '/pictures/wiosna10.jpg', NULL, NULL, NULL, '2012-03-27 22:10:28', 'root', NULL),
-(11, '/pictures/wiosna11.jpg', NULL, NULL, NULL, '2012-03-27 22:11:02', 'root', NULL),
-(12, '/pictures/wiosna12.jpg', NULL, NULL, NULL, '2012-03-27 22:11:03', 'root', NULL),
-(13, '/pictures/wiosna11.jpg', NULL, NULL, NULL, '2012-03-27 22:11:23', 'root', NULL),
-(14, '/pictures/wiosna12.jpg', NULL, NULL, NULL, '2012-03-27 22:11:24', 'root', NULL),
-(15, '/pictures/wiosna13.jpg', NULL, NULL, NULL, '2012-03-27 22:11:24', 'root', NULL),
-(16, '/pictures/wiosna14.jpg', NULL, NULL, NULL, '2012-03-27 22:12:13', 'root', NULL),
-(17, '/pictures/wiosna15.jpg', NULL, NULL, NULL, '2012-03-27 22:12:13', 'root', NULL),
-(18, '/pictures/wiosna16.jpg', NULL, NULL, NULL, '2012-03-27 22:12:13', 'root', NULL),
-(19, '/pictures/wiosna17.jpg', NULL, NULL, NULL, '2012-03-27 22:12:13', 'root', NULL),
-(20, '/pictures/wiosna18.jpg', NULL, NULL, NULL, '2012-03-27 22:12:13', 'root', NULL),
-(21, '/pictures/wiosna19.jpg', NULL, NULL, NULL, '2012-03-27 22:12:13', 'root', NULL),
-(22, '/pictures/wiosna20.jpg', NULL, NULL, NULL, '2012-03-27 22:12:13', 'root', NULL),
-(23, '/pictures/wiosna21.jpg', NULL, NULL, NULL, '2012-03-27 22:12:14', 'root', NULL),
-(24, '/pictures/wiosna22.jpg', NULL, NULL, NULL, '2012-03-27 22:12:14', 'root', NULL),
-(25, '/pictures/partners/wp.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:26:16', 'root', 'http://www.wp.pl'),
-(26, '/pictures/partners/onet.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:26:34', 'root', 'http://www.onet.pl'),
-(27, '/pictures/partners/reszel.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:26:52', 'root', 'http://www.reszel.pl'),
-(28, '/pictures/partners/interia.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:27:13', 'root', 'http://www.interia.pl'),
-(29, '/pictures/partners/trojmiasto.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:27:34', 'root', 'http://www.trojmiasto.pl'),
-(30, '/pictures/partners/otago.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:27:46', 'root', 'http://www.otago.pl'),
-(31, '/pictures/partners/facebook.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:28:35', 'root', 'http://www.facebook.pl'),
-(32, '/pictures/partners/facebook.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:31:24', 'root', 'http://www.facebook.pl'),
-(33, '/pictures/partners/mbank.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:32:21', 'root', 'http://www.mbank.pl'),
-(34, '/pictures/partners/youtube.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:32:45', 'root', 'http://www.youtube.pl'),
-(35, '/pictures/partners/o2.jpg', 'PARTNERS', NULL, NULL, '2012-04-01 12:33:01', 'root', 'http://www.o2.pl'),
-(36, '/galleries/1/photo1.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(37, '/galleries/1/photo2.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(38, '/galleries/1/photo3.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(39, '/galleries/1/photo4.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(40, '/galleries/1/photo5.jpg', NULL, 'Y', 1, '2012-03-31 00:00:00', 'seta', NULL),
-(41, '/galleries/1/photo6.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(42, '/galleries/1/photo7.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(43, '/galleries/1/photo8.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(44, '/galleries/1/photo9.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(45, '/galleries/1/photo10.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(46, '/galleries/1/photo11.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(47, '/galleries/1/photo12.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(48, '/galleries/1/photo13.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(49, '/galleries/1/photo14.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(50, '/galleries/1/photo15.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(51, '/galleries/1/photo16.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(52, '/galleries/1/photo17.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(53, '/galleries/1/photo18.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(54, '/galleries/1/photo19.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(55, '/galleries/1/photo20.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(56, '/galleries/1/photo21.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(57, '/galleries/1/photo22.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(58, '/galleries/1/photo23.jpg', NULL, NULL, 1, '2012-03-31 00:00:00', 'seta', NULL),
-(59, '/galleries/1/photo1.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
-(60, '/galleries/1/photo2.jpg', NULL, 'Y', 3, '2012-03-31 00:00:00', 'seta', NULL),
-(61, '/galleries/1/photo3.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
-(62, '/galleries/1/photo4.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
-(63, '/galleries/1/photo5.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
-(64, '/galleries/1/photo6.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
-(65, '/galleries/1/photo7.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
-(66, '/galleries/1/photo8.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
-(67, '/galleries/1/photo9.jpg', NULL, NULL, 3, '2012-03-31 00:00:00', 'seta', NULL),
-(68, '/galleries/1/photo10.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
-(69, '/galleries/1/photo11.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
-(70, '/galleries/1/photo12.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
-(71, '/galleries/1/photo13.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
-(72, '/galleries/1/photo14.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
-(73, '/galleries/1/photo15.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
-(74, '/galleries/1/photo16.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
-(75, '/galleries/1/photo17.jpg', NULL, NULL, 4, '2012-03-31 00:00:00', 'seta', NULL),
-(76, '/galleries/1/photo18.jpg', NULL, 'Y', 4, '2012-03-31 00:00:00', 'seta', NULL);
+INSERT INTO `picture` (`id`, `name`, `information`, `main_picture`, `gallery_id`, `visible`, `arch_date`, `user`, `link`) VALUES
+(1, '/pictures/wiosna.jpg', 'MAIN', NULL, NULL, 0, '2012-03-25 22:51:14', 'root', NULL),
+(2, '/pictures/wiosna2.jpg', 'MAIN', NULL, NULL, 0, '2012-03-27 00:28:42', 'root', NULL),
+(3, '/pictures/wiosna3.jpg', 'MAIN', NULL, NULL, 0, '2012-03-27 22:05:25', 'root', NULL),
+(4, '/pictures/wiosna4.jpg', 'MAIN', NULL, NULL, 0, '2012-03-27 22:05:32', 'root', NULL),
+(5, '/pictures/wiosna5.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:05:37', 'root', NULL),
+(6, '/pictures/wiosna6.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:05:43', 'root', NULL),
+(7, '/pictures/wiosna7.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:05:49', 'root', NULL),
+(8, '/pictures/wiosna8.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:10:27', 'root', NULL),
+(9, '/pictures/wiosna9.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:10:27', 'root', NULL),
+(10, '/pictures/wiosna10.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:10:28', 'root', NULL),
+(11, '/pictures/wiosna11.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:11:02', 'root', NULL),
+(12, '/pictures/wiosna12.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:11:03', 'root', NULL),
+(13, '/pictures/wiosna11.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:11:23', 'root', NULL),
+(14, '/pictures/wiosna12.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:11:24', 'root', NULL),
+(15, '/pictures/wiosna13.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:11:24', 'root', NULL),
+(16, '/pictures/wiosna14.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:13', 'root', NULL),
+(17, '/pictures/wiosna15.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:13', 'root', NULL),
+(18, '/pictures/wiosna16.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:13', 'root', NULL),
+(19, '/pictures/wiosna17.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:13', 'root', NULL),
+(20, '/pictures/wiosna18.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:13', 'root', NULL),
+(21, '/pictures/wiosna19.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:13', 'root', NULL),
+(22, '/pictures/wiosna20.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:13', 'root', NULL),
+(23, '/pictures/wiosna21.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:14', 'root', NULL),
+(24, '/pictures/wiosna22.jpg', NULL, NULL, NULL, 0, '2012-03-27 22:12:14', 'root', NULL),
+(25, '/pictures/partners/wp.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:26:16', 'root', 'http://www.wp.pl'),
+(26, '/pictures/partners/onet.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:26:34', 'root', 'http://www.onet.pl'),
+(27, '/pictures/partners/reszel.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:26:52', 'root', 'http://www.reszel.pl'),
+(28, '/pictures/partners/interia.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:27:13', 'root', 'http://www.interia.pl'),
+(29, '/pictures/partners/trojmiasto.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:27:34', 'root', 'http://www.trojmiasto.pl'),
+(30, '/pictures/partners/otago.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:27:46', 'root', 'http://www.otago.pl'),
+(31, '/pictures/partners/facebook.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:28:35', 'root', 'http://www.facebook.pl'),
+(32, '/pictures/partners/facebook.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:31:24', 'root', 'http://www.facebook.pl'),
+(33, '/pictures/partners/mbank.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:32:21', 'root', 'http://www.mbank.pl'),
+(34, '/pictures/partners/youtube.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:32:45', 'root', 'http://www.youtube.pl'),
+(35, '/pictures/partners/o2.jpg', 'PARTNERS', NULL, NULL, 0, '2012-04-01 12:33:01', 'root', 'http://www.o2.pl');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
