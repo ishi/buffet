@@ -1,0 +1,19 @@
+<div id="admin_event">
+	<p class="admin_tytul">Informacje o galerii</p>
+	<table class="gallery">
+		<tr>
+			<td>Nazwa Galerii</td>
+			<td><?php echo $this->gallery->getFolderName() ?></td>
+		</tr>
+		<tr>
+			<td>Opis Galerii</td>
+			<td><?php echo $this->gallery->getFolderContent() ?></td>
+		</tr>
+	</table>
+	<a href="<?php echo $this->url(array('action' => 'edit', 'id' => $this->gallery->getId())); ?>" class="button">
+		Edytuj <img src="/images/edit.jpg" />
+	</a>
+	<a href="<?php echo $this->url(array('action' => 'remove', 'id' => $this->gallery->getId())); ?>" class="button">
+		Usuń <img src="/images/drop.jpg" />
+	</a>
+</div>

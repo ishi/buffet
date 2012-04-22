@@ -53,6 +53,7 @@ body, html {
 #right{
 	display: table-cell;
 	vertical-align: top;
+	font-size: 12px;
 }
 
 #image8{
@@ -570,15 +571,6 @@ height: 62px;
 width: 257px;
 }
 
-span{
-padding-left: 25px;
-padding-right: 25px;
-padding-top: 5px;
-padding-bottom: 5px;
-background-color	:#0000FF;
-color		: #FFFFFF;	
-}
-
 #left > div > img {
 }
 
@@ -646,6 +638,7 @@ color		: #FFFFFF;
 #admin_event{
 padding-left: 20px;
 padding-right: 20px;
+margin-bottom: 20px;
 }
 
 #admin_main{
@@ -716,4 +709,13 @@ padding: 5px;
 .gallery td:first-child {
 	width: 100px;
 	font-weight: bold;
+}
+
+.gallery-photo {
+	float: left;
+	margin: 10px;
+}
+
+.gallery-photo.invisible {
+	opacity: 0.2;
 }

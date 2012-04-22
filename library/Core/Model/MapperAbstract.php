@@ -29,6 +29,9 @@ class Core_Model_MapperAbstract {
 		return $this->_modelName;
 	}
 
+	/**
+	 * @return Core_Model_DbTable_Abstract 
+	 */
 	public function getDbTable() {
 		if (null === $this->_dbTable) {
 			$this->setDbTable(self::$modelPrefix . 'DbTable_' . $this->getModelName());
@@ -40,8 +43,14 @@ class Core_Model_MapperAbstract {
 		$data = $model->toArray();
 
 		$primaryKey = $this->getDbTable()->getPrimary();
-		if (!($id = $data[$primaryKey])) {
+		
+		$id = null;
+		if (isset($data[$primaryKey])) {
+			$id = $data[$primaryKey];
 			unset($data[$primaryKey]);
+		}
+		
+		if (!$id) {
 			$model->{$primaryKey} = $this->getDbTable()->insert($data);
 		} else {
 			$this->getDbTable()->update($data, array("$primaryKey = ?" => $id));
@@ -68,6 +77,12 @@ class Core_Model_MapperAbstract {
 		return new $modelClass($row->toArray());
 	}
 
+	public function fetchOne($where = null, $order = null, $offset = null) {
+		$row = $this->getDbTable()->fetchRow($where, $order, $offset);
+		$modelClass = self::$modelPrefix . $this->getModelName();
+		return $row ? new $modelClass($row->toArray()) : null;
+	}
+	
 	public function fetchAll($where = null, $order = null, $count = null, $offset = null) {
 		$resultSet = $this->getDbTable()->fetchAll($where, $order, $count, $offset);
 		$entries = array();

@@ -1,24 +1,24 @@
 <?php
-class Admin_Form_Gallery extends Zend_Form {
+class Admin_Form_Photo extends Zend_Form {
 
 	public function init() {
+		$this->setAttrib('enctype', 'multipart/form-data');
 		$this->setName('gallery');
 		
 		$id = $this->createElement('hidden', 'id');
+		$galleryId = $this->createElement('hidden', 'gallery_id');
 
-		$folderName = $this->createElement('text', 'folder_name')
-			->setLabel('Nazwa Galerii');
-		$folderContent = $this->createElement('textarea', 'folder_content')
-			->setLabel('Opis Galerii');
+		$file = $this->createElement('file', 'file')
+			->setLabel('Obrazek do uploudu');
 		
 		$submit = $this->createElement('submit', 'save')
-			->setLabel('Zapisz galerię')
-			->setAttrib('class', 'button');
+			->setLabel('Dodaj zdjęcie')
+			->setOptions(array('class' => 'button'));
 
 		$this->addElements(array(
 			$id,
-			$folderName,
-			$folderContent,
+			$galleryId,
+			$file,
 			$submit
 		));
 
@@ -37,6 +37,13 @@ class Admin_Form_Gallery extends Zend_Form {
 		));
 		
 		$id->setDecorators(array('ViewHelper'));
+		$galleryId->setDecorators(array('ViewHelper'));
+		$file->setDecorators(array(
+			'File',
+			array('Errors'),
+			array('HtmlTag', array('tag' => 'td')),
+			array('Label', array('tag' => 'td')),
+			));
 		$submit->setDecorators(array(
 			'ViewHelper', 
 			array('HtmlTag', array('tag' => 'td')),

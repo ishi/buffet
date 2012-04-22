@@ -24,7 +24,15 @@ class Core_Model_Abstract {
 	}
 	
 	public function __call($name, $params) {
+		$bool = false;
+		if ('is' == substr($name, 0, 2)) {
+			$name = "_$name";
+		}
 		$method = substr($name, 0, 3);
+		if ('has' == $method || '_is' == $method) {
+			$method = 'get';
+			$bool = true;
+		}
 		if ('get' == $method || 'set' == $method) {
 			$name = substr($name, 3);
 		} else {
@@ -34,7 +42,8 @@ class Core_Model_Abstract {
 		try {
 			if ($method) {
 				array_unshift($params, strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $name)));
-				return call_user_func_array(array($this, "__$method"), $params);
+				$val = call_user_func_array(array($this, "__$method"), $params);
+				return $bool ? (boolean) $val : $val;
 			}
 		} catch (Exception $e) {
 			/* Wyjątek oznacza że nie było parametru więc ostatecznie wyrzucamy wyjątek o braku metody */

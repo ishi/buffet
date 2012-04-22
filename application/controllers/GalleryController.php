@@ -20,7 +20,7 @@ class GalleryController extends Zend_Controller_Action {
 		$this->view->galleries = $mapper->fetchAll(null, 'folder_date DESC', 20);
 		
 		foreach ($this->view->galleries as $key => $gallery) {
-			if (!$gallery->getPhotos()) unset($this->view->galleries[$key]);
+			if (!$gallery->getActivePhotos()) unset($this->view->galleries[$key]);
 		}
 	}
 }

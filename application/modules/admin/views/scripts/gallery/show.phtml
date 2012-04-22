@@ -1,0 +1,19 @@
+<?php echo $this->partial('gallery/_gallery-info.phtml', array('gallery' => $this->gallery)); ?>
+
+<div id="admin_event">
+	<p class="admin_tytul">Zdjęcia w galerii</p>
+	
+	<a href="<?php echo $this->url(
+			array('module' => 'admin', 'controller' => 'gallery', 'action' => 'add-photo',
+				'galleryId' => $this->gallery->getId()), null, true) ?>" class="button">
+		Dodaj nowe zdjęcie
+	</a>
+	
+	<div class="gallery-photos clearfix">
+		<?php foreach ($this->gallery->getPhotos() as $photo) : ?>
+		<div class="gallery-photo<?php echo $photo->isVisible() ? '' : ' invisible' ?>">
+			<img src="<?php echo $this->escape($photo->getName()) ?>" height="150" />
+		</div>
+		<?php endforeach; ?>
+	<div>
+</div>

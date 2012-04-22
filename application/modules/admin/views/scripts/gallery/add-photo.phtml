@@ -1,0 +1,11 @@
+<?php echo $this->partial('gallery/_gallery-info.phtml', array('gallery' => $this->gallery)); ?>
+
+<div id="admin_event">
+
+	<p class="admin_tytul">Dodawanie nowego zdjęcia</p>
+	<a href="<?php echo $this->url(array('action' => 'show', 'id' => $this->gallery->getId())); ?>" class="button">
+		Anuluj dodawanie
+	</a>
+	<?php echo $this->form ?>
+
+</div>
