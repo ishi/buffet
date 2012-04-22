@@ -70,6 +70,7 @@ class Admin_PartnerController extends Zend_Controller_Action
 			$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$photo->setUser('ola');
 			$mapper->save($photo);
+			var_dump($photo->getId());
 			$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
 			$this->_helper->redirector->gotoSimple('index', 'partner', null);
 		} catch (Exception $e) {

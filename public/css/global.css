@@ -298,6 +298,10 @@ width		: 798px;
 padding-bottom: 50px;
 }
 
+#main_content_archive td {
+	vertical-align: top;
+}
+
 #details{
 width	: 723px;
 padding-bottom	: 50px;

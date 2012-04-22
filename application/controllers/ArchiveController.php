@@ -19,7 +19,12 @@ class ArchiveController extends Zend_Controller_Action
     {
         $archive = new Application_Model_ArchiveMapper();
         $order = 'date_from DESC';
-        $this->view->entries = $archive->fetchAll("id", $order);  
+        $entries = $archive->fetchAll("id", $order);
+        $entriesTable = array();
+        foreach($entries as $key => $entry) {
+        	$entriesTable[$key % 3][] = $entry;
+        }
+        $this->view->entriesTable = $entriesTable;
     }
 
 	public function detailsAction()
