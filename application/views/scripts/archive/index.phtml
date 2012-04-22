@@ -1,42 +1,33 @@
 <div id="main_content_archive">
 
-<dl>
-    <?php foreach ($this->entries as $entry): ?>
-    
-    <dt class="archive">
-    
-    <div id="main_content_archive_picture">
-    <?php 
-    if ($entry->getPictureName() == null)
-    {
-    	
-    	echo "<img  class=\"archive\" src=\"/images/www_leyout_buffet_buffet_text.gif\">";
-    }
-    else
-    {
-    $sciezka = $this->escape($entry->getPictureName());
-    echo "<img  class=\"archive\" src=\"$sciezka\">";
-    }
-     ?>
-    </div>
-	
-    <div id="main_content_archive_cont">
-    <p class="archive_title">
-    	<?php echo $this->escape($entry->getDate()) ?>
-    	<?php echo $this->escape($entry->getTitleLng()) ?>	
-    </p>
-    
-    <p class="archive_pre_content"><?php echo nl2br($this->escape($entry->getPreContent())) ?></p>
-    </div>
-    
-    <div id="main_content_news_go">
-    	<div id="main_content_go">...</div>
-    	<a href="<?php echo $this->url(array('controller'=>'archive', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>"><div id="main_content_rectangle_go"></div></a>
-    </div>
-    
-    </dt>
+<table>
+    <?php foreach ($this->entriesTable as $entries): ?>
+    <tr class="archive">
+    	<?php foreach ($entries as $entry) : ?>
+    	<td>
+		    <div id="main_content_archive_picture">
+				<img  class="archive" src="<?php echo $entry->getPictureName() ? 
+			     	$this->escape($entry->getPictureName()) :
+			     	'/images/www_leyout_buffet_buffet_text.gif' ?>">
+		    </div>
+			
+		    <div id="main_content_archive_cont">
+			    <p class="archive_title">
+			    	<?php echo $this->escape($entry->getDate()) ?>
+			    	<?php echo $this->escape($entry->getTitleLng()) ?>	
+			    </p>
+			    
+			    <p class="archive_pre_content"><?php echo nl2br($this->escape($entry->getPreContent())) ?></p>
+		    </div>
+		    
+		    <div id="main_content_news_go">
+		    	<div id="main_content_go">...</div>
+		    	<a href="<?php echo $this->url(array('controller'=>'archive', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>"><div id="main_content_rectangle_go"></div></a>
+		    </div>
+    	</td>
+    	<?php endforeach; ?>
+    </tr>
     <?php endforeach ?>
-    <dt style="clear: both"/>
-</dl>
+</table>
 
 </div>
