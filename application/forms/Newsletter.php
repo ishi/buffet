@@ -7,11 +7,11 @@ class Application_Form_Newsletter extends Zend_Form {
 		$id = $this->createElement('hidden', 'id');
 
 		$email = $this->createElement('text', 'email')
-			->setLabel('Email')
+			->setLabel('E-mail')
 			->setAttrib('background-color', 'green');
 			
 		$submit = $this->createElement('submit', 'save')
-			->setLabel('Zapisz email');
+			->setLabel('Zapisz e-mail');
 
 		$this->addElements(array(
 			$id,

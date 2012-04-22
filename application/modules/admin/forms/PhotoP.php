@@ -1,5 +1,5 @@
 <?php
-class Admin_Form_Photo extends Zend_Form {
+class Admin_Form_PhotoP extends Zend_Form {
 
 	public function init() {
 		$this->setAttrib('enctype', 'multipart/form-data');
@@ -7,7 +7,10 @@ class Admin_Form_Photo extends Zend_Form {
 		
 		$id = $this->createElement('hidden', 'id');
 		$galleryId = $this->createElement('hidden', 'gallery_id');
-
+		
+		$link = $this->createElement('text', 'link')
+		->setLabel('Link');
+		
 		$file = $this->createElement('file', 'file')
 			->setLabel('Obrazek do uploadu');
 		
@@ -19,6 +22,7 @@ class Admin_Form_Photo extends Zend_Form {
 			$id,
 			$galleryId,
 			$file,
+			$link,
 			$submit
 		));
 
