@@ -12,14 +12,7 @@ class Admin_IndexController extends Zend_Controller_Action
     	$news = new Application_Model_EventMapper();
         $order = 'date_from DESC';
         $this->view->entries = $news->fetchAll("id", $order);
-        // action body
-        //$this->view->tables = $this->getInvokeArg('bootstrap')->getResource('db')->listTables();
-        /*$home = new Application_Model_InformationMapper();
-        $this->view->entries = $home->fetchAll("type='home'");
-        
-        $picture = new Application_Model_PictureMapper();
-        $this->view->pictures = $picture->fetchAll("information='main'");
-        */
+
     }
     
 	public function detailsAction()

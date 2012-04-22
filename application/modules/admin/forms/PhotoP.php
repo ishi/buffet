@@ -1,19 +1,18 @@
 <?php
-class Admin_Form_Photo extends Zend_Form {
+class Admin_Form_PhotoP extends Zend_Form {
 
 	public function init() {
 		$this->setAttrib('enctype', 'multipart/form-data');
 		$this->setName('gallery');
 		
 		$id = $this->createElement('hidden', 'id');
-		$galleryId = $this->createElement('hidden', 'galleryId');
-
+		$galleryId = $this->createElement('hidden', 'gallery_id');
+		
+		$link = $this->createElement('text', 'link')
+		->setLabel('Link');
+		
 		$file = $this->createElement('file', 'file')
-			->setLabel('Obrazek do uploadu')
-			->setValueDisabled(true)
-			->setRequired()
-			// only JPEG, PNG, and GIFs
-			->addValidator('Extension', false, 'jpg,png,gif');
+			->setLabel('Obrazek do uploadu');
 		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Dodaj zdjęcie')
@@ -23,6 +22,7 @@ class Admin_Form_Photo extends Zend_Form {
 			$id,
 			$galleryId,
 			$file,
+			$link,
 			$submit
 		));
 

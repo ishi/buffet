@@ -1,0 +1,22 @@
+<div id="admin_event">
+	<p class="admin_tytul">Edycja podstrony PARTNERZY</p>
+	
+	<a href="<?php echo $this->url(
+			array('module' => 'admin', 'controller' => 'partner', 'action' => 'add-photo',), 
+			null, true) ?>" class="button">
+		Dodaj nowego partnera
+	</a> 
+	 
+	<div class="gallery-photos clearfix">	
+		<?php foreach ($this->entries as $entry): ?>
+		<div class="gallery-photo">
+		<?php $sciezka = $this->escape($entry->getName());
+    	echo "<img src=\"$sciezka\" height=\"40\" />" ?>
+    	</div>
+		<?php endforeach; ?>
+		
+		
+
+		
+	</div>
+</div>

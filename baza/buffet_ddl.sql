@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 22 Kwi 2012, 02:22
--- Wersja serwera: 5.5.22
--- Wersja PHP: 5.3.10-1ubuntu2
+-- Czas wygenerowania: 22 Kwi 2012, 15:38
+-- Wersja serwera: 5.5.20
+-- Wersja PHP: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `announcement` (
 `id` int(10)
 ,`title` varchar(50)
-,`date_from` datetime
-,`date_to` datetime
+,`date_from` date
+,`date_to` date
 ,`pre_content_pl` char(200)
 ,`content_pl` varchar(2000)
 ,`pre_content_en` varchar(100)
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `announcement` (
 CREATE TABLE IF NOT EXISTS `archive` (
 `id` int(10)
 ,`title` varchar(50)
-,`date_from` datetime
-,`date_to` datetime
+,`date_from` date
+,`date_to` date
 ,`pre_content_pl` char(200)
 ,`content_pl` varchar(2000)
 ,`pre_content_en` varchar(100)
@@ -73,8 +73,8 @@ CREATE TABLE IF NOT EXISTS `archive` (
 CREATE TABLE IF NOT EXISTS `event` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) COLLATE utf8_polish_ci NOT NULL,
-  `date_from` datetime NOT NULL,
-  `date_to` datetime DEFAULT NULL,
+  `date_from` date DEFAULT NULL,
+  `date_to` date DEFAULT NULL,
   `pre_content_pl` char(200) COLLATE utf8_polish_ci DEFAULT NULL,
   `content_pl` varchar(2000) COLLATE utf8_polish_ci NOT NULL,
   `pre_content_en` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `user` varchar(30) COLLATE utf8_polish_ci DEFAULT NULL,
   `title_en` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=40 ;
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `galery` (
   `arch_date` datetime NOT NULL,
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -144,8 +144,8 @@ CREATE TABLE IF NOT EXISTS `information_view` (
 CREATE TABLE IF NOT EXISTS `news` (
 `id` int(10)
 ,`title` varchar(50)
-,`date_from` datetime
-,`date_to` datetime
+,`date_from` date
+,`date_to` date
 ,`pre_content_pl` char(200)
 ,`content_pl` varchar(2000)
 ,`pre_content_en` varchar(100)
@@ -158,6 +158,21 @@ CREATE TABLE IF NOT EXISTS `news` (
 ,`title_en` varchar(50)
 ,`picture_name` varchar(200)
 );
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `newsletter`
+--
+
+CREATE TABLE IF NOT EXISTS `newsletter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) COLLATE utf8_polish_ci NOT NULL,
+  `potwierdzenie` varchar(1) COLLATE utf8_polish_ci NOT NULL,
+  `arch_date` date NOT NULL,
+  `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
 -- --------------------------------------------------------
 
 --
@@ -175,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   `link` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=77 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=89 ;
 
 -- --------------------------------------------------------
 
