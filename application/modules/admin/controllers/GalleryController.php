@@ -15,6 +15,8 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		
 		$mapper = new Application_Model_GalleryMapper();
 		$this->view->gallery = $mapper->find($id);
+		
+		$this->view->form = $this->_getPhotoForm($id);
 	}
 
 	public function addAction() {
@@ -96,27 +98,18 @@ class Admin_GalleryController extends Zend_Controller_Action {
 	}
 	
 	
-	public function addPhotoAction() {
+	public function savePhotoAction() {
 		$galleryId = $this->_getParam('galleryId');
 		if (!$galleryId) {
-			$this->view->priorityMessenger('Brak id galerii', 'error');
-			$this->_helper->redirector->gotoSimple('index', 'gallery');
+			$this->_helper->redirector->gotoSimple('index');
 			return;
 		}
 		$mapper = new Application_Model_GalleryMapper();
 		$this->view->gallery = $mapper->find($galleryId);
 		
 		$this->view->form = $this->_getPhotoForm($galleryId);
-	}
-
-	public function savePhotoAction() {
-		$galleryId = $this->_getParam('galleryId');
-		$mapper = new Application_Model_GalleryMapper();
-		$this->view->gallery = $mapper->find($galleryId);
-		
-		$this->view->form = $this->_getPhotoForm($galleryId);
 		if (!$this->view->form->isValid($this->_getAllParams())) {
-			$this->render('add-photo');
+			$this->render('show');
 			return;
 		}
 		$fileName = $this->view->form->file->getValue();
@@ -130,7 +123,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		
 		if (!$this->view->form->file->receive()) {
 			$this->view->priorityMessenger('Problem podczas pobierania pliku', 'error');
-			$this->render('add-photo');
+			$this->render('show');
 			return;
 		}
 		
@@ -150,7 +143,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
 					. $e->getMessage());
 			unlink(APPLICATION_PATH . "/../public/gallery/$galleryId/$fileName");
-			$this->render('add-photo');
+			$this->render('show');
 		}
 	}
 	
@@ -179,6 +172,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 	public function togglePhotoAction() {
 		$id = $this->_getParam('id');
 		$galleryId = $this->_getParam('galleryId');
+		
 		if (!$id) {
 			$this->view->priorityMessenger('Brak id zdjęcia', 'error');
 			$this->_redirectToGallery($galleryId);

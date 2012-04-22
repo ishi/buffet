@@ -8,7 +8,8 @@ class Admin_Form_Photo extends Zend_Form {
 		$id = $this->createElement('hidden', 'id');
 		$galleryId = $this->createElement('hidden', 'galleryId');
 
-		$file = $this->createElement('file', 'file')
+		$file = $this->createElement('file', 'file[]')
+			->setAttrib('multiple', true)
 			->setLabel('Obrazek do uploadu')
 			->setValueDisabled(true)
 			->setRequired()
@@ -28,29 +29,14 @@ class Admin_Form_Photo extends Zend_Form {
 
 		$this->setDecorators(array(
 				'FormElements',
-				array('HtmlTag', array('tag' => 'table', 'class' => 'gallery')),
 				'Form'
 		));
 		
-		$this->setElementDecorators(array(
-			array('ViewHelper'),
-			array('Errors'),
-			array('HtmlTag', array('tag' => 'td')),
-			array('Label', array('tag' => 'td')),
-			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
-		));
+		$this->setElementDecorators(array('ViewHelper', 'Errors', 'Label'));
 		
 		$id->setDecorators(array('ViewHelper'));
 		$galleryId->setDecorators(array('ViewHelper'));
-		$file->setDecorators(array(
-			'File',
-			array('Errors'),
-			array('HtmlTag', array('tag' => 'td')),
-			array('Label', array('tag' => 'td')),
-			));
-		$submit->setDecorators(array(
-			'ViewHelper', 
-			array('HtmlTag', array('tag' => 'td')),
-			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))));
+		$file->setDecorators(array('File', 'Errors'));
+		$submit->setDecorators(array('ViewHelper'));	
 	}
 }

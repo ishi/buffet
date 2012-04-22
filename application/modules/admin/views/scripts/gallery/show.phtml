@@ -3,11 +3,7 @@
 <div id="admin_event">
 	<p class="admin_tytul">Zdjęcia w galerii (wyszażone zdjęcia są nieaktywne)</p>
 	
-	<a href="<?php echo $this->url(
-			array('module' => 'admin', 'controller' => 'gallery', 'action' => 'add-photo',
-				'galleryId' => $this->gallery->getId()), null, true) ?>" class="button">
-		Dodaj nowe zdjęcie
-	</a>
+	<?php echo $this->form ?>
 	
 	<div class="gallery-photos clearfix">
 		<?php foreach ($this->gallery->getPhotos() as $photo) : ?>
