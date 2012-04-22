@@ -34,7 +34,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 
 	public function removeAction() {
 		if (!($id = $this->_getParam('id'))) {
-			$this->view->priorityMessenger('Brak id galerii');
+			$this->view->priorityMessenger('Brak id galerii', 'error');
 			$this->_helper->redirector->gotoSimple('index');
 			return;
 		}
@@ -42,7 +42,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		if (!$mapper->delete($id)) {
 			$this->view->priorityMessenger('Błąd przy usuwaniu galerii', 'info');
 		} else {
-			$this->view->priorityMessenger('Usunięto galerię z bazy danych');
+			$this->view->priorityMessenger('Usunięto galerię z bazy danych', 'info');
 		}
 		$this->_helper->redirector->gotoSimple('index');
 	}
@@ -61,27 +61,27 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$gallery->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$gallery->setUser('seta');
 			$mapper->save($gallery);
-			$this->view->priorityMessenger('Zapisano galerię w bazie danych');
+			$this->view->priorityMessenger('Zapisano galerię w bazie danych', 'info');
 			
 			$dir = APPLICATION_PATH . '/../public/gallery/';
 			if (!file_exists($dir)) {
-				$this->view->priorityMessenger('Tworzę katalog: ' . $dir);
+				$this->view->priorityMessenger('Tworzę katalog: ' . $dir, 'debug');
 				mkdir($dir);
 			}
 			$dir .= $gallery->getId() . '/';
 			if (!file_exists($dir)) {
-				$this->view->priorityMessenger('Tworzę katalog: ' . $dir);
+				$this->view->priorityMessenger('Tworzę katalog: ' . $dir, 'debug');
 				mkdir($dir);
 			}
 			$dir .= 'thumb/';
 			if (!file_exists($dir)) {
-				$this->view->priorityMessenger('Tworzę katalog: ' . $dir);
+				$this->view->priorityMessenger('Tworzę katalog: ' . $dir, 'debug');
 				mkdir($dir);
 			}
-			$this->_helper->redirector->gotoSimple('show', null, null, array('id' => $gallery->getId()));
+			$this->_redirectToGallery($gallery->getId());
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
-					. $e->getMessage());
+					. $e->getMessage(), 'error');
 			$this->render('edit');
 		}
 	}
@@ -94,50 +94,45 @@ class Admin_GalleryController extends Zend_Controller_Action {
 	
 	
 	public function addPhotoAction() {
-		$this->view->form = $this->_getPhotoForm();
 		$galleryId = $this->_getParam('galleryId');
 		if (!$galleryId) {
-			$this->view->priorityMessenger('Brak id galerii');
+			$this->view->priorityMessenger('Brak id galerii', 'error');
 			$this->_helper->redirector->gotoSimple('index', 'gallery');
 			return;
 		}
-		$this->view->form->populate(array('gallery_id' => $galleryId));
 		$mapper = new Application_Model_GalleryMapper();
 		$this->view->gallery = $mapper->find($galleryId);
+		
+		$this->view->form = $this->_getPhotoForm($galleryId);
 	}
 
 	public function savePhotoAction() {
-		$this->view->form = $this->_getPhotoForm();
-		if (!$this->view->form->isValid($this->_getAllParams())) {
-			$this->render('add');
-			return;
-		}
+		$galleryId = $this->_getParam('galleryId');
+		$mapper = new Application_Model_GalleryMapper();
+		$this->view->gallery = $mapper->find($galleryId);
 		
-		if (!$this->view->form->file->receive()) {
-			$this->view->priorityMessenger('Problem podczas wysyłania pliku');
-			$this->render('add');
+		$this->view->form = $this->_getPhotoForm($galleryId);
+		if (!$this->view->form->isValid($this->_getAllParams())) {
+			$this->render('add-photo');
 			return;
 		}
-		$galleryId = $this->view->form->gallery_id->getValue();
 		$fileName = $this->view->form->file->getValue();
 		
 		$mapper = new Application_Model_PhotoMapper();
 		if ($mapper->fetchOne(array('name = ?' => "/gallery/$galleryId/$fileName"))) {
-			$this->view->priorityMessenger("W galerii znajduje się już zdjęcie o nazwie $fileName");
-			$this->_helper->redirector->gotoSimple('show', 'gallery', null, array('id' => $galleryId));
+			$this->view->priorityMessenger("W galerii znajduje się już zdjęcie o nazwie $fileName", 'error');
+			$this->_redirectToGallery($galleryId);
+			return;
+		}
+		
+		if (!$this->view->form->file->receive()) {
+			$this->view->priorityMessenger('Problem podczas pobierania pliku', 'error');
+			$this->render('add-photo');
 			return;
 		}
 		
 		$location = $this->view->form->file->getFileName();
-		
-		$newLocation = realpath(APPLICATION_PATH . "/../public/gallery/$galleryId/") . "/$fileName";
-		if (!copy($location, $newLocation)) {
-			$this->view->priorityMessenger("Błąd podczas przenoszenia pliku $location do $newLocation");
-			$this->render('add');
-			return;
-		}
-				
-		$this->view->priorityMessenger("Przeniosłem plik z $location do $newLocation");
+		$this->view->priorityMessenger("Zapisałem plik pod nazwą $location", 'debug');
 		
 		$photo = new Application_Model_Photo();
 		try {
@@ -146,8 +141,8 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$photo->setUser('seta');
 			$mapper->save($photo);
-			$this->view->priorityMessenger('Zapisano galerię w bazie danych');
-			$this->_helper->redirector->gotoSimple('show', 'gallery', null, array('id' => $galleryId));
+			$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
+			$this->_redirectToGallery($galleryId);
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
 					. $e->getMessage());
@@ -155,11 +150,64 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$this->render('add-photo');
 		}
 	}
+	
+	public function removePhotoAction() {
+		$id = $this->_getParam('id');
+		$galleryId = $this->_getParam('galleryId');
+		if (!$id) {
+			$this->view->priorityMessenger('Brak id zdjęcia', 'error');
+			$this->_redirectToGallery($galleryId);
+			return;
+		}
+		
+		$mapper = new Application_Model_PhotoMapper();
+		try {
+			$photo = $mapper->find($id);
+			$mapper->delete($id);
+			unlink(APPLICATION_PATH . '/../public/' . $photo->getName());
+			$this->view->priorityMessenger('Usunięto zdjęcie z bazy: ' . $photo->getName(), 'info');
+		} catch (Exception $e) {
+			$this->view->priorityMessenger('Błąd podczas usuwania zdjęcia', 'error');
+			$this->view->priorityMessenger($e, 'debug');
+		}
+		$this->_redirectToGallery($galleryId);
+	}
+	
+	public function togglePhotoAction() {
+		$id = $this->_getParam('id');
+		$galleryId = $this->_getParam('galleryId');
+		if (!$id) {
+			$this->view->priorityMessenger('Brak id zdjęcia', 'error');
+			$this->_redirectToGallery($galleryId);
+			return;
+		}
+		
+		$mapper = new Application_Model_PhotoMapper();
+		try {
+			$photo = $mapper->find($id);
+			$photo->setVisible(!$photo->isVisible());
+			$mapper->save($photo);
+			$this->view->priorityMessenger(($photo->isVisible() ? 'Uwidoczniono' : 'Ukryto')
+					. ' zdjęcie' . $photo->getName(), 'info');
+		} catch (Exception $e) {
+			$this->view->priorityMessenger('Błąd podczas zmiany widoczności zdjęcia', 'error');
+			$this->view->priorityMessenger($e, 'debug');
+		}
+		$this->_redirectToGallery($galleryId);
+	}
 
-	private function _getPhotoForm() {
+	private function _getPhotoForm($galleryId = null) {
 		$form = new Admin_Form_Photo();
 		$form->setAction($this->_helper->url('save-photo'));
+		if ($galleryId) {
+			$form->file->setDestination(realpath(APPLICATION_PATH . "/../public/gallery/$galleryId"));
+			$form->populate(array('galleryId' => $galleryId));
+		}
 		return $form;
+	}
+	
+	private function _redirectToGallery($galleryId) {
+		$this->_helper->redirector->gotoSimple('show', 'gallery', null, array('id' => $galleryId));
 	}
 
 }

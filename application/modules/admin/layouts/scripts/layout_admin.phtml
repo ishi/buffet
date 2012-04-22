@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Buffet</title>
 	<?php echo $this->headLink()
-		->appendStylesheet('/css/redmond/jquery-ui-1.8.19.custom.css')
+		->appendStylesheet('/css/theme/jquery-ui-1.8.19.custom.css')
 		->appendStylesheet('/css/global.css') ?>
 	<?php echo $this->headScript()
 		->prependFile('/js/admin.js')
@@ -32,20 +32,19 @@
 </head>
 
 <body onload=chImg();>
-    <div id="priority_messages">
-	<ul>
+    <div id="ui-messages">
 	<?php foreach ($this->priorityMessenger() as $label => $messages) : ?>
 		<?php if (count($messages)) : ?> 
-			<li class="<?php echo $label ?>_message">
-				<ul class="<?php echo $label ?>_message">
-				<?php foreach ($messages as $message) : ?>
-					<li><?php echo $message ?></li>
-				<?php endforeach; ?>
-				</ul>
-			</li>
+			<?php foreach ($messages as $message) : ?>
+			<div class="ui-widget">
+				<div class="ui-message ui-message-<?php echo $label ?> ui-corner-all clearfix"> 
+					<span class="ui-icon"></span>
+					<?php echo $message ?>
+				</div>
+			</div>
+			<?php endforeach; ?>
 		<?php endif; ?>
 	<?php endforeach; ?>
-	</ul>
 </div>
     
     

@@ -6,10 +6,14 @@ class Admin_Form_Photo extends Zend_Form {
 		$this->setName('gallery');
 		
 		$id = $this->createElement('hidden', 'id');
-		$galleryId = $this->createElement('hidden', 'gallery_id');
+		$galleryId = $this->createElement('hidden', 'galleryId');
 
 		$file = $this->createElement('file', 'file')
-			->setLabel('Obrazek do uploudu');
+			->setLabel('Obrazek do uploudu')
+			->setValueDisabled(true)
+			->setRequired()
+			// only JPEG, PNG, and GIFs
+			->addValidator('Extension', false, 'jpg,png,gif');
 		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Dodaj zdjęcie')

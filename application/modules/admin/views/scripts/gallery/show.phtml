@@ -1,7 +1,7 @@
 <?php echo $this->partial('gallery/_gallery-info.phtml', array('gallery' => $this->gallery)); ?>
 
 <div id="admin_event">
-	<p class="admin_tytul">Zdjęcia w galerii</p>
+	<p class="admin_tytul">Zdjęcia w galerii (wyszażone zdjęcia są nieaktywne)</p>
 	
 	<a href="<?php echo $this->url(
 			array('module' => 'admin', 'controller' => 'gallery', 'action' => 'add-photo',
@@ -13,6 +13,16 @@
 		<?php foreach ($this->gallery->getPhotos() as $photo) : ?>
 		<div class="gallery-photo<?php echo $photo->isVisible() ? '' : ' invisible' ?>">
 			<img src="<?php echo $this->escape($photo->getName()) ?>" height="150" />
+			<a href="<?php echo $this->url(
+				array('module' => 'admin', 'controller' => 'gallery', 'action' => 'remove-photo',
+					'galleryId' => $this->gallery->getId(), 'id' => $photo->getId()), null, true) ?>" class="button">
+				<img src="/images/drop.jpg" />
+			</a>
+			<a href="<?php echo $this->url(
+				array('module' => 'admin', 'controller' => 'gallery', 'action' => 'toggle-photo',
+					'galleryId' => $this->gallery->getId(), 'id' => $photo->getId()), null, true) ?>" class="button">
+				<img src="/images/eye.png" />
+			</a>
 		</div>
 		<?php endforeach; ?>
 	<div>
