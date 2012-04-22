@@ -3,3 +3,4 @@ library/Zend/
 .project
 .buildpath
 /nbproject/private/
+/public/gallery/
