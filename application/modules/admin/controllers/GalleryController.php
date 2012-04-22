@@ -39,10 +39,13 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			return;
 		}
 		$mapper = new Application_Model_GalleryMapper();
-		if (!$mapper->delete($id)) {
-			$this->view->priorityMessenger('Błąd przy usuwaniu galerii', 'info');
-		} else {
+		try {
+			$mapper->delete($id);
+			$this->remove_dir(realpath(APPLICATION_PATH . "/../public/gallery/$id"));
 			$this->view->priorityMessenger('Usunięto galerię z bazy danych', 'info');
+		} catch (Exception $e) {
+			$this->view->priorityMessenger('Błąd przy usuwaniu galerii', 'info');
+			$this->view->priorityMessenger($e, 'debug');
 		}
 		$this->_helper->redirector->gotoSimple('index');
 	}
@@ -200,7 +203,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		$form = new Admin_Form_Photo();
 		$form->setAction($this->_helper->url('save-photo'));
 		if ($galleryId) {
-			$form->file->setDestination(realpath(APPLICATION_PATH . "/../public/gallery/$galleryId"));
+			$form->file->setDestination(APPLICATION_PATH . "/../public/gallery/$galleryId");
 			$form->populate(array('galleryId' => $galleryId));
 		}
 		return $form;
@@ -209,6 +212,18 @@ class Admin_GalleryController extends Zend_Controller_Action {
 	private function _redirectToGallery($galleryId) {
 		$this->_helper->redirector->gotoSimple('show', 'gallery', null, array('id' => $galleryId));
 	}
-
+	
+	function remove_dir($dir) { 
+		if (!is_dir($dir) || is_link($dir)) return unlink($dir); 
+		
+        foreach (scandir($dir) as $file) { 
+            if ($file == '.' || $file == '..') continue; 
+            if (!$this->remove_dir($dir . DIRECTORY_SEPARATOR . $file)) { 
+                chmod($dir . DIRECTORY_SEPARATOR . $file, 0777); 
+                if (!$this->remove_dir($dir . DIRECTORY_SEPARATOR . $file)) return false; 
+            }; 
+        } 
+        return rmdir($dir); 
+    } 
 }
 
