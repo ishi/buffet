@@ -180,6 +180,7 @@ padding-left	: 30px;
 padding-top		: 25px;
 padding-right	: 30px;
 padding-bottom	: 50px;
+background-color: red;
 }
 
 #card_button{
@@ -646,22 +647,31 @@ padding-left: 20px;
 padding-right: 20px;
 }
 
-input, textarea {
+input{
 border-top-left-radius:3px;
 border-top-right-radius:3px;
 border-bottom-left-radius:3px;
 border-bottom-right-radius:3px;
-border: 1px solid;
+border: 1px outset;
 }
+
+input#title, input#title_en, input#pre_content_pl, input#pre_content_en{
+width: 660px;
+}
+
+input#title, input#title_en, input#pre_content_pl, input#pre_content_en, input#date_from, input#date_to{
+height: 20px;
+}
+
 textarea{
 border-top-left-radius:3px;
 border-top-right-radius:3px;
 border-bottom-left-radius:3px;
 border-bottom-right-radius:3px;
-border: 1px solid;
+border: 1px outset;
 }
 
-table#event{
+table#event, table#information{
 border: 1px solid;
 border-collapse: collapse;
 font-size	: 9pt;
@@ -675,7 +685,13 @@ padding: 2px;
 font-weight: bold;
 }
 
-table#event td{
+table#information tr#naglowek{
+background-color: #FFFF99;
+padding: 2px;
+font-weight: bold;
+}
+
+table#event td, table#information td{
 border: 1px solid black;
 padding: 5px;	
 }
@@ -684,6 +700,10 @@ table#event td#tytul{
 width: 320px;
 border: 1px solid black;
 padding: 5px;
+}
+
+table#information  td#content{
+width: 1500px;	
 }
 
 td#tytul a {
@@ -718,4 +738,3 @@ padding: 5px;
 
 .gallery-photo.invisible {
 	opacity: 0.2;
-}

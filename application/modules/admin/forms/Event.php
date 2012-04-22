@@ -19,12 +19,14 @@ class Admin_Form_Event extends Zend_Form {
 			->setLabel('Data (od)');
 		$dateTo = $this->createElement('text', 'date_to')
 			->setLabel('Data (do)');
-		$preContentPl = $this->createElement('text', 'pre_content_pl')
-			->setLabel('Pre treść pl');
+		$preContentPl = $this->createElement('textarea', 'pre_content_pl')
+			->setLabel('Pre treść pl')
+			->setAttrib('rows', '5');
 		$contentPl = $this->createElement('textarea', 'content_pl')
 			->setLabel('Treść pl');
-		$preContentEn = $this->createElement('text', 'pre_content_en')
-			->setLabel('Pre treść en');
+		$preContentEn = $this->createElement('textarea', 'pre_content_en')
+			->setLabel('Pre treść en')
+			->setAttrib('rows', '5');
 		$contentEn = $this->createElement('textarea', 'content_en')
 			->setLabel('Treść en');
 		

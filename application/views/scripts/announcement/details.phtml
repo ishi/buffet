@@ -4,9 +4,16 @@
 	<?php foreach ($this->entries as $entry): ?>
 
 	<div id="details_picture">
-		<?php 
+	<?php 
+		if ($entry->getPictureName() == null)
+    {
+    	echo "<img  class=\"details\" src=\"/images/www_leyout_buffet_buffet_text.gif\">";
+    }
+    else
+    {
     	$sciezka = $this->escape($entry->getPictureName());
-    	echo "<img  class=\"details\" src=\"$sciezka\">" 
+    	echo "<img  class=\"details\" src=\"$sciezka\">" ;
+    }
     	?>
 	</div>
 	

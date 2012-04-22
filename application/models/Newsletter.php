@@ -1,10 +1,10 @@
 <?php
 
-// application/models/Information.php
+// application/models/Newsletter.php
 
-class Application_Model_Information extends Core_Model_Abstract
+class Application_Model_Newsletter extends Core_Model_Abstract
 {
-    protected $_params = array('id', 'type', 'content', 'content_en', 'picture_id', 'arch_date', 'user');
+    protected $_params = array('id', 'email', 'potwierdzenie', 'arch_date', 'user');
 
     /*
 // funkcja do pobierania tresci newsa w zaleznosci od tego czy jest menu polskie czy angielskie

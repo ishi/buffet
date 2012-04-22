@@ -1,0 +1,26 @@
+<div id="admin_event">
+
+<p class='admin_tytul'>Edycja pozostałych PODSTRON</p>
+
+
+<table id="information">
+	<tr id="naglowek">
+		<td>Lp.</td>
+		<td>Podstrona</td>
+		<td>Treść pl</td>
+		<td>Edytuj</td>
+	</tr>
+	
+	<?php $lp = 1 ?>
+	<?php foreach ($this->entries as $entry): ?>
+    <tr onMouseOver="this.style.background='#FFFFCC'" onMouseOut="this.style.background='none'">
+    <td><?php echo $lp++?></td>
+    <td id="typ"><?php echo $this->escape($entry->getType())?></td>
+	<td id="content"><?php echo substr(nl2br($this->escape($entry->getContent())),0, 150) ?> ...</td>
+	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'information', 'action'=>'edit', 'id'=>$entry->getId(), 'lang'=>'pl'), null, true);?>"><img src="/images/edit.jpg" /></a></td>    
+    </tr>
+    <?php endforeach ?>
+
+</table>
+
+</div>

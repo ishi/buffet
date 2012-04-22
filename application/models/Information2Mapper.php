@@ -1,7 +1,7 @@
 <?php 
 // application/models/InformationMapper.php
 
-class Application_Model_InformationMapper extends Core_Model_MapperAbstract
+class Application_Model_Information2Mapper extends Core_Model_MapperAbstract
 {
 	/*
     public function save(Application_Model_Event $event)
