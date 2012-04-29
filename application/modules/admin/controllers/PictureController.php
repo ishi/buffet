@@ -10,6 +10,8 @@ class Admin_PictureController extends Zend_Controller_Action
     
     public function indexAction()
     {	
+    	$this->view->form = $this->_getPhotoForm();
+    	
     	$picture = new Application_Model_PictureMapper();
         $this->view->entries = $picture->fetchAll("information='main'");
     }
@@ -41,7 +43,6 @@ class Admin_PictureController extends Zend_Controller_Action
 			$this->render('add');
 			return;
 		}
-		$galleryId = $this->view->form->gallery_id->getValue();
 		$fileName = $this->view->form->file->getValue();
 		
 		$mapper = new Application_Model_PhotoMapper();
@@ -78,6 +79,51 @@ class Admin_PictureController extends Zend_Controller_Action
 			unlink(APPLICATION_PATH . "/../public/pictures/$fileName");
 			$this->render('add-photo');
 		}
+	}
+	
+	public function removePhotoAction() {
+		$id = $this->_getParam('id');
+		
+		if (!$id) {
+			$this->view->priorityMessenger('Brak id zdjęcia', 'error');
+			$this->_helper->redirector->gotoSimple('index', 'picture', null);
+			return;
+		}
+		
+		$mapper = new Application_Model_PhotoMapper();
+		try {
+			$photo = $mapper->find($id);
+			$mapper->delete($id);
+			unlink(APPLICATION_PATH . '/../public/' . $photo->getName());
+			$this->view->priorityMessenger('Usunięto zdjęcie z bazy: ' . $photo->getName(), 'info');
+		} catch (Exception $e) {
+			$this->view->priorityMessenger('Błąd podczas usuwania zdjęcia', 'error');
+			$this->view->priorityMessenger($e, 'debug');
+		}
+		$this->_helper->redirector->gotoSimple('index', 'picture', null);
+	}
+	
+	public function togglePhotoAction() {
+		$id = $this->_getParam('id');
+		
+		if (!$id) {
+			$this->view->priorityMessenger('Brak id zdjęcia', 'error');
+			$this->_helper->redirector->gotoSimple('index', 'picture', null);
+			return;
+		}
+		
+		$mapper = new Application_Model_PhotoMapper();
+		try {
+			$photo = $mapper->find($id);
+			$photo->setVisible(!$photo->isVisible());
+			$mapper->save($photo);
+			$this->view->priorityMessenger(($photo->isVisible() ? 'Uwidoczniono' : 'Ukryto')
+					. ' zdjęcie' . $photo->getName(), 'info');
+		} catch (Exception $e) {
+			$this->view->priorityMessenger('Błąd podczas zmiany widoczności zdjęcia', 'error');
+			$this->view->priorityMessenger($e, 'debug');
+		}
+		$this->_helper->redirector->gotoSimple('index', 'picture', null);
 	}
 	
 	private function _getForm() {

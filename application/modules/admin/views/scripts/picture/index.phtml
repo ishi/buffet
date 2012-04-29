@@ -1,17 +1,19 @@
 <div id="admin_event">
-	<p class="admin_tytul">Współdzielone zdjęcia na stronie</p>
-	
-	<a href="<?php echo $this->url(
-			array('module' => 'admin', 'controller' => 'picture', 'action' => 'add-photo',), 
-			null, true) ?>" class="button">
-		Dodaj nowe zdjęcie
-	</a> 
+	<p class="admin_tytul">Zdjęcia BANNER</p>
+
+	<?php echo $this->form ?>
 	 
 	<div class="gallery-photos clearfix">	
 		<?php foreach ($this->entries as $entry): ?>
 		<div class="gallery-photo">
 		<?php $sciezka = $this->escape($entry->getName());
     	echo "<img src=\"$sciezka\" height=\"150\" />" ?>
+    	<a href="<?php echo $this->url(
+				array('module' => 'admin', 'controller' => 'picture', 'action' => 'remove-photo',
+					'id' => $entry->getId()), null, true) ?>" class="button" >
+				<img src="/images/drop.jpg" "/>
+		</a>
+		
     	</div>
 		<?php endforeach; ?>
 		

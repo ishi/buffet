@@ -1,7 +1,7 @@
 <?php 
 // application/models/PictureMapper.php
 
-class Application_Model_PictureMapper
+class Application_Model_PictureMapper extends Core_Model_MapperAbstract
 {
     protected $_dbTable;
 

@@ -12,13 +12,15 @@ elseif ($_SESSION['event_kind']=='announcement'){
 }
 ?>
 
+<a href="<?php echo $this->url(array('action' => 'add')) ?>" class="button">Dodaj nowy event</a>
+
 
 <table id="event">
 	<tr id="naglowek">
 		<td>Lp.</td>
 		<td>Tytuł</td>
 		<td>Data od</td>
-		<td>Skrócona tresc</td>
+		<td>Zajawka</td>
 		<td>Edytuj</td>
 		<td>Usuń</td>
 	</tr>
@@ -27,11 +29,15 @@ elseif ($_SESSION['event_kind']=='announcement'){
 	<?php foreach ($this->entries as $entry): ?>
     <tr onMouseOver="this.style.background='#FFFFCC'" onMouseOut="this.style.background='none'">
     <td><?php echo $lp++?></td>
-    <td id="tytul"><?php echo $this->escape($entry->getTitle())?></td>
+    <td id="tytul">
+    	<a href="<?php echo $this->url(array('action' => 'show', 'id' => $entry->getId(), 'pictureId' => $entry->getPictureId())); ?>">
+    		<?php echo $this->escape($entry->getTitle())?>
+    	</a>
+    </td>
     <td><?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom())) )?></td>
 	<td id="pre_content"><?php echo substr(nl2br($this->escape($entry->getPreContentPl())),0, 75) ?> ...</td>
 	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'edit', 'id'=>$entry->getId(), 'lang'=>'pl', 'where'=>$_SESSION['event_kind']), null, true);?>"><img src="/images/edit.jpg" /></a></td>
-	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'remove', 'id'=>$entry->getId(), 'lang'=>'pl', 'where'=>$_SESSION['event_kind']), null, true);?>"><img src="/images/drop.jpg" /></a></td>
+	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'remove', 'id'=>$entry->getId(), 'lang'=>'pl', 'where'=>$_SESSION['event_kind'], 'pictureId'=>$entry->getPictureId()), null, true);?>"><img src="/images/drop.jpg" /></a></td>
     
     </tr>
     <?php endforeach ?>

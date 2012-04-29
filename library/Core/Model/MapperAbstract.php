@@ -44,11 +44,13 @@ class Core_Model_MapperAbstract {
 
 		$primaryKey = $this->getDbTable()->getPrimary();
 		
+		
 		$id = null;
 		if (isset($data[$primaryKey])) {
 			$id = $data[$primaryKey];
 			unset($data[$primaryKey]);
 		}
+		
 		
 		if (!$id) {
 			$model->{$primaryKey} = $this->getDbTable()->insert($data);

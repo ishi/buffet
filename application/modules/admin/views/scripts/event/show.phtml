@@ -1,0 +1,17 @@
+<?php echo $this->partial('event/_event-info.phtml', array('event' => $this->event)); ?>
+
+
+<div id="admin_event">
+
+<p class="admin_tytul">Zdjęcie eventu</p>
+	<?php echo $this->form ?>
+
+	<div class="gallery-photos clearfix">
+		<?php foreach ($this->entries as $picture) : ?>
+		<div class="gallery-photo">
+			<img src="<?php echo $this->escape($picture->getName()) ?>" width="250" />
+		</div>
+		<?php endforeach; ?>
+	<div>
+	
+</div>

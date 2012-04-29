@@ -11,10 +11,10 @@ class Admin_Form_Information extends Zend_Form {
 			->setLabel('Podstrona')
 			->setAttrib('disabled', 'disabled');
 		$content = $this->createElement('textarea', 'content')
-			->setLabel('Treść pl')
+			->setLabel('Treść [pl]')
 			->setAttrib('cols', '100');
 		$contentEn = $this->createElement('textarea', 'content_en')
-			->setLabel('Treść en')
+			->setLabel('Treść [en]')
 			->setAttrib('cols', '100');
 		
 		$submit = $this->createElement('submit', 'save')

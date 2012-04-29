@@ -1,19 +1,18 @@
 <?php
-class Admin_Form_PhotoP extends Zend_Form {
+class Admin_Form_PhotoE extends Zend_Form {
 
 	public function init() {
 		$this->setAttrib('enctype', 'multipart/form-data');
 		$this->setName('gallery');
 		
-		$id = $this->createElement('hidden', 'id');
-		$galleryId = $this->createElement('hidden', 'gallery_id');
+		$id = $this->createElement('hidden', 'id')
+		->setValue($_SESSION['pict_id']);
 		
-		$link = $this->createElement('text', 'link')
-		->setLabel('Link')
-		->setValue('http://');
-		
+		$eventId = $this->createElement('hidden', 'eventId')
+		->setValue($_SESSION['event_id']);
+				
 		$file = $this->createElement('file', 'file')
-			->setLabel('Zdjęcie');
+		->setLabel('Zdjęcie');
 		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Dodaj zdjęcie')
@@ -21,15 +20,14 @@ class Admin_Form_PhotoP extends Zend_Form {
 
 		$this->addElements(array(
 			$id,
-			$galleryId,
+			$eventId,
 			$file,
-			$link,
 			$submit
 		));
 
 		$this->setDecorators(array(
 				'FormElements',
-				array('HtmlTag', array('tag' => 'table', 'class' => 'gallery')),
+				//array('HtmlTag', array('tag' => 'table', 'class' => 'gallery')),
 				'Form'
 		));
 		
@@ -42,7 +40,6 @@ class Admin_Form_PhotoP extends Zend_Form {
 		));
 		
 		$id->setDecorators(array('ViewHelper'));
-		$galleryId->setDecorators(array('ViewHelper'));
 		$file->setDecorators(array(
 			'File',
 			array('Errors'),

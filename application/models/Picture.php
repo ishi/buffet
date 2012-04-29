@@ -2,7 +2,7 @@
 
 // application/models/Picture.php
 
-class Application_Model_Picture
+class Application_Model_Picture extends Core_Model_Abstract
 {
     protected $_id;
     protected $_name;

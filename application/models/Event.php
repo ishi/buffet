@@ -40,6 +40,11 @@ class Application_Model_Event extends Core_Model_Abstract
         	return $this->_title;
         }
     } 
-    
+    /*
+    public function getPictureId()
+    {
+    	return $this->picture_id;
+    }
+	*/
     
 }

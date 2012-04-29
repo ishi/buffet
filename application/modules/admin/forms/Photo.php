@@ -10,7 +10,7 @@ class Admin_Form_Photo extends Zend_Form {
 
 		$file = $this->createElement('file', 'file[]')
 			->setAttrib('multiple', true)
-			->setLabel('Obrazek do uploadu')
+			->setLabel('Zdjęcie')
 			->setValueDisabled(true)
 			->setRequired()
 			// only JPEG, PNG, and GIFs

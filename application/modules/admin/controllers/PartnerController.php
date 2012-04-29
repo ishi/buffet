@@ -10,6 +10,8 @@ class Admin_PartnerController extends Zend_Controller_Action
     
     public function indexAction()
     {	
+    	$this->view->form = $this->_getPhotoForm();
+    	
     	$picture = new Application_Model_PictureMapper();
         $this->view->entries = $picture->fetchAll("information='partners'");
     }
@@ -32,13 +34,13 @@ class Admin_PartnerController extends Zend_Controller_Action
 	public function savePhotoAction() {
 		$this->view->form = $this->_getPhotoForm();
 		if (!$this->view->form->isValid($this->_getAllParams())) {
-			$this->render('add');
+			$this->render('index');
 			return;
 		}
 		
 		if (!$this->view->form->file->receive()) {
 			$this->view->priorityMessenger('Problem podczas wysyłania pliku');
-			$this->render('add');
+			$this->render('index');
 			return;
 		}
 		$galleryId = $this->view->form->gallery_id->getValue();
@@ -56,7 +58,7 @@ class Admin_PartnerController extends Zend_Controller_Action
 		$newLocation = realpath(APPLICATION_PATH . "/../public/pictures/partners/") . "/$fileName";
 		if (!copy($location, $newLocation)) {
 			$this->view->priorityMessenger("Błąd podczas przenoszenia pliku $location do $newLocation");
-			$this->render('add');
+			$this->render('index');
 			return;
 		}
 				
@@ -79,6 +81,28 @@ class Admin_PartnerController extends Zend_Controller_Action
 			unlink(APPLICATION_PATH . "/../public/pictures/partners/$fileName");
 			$this->render('add-photo');
 		}
+	}
+	
+	public function removePhotoAction() {
+		$id = $this->_getParam('id');
+		
+		if (!$id) {
+			$this->view->priorityMessenger('Brak id zdjęcia', 'error');
+			$this->_helper->redirector->gotoSimple('index', 'partner', null);
+			return;
+		}
+		
+		$mapper = new Application_Model_PhotoMapper();
+		try {
+			$photo = $mapper->find($id);
+			$mapper->delete($id);
+			unlink(APPLICATION_PATH . '/../public/' . $photo->getName());
+			$this->view->priorityMessenger('Usunięto zdjęcie z bazy: ' . $photo->getName(), 'info');
+		} catch (Exception $e) {
+			$this->view->priorityMessenger('Błąd podczas usuwania zdjęcia', 'error');
+			$this->view->priorityMessenger($e, 'debug');
+		}
+		$this->_helper->redirector->gotoSimple('index', 'partner', null);
 	}
 	
 	private function _getForm() {
