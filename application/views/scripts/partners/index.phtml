@@ -5,8 +5,8 @@
 	
 	<div id="partner_picture">
 	<?php 
-    $sciezka = $this->escape($partner->getName());
-    $link = $this->escape($partner->getLink());
+    $sciezka = $partner->getName();
+    $link = $partner->getLink();
     echo "<a href=$link target=\"_blank\"><img  class=\"partner\" src=\"$sciezka\"></a>" ?>
 	</div>
 

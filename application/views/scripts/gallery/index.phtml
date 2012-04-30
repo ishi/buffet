@@ -5,7 +5,7 @@
 			<div class="gallery">
 				<div class="clearfix">
 					<div class="preview">
-						<img src="<?php echo $this->escape($gallery->getMainPhoto()->getName()) ?>" />
+						<img src="<?php echo $gallery->getMainPhoto()->getName() ?>" />
 					</div>
 					<div class="thumbnails clearfix">
 						<?php foreach ($gallery->getActivePhotos() as $photo) : ?>

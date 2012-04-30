@@ -1,5 +1,5 @@
 <?php foreach ($this->entries as $entry): ?>
-	<?php $sciezka = $this->escape($entry->getPictureName());
+	<?php $sciezka = $entry->getPictureName();
     echo "<img  class=\"main\" src=\"$sciezka\">" ?>
 <?php endforeach ?>
 
@@ -7,7 +7,7 @@
 
 <p class="main_text">
     <?php foreach ($this->entries as $entry): ?>    
-    <?php echo nl2br($this->escape($entry->getContentLng()))	 ?>
+    <?php echo nl2br($entry->getContentLng())	 ?>
     <?php endforeach ?>
 </p>
 

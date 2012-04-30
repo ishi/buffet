@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 22 Kwi 2012, 15:38
+-- Czas wygenerowania: 30 Kwi 2012, 15:56
 -- Wersja serwera: 5.5.20
 -- Wersja PHP: 5.3.10
 
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `user` varchar(30) COLLATE utf8_polish_ci DEFAULT NULL,
   `title_en` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=54 ;
 
 -- --------------------------------------------------------
 
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   `link` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=89 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=147 ;
 
 -- --------------------------------------------------------
 

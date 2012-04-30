@@ -12,7 +12,7 @@
     }
     else
     {
-    $sciezka = $this->escape($entry->getPictureName());
+    $sciezka = $entry->getPictureName();
     echo "<img  class=\"news\" src=\"$sciezka\">" ;
     }
     ?>
@@ -20,11 +20,11 @@
     
     <div id="main_content_news_cont">
     <p class="news_title">
-    <?php echo $this->escape($entry->getDate()) ?>
-    <?php echo $this->escape($entry->getTitleLng())?>
+    <?php echo $entry->getDate() ?>
+    <?php echo $entry->getTitleLng()?>
     
     </p>
-    <p class="news_pre_content"><?php echo nl2br($this->escape($entry->getPreContent())) ?></p>
+    <p class="news_pre_content"><?php echo nl2br($entry->getPreContent()) ?></p>
     </div>
     
     <div id="main_content_news_go">
