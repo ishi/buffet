@@ -4,24 +4,17 @@
 class Application_Model_NewsletterMapper extends Core_Model_MapperAbstract
 {
 	/*
-    public function save(Application_Model_Event $event)
+    public function save(Application_Model_Newsletter $newsletter)
     {
     	try {
 	        $data = array(
-	            'title'   => $event->getTitle(),
-	        	'title_en'   => $event->getTitleEn(),
-	            'content_pl' => $event->getContentPl(),
-	        	'content_en' => $event->getContentEn(),
-	        	'pre_content_pl' => $event->getPreContentPl(),
-	        	'pre_content_en' => $event->getPreContentEn(),
-	        	'picture_id' => $event->getPictureId(),
-	        	'event_news' => $event->getEventNews(),
-	        	'event_announcement' => $event->getEventAnnouncement(),
-	        	'date_from' => $event->getDateFrom(),
-	        	'date_to' => $event->getDateTo(),
+	            'email'   => $newsletter->getEmail(),
+	        	'potwierdzenie'   => $newsletter->getPotwierdzenie(),
+	            'arch_date' => $newsletter->getArchDate(),
+	        	'user' => $newsletter->getUser(),
 	        );
 	
-	        if (null === ($id = $event->getId())) {
+	        if (null === ($id = $newsletter->getId())) {
 	            unset($data['id']);
 	            $this->getDbTable()->insert($data);
 	        } else {

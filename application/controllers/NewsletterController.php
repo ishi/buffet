@@ -13,6 +13,9 @@ class NewsletterController extends Zend_Controller_Action
         else{
         	$this -> _helper->layout()->setLayout("layout");
         }
+        
+        //if (!isset($_GET['lang'])) $_GET['lang'] = 'pl';
+        
     }
 
     public function indexAction()
@@ -35,12 +38,12 @@ class NewsletterController extends Zend_Controller_Action
 		try {
 			$newsletter->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$newsletter->setUser('ola');
-			$newsletter->setPotwierdzenie(null);
+			$newsletter->setPotwierdzenie('N');
 			
 			$mapper->save($newsletter);
 			$this->view->priorityMessenger('Zapisano e-mail w bazie danych');
-			$this->_helper->redirector->gotoSimple('index');
-			$this->_helper->redirector->gotoSimple('index', null, null, array('lang' => $_SESSION['lang']));
+			//$this->_helper->redirector->gotoSimple('index');
+			$this->_helper->redirector->gotoSimple('index', 'newsletter', null, array('lang' => $_SESSION['lang']));
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: ' 
 					. $e->getMessage());
