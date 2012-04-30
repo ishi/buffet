@@ -10,6 +10,11 @@ body, html {
 	height: 100%;
 }
 
+body {
+	background-image: url(/images/www_leyout_buffet_red_line.gif);
+	background-repeat: repeat-y;
+}
+
 /* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
 
 .clearfix:before, .clearfix:after {
@@ -84,23 +89,20 @@ body, html {
 #container {
 	margin: 0;
 	padding: 0;
-	height: 100%;
 	width: 100%;
-	background-image: url(/images/www_leyout_buffet_red_line.gif);
-	background-repeat: repeat-y;
-	display: table;
+	position: relative;
 }
 
 #left{
 	width: 234px;
-	display: table-cell;
 	vertical-align: top;
+	position: absolute;
 }
 
 #right{
-	display: table-cell;
 	vertical-align: top;
 	font-size: 12px;
+	margin-left: 234px;
 }
 
 #image8{
