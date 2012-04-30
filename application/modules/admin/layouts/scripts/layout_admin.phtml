@@ -5,9 +5,11 @@
 	<title>Buffet</title>
 	<?php echo $this->headLink()
 		->appendStylesheet('/css/theme/jquery-ui-1.8.19.custom.css')
+		->appendStylesheet('/cleditor/jquery.cleditor.css')
 		->appendStylesheet('/css/global.css') ?>
 	<?php echo $this->headScript()
 		->prependFile('/js/admin.js')
+		->prependFile('/cleditor/jquery.cleditor.js')
 		->prependFile('/js/jquery-ui-1.8.18.min.js')
 		->prependFile('/js/jquery-1.7.2.min.js') ?>
 	

@@ -7,4 +7,6 @@ $(function () {
 		delay += interval;
 	});
 	$('#ui-messages .ui-widget').on('click', function () {$(this).stop(true).fadeOut(1000)} );
+
+	$('textarea').cleditor();
 });
