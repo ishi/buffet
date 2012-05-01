@@ -1,0 +1,38 @@
+<?php echo $this->partial('gallery/_gallery-info.phtml', array('gallery' => $this->gallery)); ?>
+
+<div id="admin_event">
+	<p class="admin_tytul">Edycja zdjęcia</p>
+	<div>
+	<a href="<?php echo $this->url(array('action' => 'show', 'controller' => 'gallery', 'module' => 'admin', 'id' => $this->gallery->getId()), null, true)?>" class="button">Anuluj</a>
+	</div>
+	<table id="photo-edit">
+		<tr>
+			<td rowspan="2">
+				<h4>Zdjęcie oryginalne</h4>
+				<img src="<?php echo $this->photo->getName() ?>" id="source" />
+			</td>
+			<!--td>
+				<h4>Zdjęcie przeskalowane</h4>
+				<div id="scaled">
+					<img src="<?php echo $this->photo->getName() ?>-s.jpeg" />
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h4>Miniaturka</h4>
+				<div id="thumb">
+                                	<img src="<?php echo $this->photo->getName() ?>-t.jpeg" />
+				</div>
+			</td-->
+		</tr>
+	</table>
+	<script language="Javascript">
+	    jQuery(function($) {
+		var $source = $('#source'), img = $source.attr('src'), width = 500;
+	        $('#source').Jcrop({
+			aspectRatio: 450/500
+		});
+	    });
+	</script>
+</div>

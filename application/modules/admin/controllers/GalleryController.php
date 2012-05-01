@@ -97,8 +97,25 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		return $form;
 	}
 	
-	
-	public function savePhotoAction() {
+	public function editPhotoAction() {
+		$galleryId = $this->_getParam('galleryId');
+		if (!$galleryId) {
+			$this->_helper->redirector->gotoSimple('index');
+			return;
+		}
+		$mapper = new Application_Model_GalleryMapper();
+		$this->view->gallery = $mapper->find($galleryId);
+
+		$photoId = $this->_getParam('id');
+		if (!$photoId) {
+			$this->_helper->redirector->gotoSimple('show', null, null, array('id' => $galleryId));
+			return;
+		}
+		$mapperP = new Application_Model_PhotoMapper();
+		$this->view->photo = $mapperP->find($photoId);
+	}
+
+	public function addPhotoAction() {
 		$galleryId = $this->_getParam('galleryId');
 		if (!$galleryId) {
 			$this->_helper->redirector->gotoSimple('index');
@@ -196,7 +213,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 
 	private function _getPhotoForm($galleryId = null) {
 		$form = new Admin_Form_Photo();
-		$form->setAction($this->_helper->url('save-photo'));
+		$form->setAction($this->_helper->url('add-photo'));
 		if ($galleryId) {
 			$form->file->setDestination(APPLICATION_PATH . "/../public/gallery/$galleryId");
 			$form->populate(array('galleryId' => $galleryId));
