@@ -40,14 +40,36 @@ class Admin_EventController extends Zend_Controller_Action
 		$mapper = new Application_Model_EventMapper();
 		$this->view->event = $mapper->find($id);
 		$pictId =  $this->view->event->getPictureId();
-		$_SESSION['pict_id'] = $pictId;
-		$_SESSION['event_id'] = $id;
+		$pictIdSmall =  $this->view->event->getPictureIdSmall();
+		//$_SESSION['pict_id'] = $pictId;
+		//$_SESSION['pict_id_small'] = $pictIdSmall;
+		//$_SESSION['event_id'] = $id;
 		
 		$picture = new Application_Model_PictureMapper();
-        $this->view->entries = $picture->fetchAll("id=".$pictId);
+		if ($pictId != null){
+			$where = "id IN(".$pictId;
+			if ($pictIdSmall != null){
+				$where .= ", ".$pictIdSmall.")";
+			}
+			else{
+				$where .= ")";
+			}
+		}
+		else{
+			if ($pictIdSmall != null){
+				$where = "id IN (".$pictIdSmall.")";
+			} 
+		}
+		
+		if ($where != null){
+        	$this->view->entries = $picture->fetchAll($where);
+		}	
         
         $this->view->form = $this->_getPhotoForm();
-		$galleryId = null;
+		//$galleryId = null;
+		$this->view->form->id->setValue($this->view->event->getPictureId());
+		$this->view->form->idS->setValue($this->view->event->getPictureIdSmall());
+		$this->view->form->eventId->setValue($id);
 	
 	}
     
@@ -108,8 +130,16 @@ class Admin_EventController extends Zend_Controller_Action
 			return;
 		}
 		
-		//zdjecie
+		if (!$this->view->form->file2->receive()) {
+			$this->view->priorityMessenger('Problem podczas wysyłania pliku');
+			$this->render('index');
+			return;
+		}
+		
+		//zdjecie duze
 		$fileName = $this->view->form->file->getValue();
+		
+		if ($fileName != null){
 		
 		$mapper2 = new Application_Model_PhotoMapper();
 		if ($mapper2->fetchOne(array('name = ?' => "/pictures/$fileName"))) {
@@ -154,6 +184,59 @@ class Admin_EventController extends Zend_Controller_Action
 			$this->render('index');
 		}
 		
+		}
+		
+		
+		//zdjecie male
+		$fileNameS = $this->view->form->file2->getValue();
+		
+		if ($fileNameS != null){
+		
+		$mapperS = new Application_Model_PhotoMapper();
+		if ($mapperS->fetchOne(array('name = ?' => "/pictures/$fileNameS"))) {
+			$this->view->priorityMessenger("W katalogu znajduje się już zdjęcie o nazwie $fileNameS");
+			$this->_helper->redirector->gotoSimple('index', 'event', null);
+			return;
+		}
+		
+		$locationS = $this->view->form->file2->getFileName();
+		$newLocationS = realpath(APPLICATION_PATH . "/../public/pictures/") . "/$fileNameS";
+		
+		if (!copy($locationS, $newLocationS)) {
+			$this->view->priorityMessenger("Błąd podczas przenoszenia pliku $locationS do $newLocationS");
+			$this->render('index');
+			return;
+		}
+				
+		$this->view->priorityMessenger("Przeniosłem plik z $locationS do $newLocationS");
+		
+		$photoS = new Application_Model_Photo();
+		try {
+			$photoS->setName("/pictures/$fileNameS");
+			$photoS->setGalleryId(null);
+			$photoS->setInformation(null);
+			$photoS->setArchDate(new Zend_Db_Expr('CURDATE()'));
+			$photoS->setUser('ola');
+			if ($idS == 0){
+				$photo->setId(null);	
+			}
+			else{
+				$photo->setId($idS);
+			}
+
+			$mapper2->save($photoS);
+			$picture_id_small = $photoS->getId();
+			
+			//$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
+		}catch (Exception $e) {
+			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
+					. $e->getMessage());
+			unlink(APPLICATION_PATH . "/../public/pictures/$fileNameS");
+			$this->render('index');
+		}
+		
+		}
+		
 		
 		//event
 		$event = new Application_Model_Event($this->_getAllParams());
@@ -162,6 +245,7 @@ class Admin_EventController extends Zend_Controller_Action
 			$event->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$event->setUser('ola');
 			$event->setPictureId($picture_id);
+			$event->setPictureIdSmall($picture_id_small);
 			if ($event->getDateTo() == null)
 			{
 				$event->setDateTo(null);
@@ -223,8 +307,17 @@ class Admin_EventController extends Zend_Controller_Action
 			$this->render('index');
 			return;
 		}
-
+		
+		if (!$this->view->form->file2->receive()) {
+			$this->view->priorityMessenger('Problem podczas wysyłania pliku');
+			$this->render('index');
+			return;
+		}
+		
+		//zdjecie duze
 		$fileName = $this->view->form->file->getValue();
+		
+		if ($fileName != null){
 		$id = $this->view->form->id->getValue();
 		$eventId = $this->view->form->eventId->getValue();
 		
@@ -261,24 +354,82 @@ class Admin_EventController extends Zend_Controller_Action
 			}
 
 			$mapper->save($photo);
+			$picture_id = $photo->getId();
+		}catch (Exception $e) {
+			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
+					. $e->getMessage());
+			unlink(APPLICATION_PATH . "/../public/pictures/$fileName");
+			$this->render('index');
+		}	
+		}
+
+		//zdjecie male
+		$fileNameS = $this->view->form->file2->getValue();
+		
+		if ($fileNameS != null){
+		
+		$mapperS = new Application_Model_PhotoMapper();
+		if ($mapperS->fetchOne(array('name = ?' => "/pictures/$fileNameS"))) {
+			$this->view->priorityMessenger("W katalogu znajduje się już zdjęcie o nazwie $fileNameS");
+			$this->_helper->redirector->gotoSimple('index', 'event', null);
+			return;
+		}
+		
+		$locationS = $this->view->form->file2->getFileName();
+		$newLocationS = realpath(APPLICATION_PATH . "/../public/pictures/") . "/$fileNameS";
+		
+		if (!copy($locationS, $newLocationS)) {
+			$this->view->priorityMessenger("Błąd podczas przenoszenia pliku $locationS do $newLocationS");
+			$this->render('index');
+			return;
+		}
+				
+		$this->view->priorityMessenger("Przeniosłem plik z $locationS do $newLocationS");
+		
+		$photoS = new Application_Model_Photo();
+		try {
+			$photoS->setName("/pictures/$fileNameS");
+			$photoS->setGalleryId(null);
+			$photoS->setInformation(null);
+			$photoS->setArchDate(new Zend_Db_Expr('CURDATE()'));
+			$photoS->setUser('ola');
+			if ($idS == 0){
+				$photo->setId(null);	
+			}
+			else{
+				$photo->setId($idS);
+			}
+
+			$mapper2->save($photoS);
+			$picture_id_small = $photoS->getId();
 			
+			//$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
+		}catch (Exception $e) {
+			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
+					. $e->getMessage());
+			unlink(APPLICATION_PATH . "/../public/pictures/$fileNameS");
+			$this->render('index');
+		}
+		
+		}
 			
+			//event	
 			$mapper2 = new Application_Model_EventMapper();
 			$entry2 = $mapper2->find($eventId);
 			$event = new Application_Model_Event();	
 			$event->setId($eventId);
-			$event->setPictureId($photo->getId());	
+			if ($picture_id != null){
+				$event->setPictureId($picture_id);
+			}
+			if ($picture_id_small != null){	
+				$event->setPictureIdSmall($picture_id_small);
+			}
+			
 			$mapper2->save($event);	
 			
 			
 	        $this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
 			$this->_helper->redirector->gotoSimple('index', 'event', null);
-		} catch (Exception $e) {
-			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
-					. $e->getMessage());
-			unlink(APPLICATION_PATH . "/../public/pictures/$fileName");
-			$this->render('index');
-		}
 	}
 	
 	

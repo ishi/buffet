@@ -36,14 +36,17 @@ class NewsletterController extends Zend_Controller_Action
 		$newsletter = new Application_Model_Newsletter($this->_getAllParams());
 		$mapper = new Application_Model_NewsletterMapper();
 		try {
+			echo "111";
 			$newsletter->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$newsletter->setUser('ola');
 			$newsletter->setPotwierdzenie('N');
-			
+			echo "222";
 			$mapper->save($newsletter);
+			echo "333";
 			$this->view->priorityMessenger('Zapisano e-mail w bazie danych');
+			
 			//$this->_helper->redirector->gotoSimple('index');
-			$this->_helper->redirector->gotoSimple('index', 'newsletter', null, array('lang' => $_SESSION['lang']));
+			$this->_helper->redirector->gotoSimple('index', 'newsletter', null);
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: ' 
 					. $e->getMessage());

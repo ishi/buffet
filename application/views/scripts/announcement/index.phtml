@@ -5,15 +5,9 @@
     
     <div id="main_content_announcement_picture">
     <?php 
-    if ($entry->getPictureName() == null)
-    {
-    	echo "<img  class=\"announcement\" src=\"/images/www_leyout_buffet_buffet_text.gif\">";
-    }
-    else
-    {
-    $sciezka = $entry->getPictureName();
-    echo "<img  class=\"announcement\" src=\"$sciezka\">";
-    } ?>
+        $sciezka = $entry->getPictureNameSmall();
+    	echo "<img  class=\"announcement\" src=\"$sciezka\">";
+    ?>
  
     </div>
     

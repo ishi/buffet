@@ -15,6 +15,7 @@ class Application_Model_Announcement
     protected $_event_news;
     protected $_event_announcement;
     protected $_picture_name;
+    protected $_picture_name_small;
     protected $_date_from;
     protected $_date_to;
 
@@ -230,6 +231,17 @@ class Application_Model_Announcement
         	return $this->_title;
         }
     }  
+    
+	public function setPictureNameSmall($text)
+    {
+        $this->_picture_name_small = (string) $text;
+        return $this;
+    }
+
+    public function getPictureNameSmall()
+    {
+        return $this->_picture_name_small;
+    }
     
     //funkcja do wybierania daty od (jak jest podana jedna data) lub zakredu dat (jak są podane obie daty)
     public function getDate()

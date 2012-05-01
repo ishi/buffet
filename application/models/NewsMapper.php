@@ -39,6 +39,7 @@ class Application_Model_NewsMapper
 	        	'event_news' => $news->getEventNews(),
 	        	'event_announcement' => $news->getEventAnnouncement(),
 	        	'picture_name' => $news->getPictureName(),
+	        	'picture_name_small' => $news->getPictureNameSmall(),
 	        	'date_from' => $news->getDateFrom(),
 	        	'date_to' => $news->getDateTo(),
 	        );
@@ -72,6 +73,7 @@ class Application_Model_NewsMapper
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
                   ->setPictureName($row->picture_name)
+                  ->setPictureNameSmall($row->picture_name_small)
                   ->setDateFrom($row->date_from)
                   ->setDateTo($row->date_to);
     }
@@ -93,6 +95,7 @@ class Application_Model_NewsMapper
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
                   ->setPictureName($row->picture_name)
+                  ->setPictureNameSmall($row->picture_name_small)
                   ->setDateFrom($row->date_from)
                   ->setDateTo($row->date_to);
             $entries[] = $entry;

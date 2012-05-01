@@ -30,7 +30,9 @@ class Admin_Form_Event extends Zend_Form {
 		$contentEn = $this->createElement('textarea', 'content_en')
 			->setLabel('Treść [en]');
 		$file = $this->createElement('file', 'file')
-			->setLabel('Zdjęcie');
+			->setLabel('Zdjęcie duże');
+		$file2 = $this->createElement('file', 'file2')
+		->setLabel('Zdjęcie małe');
 		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Zapisz');
@@ -49,6 +51,7 @@ class Admin_Form_Event extends Zend_Form {
 			$preContentEn,
 			$contentEn,
 			$file,
+			$file2,
 			$submit
 		));
 
@@ -80,7 +83,17 @@ class Admin_Form_Event extends Zend_Form {
 			array('Errors'),
 			array('HtmlTag', array('tag' => 'td')),
 			array('Label', array('tag' => 'td')),
+			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
 			));
+			
+		$file2->setDecorators(array(
+			'File',
+			array('Errors'),
+			array('HtmlTag', array('tag' => 'td')),
+			array('Label', array('tag' => 'td')),
+			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
+			));
+		
 			
 	}
 }

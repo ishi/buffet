@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_DbTable_Newsletter extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Newsletter extends Core_Model_DbTable_Abstract
 {
     protected $_name = 'newsletter';
 	protected $_primary = 'id';
