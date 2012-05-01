@@ -21,9 +21,9 @@
     <p class="announcement_pre_content"><?php echo $entry->getPreContent() ?></p>
     </div>
     
-    <div id="main_content_announcement_go">
-    	<div id="announcement_content_go">...</div>
-    	<a href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>"><div id="main_content_rectangle_go"></div></a>
+    <div class="main_content_announcement_go">
+    	<div class="announcement_content_go">...</div>
+    	<a class="main_content_rectangle_go" href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>"> </a>
     </div>
     
     </dt>

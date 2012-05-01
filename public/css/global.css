@@ -15,6 +15,10 @@ body {
 	background-repeat: repeat-y;
 }
 
+a {
+	z-index: 20;
+}
+
 /* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
 
 .clearfix:before, .clearfix:after {
@@ -270,7 +274,7 @@ text-align	: right;
 padding-right: 3px;
 }
 
-#main_content_rectangle_go{
+.main_content_rectangle_go{
 float: left;
 height	: 12px;
 width	: 12px;
@@ -283,11 +287,12 @@ margin-top	: 5px;
 width		: 870px;
 }
 
-#main_content_announcement_go{
+.main_content_announcement_go{
+	z-index: 11;
 	padding-left: 20px;	
 }
 
-#announcement_content_go{
+.announcement_content_go{
 float: left;
 width: 319px;
 text-align	: right;
@@ -824,3 +829,12 @@ padding: 5px;
 	height: 200px;
 	overflow: hidden;
 }
+
+img#constant{
+	position: absolute;
+	z-index: 2;
+	opacity: 0.8;
+	filter: alpha(opacity=80);
+	left: 567px;
+	top: 117px;
+	
