@@ -367,7 +367,9 @@ class Admin_EventController extends Zend_Controller_Action
 		$fileNameS = $this->view->form->file2->getValue();
 		
 		if ($fileNameS != null){
-		
+
+		$idS = $this->view->form->idS->getValue();
+			
 		$mapperS = new Application_Model_PhotoMapper();
 		if ($mapperS->fetchOne(array('name = ?' => "/pictures/$fileNameS"))) {
 			$this->view->priorityMessenger("W katalogu znajduje się już zdjęcie o nazwie $fileNameS");
@@ -394,13 +396,13 @@ class Admin_EventController extends Zend_Controller_Action
 			$photoS->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$photoS->setUser('ola');
 			if ($idS == 0){
-				$photo->setId(null);	
+				$photoS->setId(null);	
 			}
 			else{
-				$photo->setId($idS);
+				$photoS->setId($idS);
 			}
 
-			$mapper2->save($photoS);
+			$mapperS->save($photoS);
 			$picture_id_small = $photoS->getId();
 			
 			//$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
