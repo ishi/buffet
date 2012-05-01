@@ -19,6 +19,11 @@
 					'galleryId' => $this->gallery->getId(), 'id' => $photo->getId()), null, true) ?>" class="button">
 				<img src="/images/eye.png" />
 			</a>
+			<a href="<?php echo $this->url(
+				array('module' => 'admin', 'controller' => 'gallery', 'action' => 'edit-photo',
+					'galleryId' => $this->gallery->getId(), 'id' => $photo->getId()), null, true) ?>" class="button">
+				<img src="/images/edit.jpg" />
+			</a>
 		</div>
 		<?php endforeach; ?>
 	<div>
