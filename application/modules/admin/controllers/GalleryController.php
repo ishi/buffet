@@ -136,6 +136,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$photo->setGalleryId($galleryId);
 			$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$photo->setUser('seta');
+			$photo->setVisible(true);
 			$mapper->save($photo);
 			$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
 			$this->_redirectToGallery($galleryId);
