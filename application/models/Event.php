@@ -6,7 +6,7 @@ class Application_Model_Event extends Core_Model_Abstract
 {
     protected $_params = array('id', 'content_pl', 'content_en', 'title', 'title_en', 
     	'pre_content_pl', 'pre_content_en', 'picture_id', 'event_news',
-    	'event_announcement', 'date_from', 'date_to', 'arch_date', 'user');
+    	'event_announcement', 'date_from', 'date_to', 'arch_date', 'user', 'picture_id_small');
 
 // funkcja do pobierania tresci newsa w zaleznosci od tego czy jest menu polskie czy angielskie
 	public function getContent()

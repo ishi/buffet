@@ -39,6 +39,7 @@ class Application_Model_ArchiveMapper
 	        	'event_news' => $archive->getEventNews(),
 	        	'event_announcement' => $archive->getEventAnnouncement(),
 	        	'picture_name' => $archive->getPictureName(),
+	        	'picture_name_small' => $archive->getPictureNameSmall(),
 	        	'date_from' => $archive->getDateFrom(),
 	        	'date_to' => $archive->getDateTo(),
 	        );
@@ -72,6 +73,7 @@ class Application_Model_ArchiveMapper
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
                   ->setPictureName($row->picture_name)
+                  ->setPictureNameSmall($row->picture_name_small)
                   ->setDateFrom($row->date_from)
                   ->setDateTo($row->date_to);
     }
@@ -93,6 +95,7 @@ class Application_Model_ArchiveMapper
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
                   ->setPictureName($row->picture_name)
+                  ->setPictureNameSmall($row->picture_name_small)
                   ->setDateFrom($row->date_from)
                   ->setDateTo($row->date_to);
             $entries[] = $entry;

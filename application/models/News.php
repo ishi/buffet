@@ -15,6 +15,7 @@ class Application_Model_News
     protected $_event_news;
     protected $_event_announcement;
     protected $_picture_name;
+    protected $_picture_name_small;
     protected $_date_from;
     protected $_date_to;
 
@@ -174,6 +175,17 @@ public function setPictureId($picture_id)
     public function getPictureName()
     {
         return $this->_picture_name;
+    }
+    
+	public function setPictureNameSmall($text)
+    {
+        $this->_picture_name_small = (string) $text;
+        return $this;
+    }
+
+    public function getPictureNameSmall()
+    {
+        return $this->_picture_name_small;
     }
     
 	public function setDateFrom($text)

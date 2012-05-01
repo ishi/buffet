@@ -16,6 +16,7 @@ class Application_Model_Event
     protected $_event_announcement;
     protected $_picture_name;
     protected $_date_from;
+    protected $_picture_id_small;
 
     public function __construct(array $options = null)
     {
@@ -131,7 +132,7 @@ class Application_Model_Event
         return $this->_id;
     }
     
-public function setPictureId($picture_id)
+	public function setPictureId($picture_id)
     {
         $this->_picture_id= (int) $picture_id;
         return $this;
@@ -140,6 +141,17 @@ public function setPictureId($picture_id)
     public function getPictureId()
     {
         return $this->_picture_id;
+    }
+	
+    public function setPictureIdSmall($picture_id_small)
+    {
+        $this->_picture_id_small= (int) $picture_id_small;
+        return $this;
+    }
+
+    public function getPictureIdSmall()
+    {
+        return $this->_picture_id_small;
     }
     
 	public function setEventNews($text)
