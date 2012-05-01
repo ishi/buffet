@@ -20,11 +20,11 @@
 	<div id="details_cont">
 		<div id="details_title">
 			<?php echo $entry->getDate() ?>
-			<?php echo nl2br($entry->getTitleLng()) ?>
+			<?php echo $entry->getTitleLng() ?>
 		</div>
     
     	<div id="details_content">
-    		<?php echo nl2br($entry->getContent()) ?>
+    		<?php echo $entry->getContent() ?>
     	</div>
     	
     	<div id="details_main_back">

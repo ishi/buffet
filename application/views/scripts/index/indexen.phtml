@@ -4,7 +4,7 @@
 
 <p class="main_text">
     <?php foreach ($this->entries as $entry): ?>
-    <?php echo nl2br($entry->getContent()) ?>
+    <?php echo $entry->getContent() ?>
     <?php endforeach ?>
 </p>
 </div>
