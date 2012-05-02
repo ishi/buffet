@@ -5,3 +5,4 @@ library/Zend/
 /nbproject/private/
 /public/gallery/
 /public/pictures/
+/application/configs/environment.ini
