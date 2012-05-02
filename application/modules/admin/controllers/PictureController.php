@@ -27,7 +27,7 @@ class Admin_PictureController extends Zend_Controller_Action
 		}
 		*/
 		$this->view->form->populate(array('gallery_id' => $galleryId));
-		$mapper = new Application_Model_GalleryMapper();
+		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
 		$this->view->gallery = $mapper->find($galleryId);
 	}
 	

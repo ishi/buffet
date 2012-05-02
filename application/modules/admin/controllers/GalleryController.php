@@ -3,8 +3,8 @@
 class Admin_GalleryController extends Zend_Controller_Action {
 
 	public function indexAction() {
-		$mapper = new Application_Model_GalleryMapper();
-		$this->view->entries = $mapper->fetchAll(null, 'folder_name ASC');
+		$this->view->entries = Core_Model_MapperAbstract::getInstance('Gallery')
+				->fetchAll(null, 'folder_name ASC');
 	}
 
 	public function showAction() {
@@ -13,8 +13,8 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			return;
 		}
 		
-		$mapper = new Application_Model_GalleryMapper();
-		$this->view->gallery = $mapper->find($id);
+		$this->view->gallery = Core_Model_MapperAbstract::getInstance('Gallery')
+				->find($id);
 		
 		$this->view->form = $this->_getPhotoForm($id);
 	}
@@ -25,11 +25,14 @@ class Admin_GalleryController extends Zend_Controller_Action {
 
 	public function editAction() {
 		if (!($id = $this->_getParam('id'))) {
-			$this->_helper->redirector->gotoSimple('index');
-			return;
+			$this->_helper->redirector->gotoSimple('index')->redirectAndExit();
 		}
-		$mapper = new Application_Model_GalleryMapper();
+		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
 		$entry = $mapper->find($id);
+		if (!$entry) {
+			$this->view->priorityMessenger('Brak galerii o podanym id', 'error');
+			$this->_helper->redirector->gotoSimple('index')->redirectAndExit();
+		}
 		$this->view->form = $this->_getForm();
 		$this->view->form->populate($entry->toArray());
 	}
@@ -40,7 +43,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$this->_helper->redirector->gotoSimple('index');
 			return;
 		}
-		$mapper = new Application_Model_GalleryMapper();
+		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
 		try {
 			$mapper->delete($id);
 			$this->remove_dir(realpath(APPLICATION_PATH . "/../public/gallery/$id"));
@@ -60,7 +63,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		}
 
 		$gallery = new Application_Model_Gallery($this->_getAllParams());
-		$mapper = new Application_Model_GalleryMapper();
+		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
 		try {
 			$gallery->setFolderDate(new Zend_Db_Expr('CURDATE()'));
 			$gallery->setArchDate(new Zend_Db_Expr('CURDATE()'));
@@ -103,7 +106,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$this->_helper->redirector->gotoSimple('index');
 			return;
 		}
-		$mapper = new Application_Model_GalleryMapper();
+		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
 		$this->view->gallery = $mapper->find($galleryId);
 
 		$photoId = $this->_getParam('id');
@@ -121,7 +124,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$this->_helper->redirector->gotoSimple('index');
 			return;
 		}
-		$mapper = new Application_Model_GalleryMapper();
+		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
 		$this->view->gallery = $mapper->find($galleryId);
 		
 		$this->view->form = $this->_getPhotoForm($galleryId);

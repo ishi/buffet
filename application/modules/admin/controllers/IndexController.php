@@ -1,6 +1,6 @@
 <?php
 
-class Admin_IndexController extends Zend_Controller_Action
+class Admin_IndexController extends Zend_Controller_Action 
 {
     public function init()
     {
@@ -19,10 +19,7 @@ class Admin_IndexController extends Zend_Controller_Action
     {
     	$news = new Application_Model_EventMapper();
     	$id = $this->_getParam('id', 1);
-        $this->view->entries = $news->fetchAll("id=$id", "id");
+        $this->view->entries = $news->fetchAll(array("id=?" => $id), "id");
     }    
-    
-	
-
 }
 

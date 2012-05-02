@@ -16,8 +16,8 @@ class GalleryController extends Zend_Controller_Action {
 	}
 
 	public function indexAction() {
-		$mapper = new Application_Model_GalleryMapper();
-		$this->view->galleries = $mapper->fetchAll(null, 'folder_date DESC', 20);
+		$this->view->galleries = Core_Model_MapperAbstract::getInstance('Gallery')
+				->fetchAll(null, 'folder_date DESC', 20);
 		
 		foreach ($this->view->galleries as $key => $gallery) {
 			if (!$gallery->getActivePhotos()) unset($this->view->galleries[$key]);
