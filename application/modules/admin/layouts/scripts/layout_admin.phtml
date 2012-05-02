@@ -36,27 +36,16 @@
 </head>
 
 <body onload=chImg();>
-    <div id="ui-messages">
-	<?php foreach ($this->priorityMessenger() as $label => $messages) : ?>
-		<?php if (count($messages)) : ?> 
-			<?php foreach ($messages as $message) : ?>
-			<div class="ui-widget">
-				<div class="ui-message ui-message-<?php echo $label ?> ui-corner-all clearfix"> 
-					<span class="ui-icon"></span>
-					<?php echo $message ?>
-				</div>
-			</div>
-			<?php endforeach; ?>
-		<?php endif; ?>
-	<?php endforeach; ?>
-</div>
-    
+    <?php echo $this->partial('_messages.phtml'); ?>
     
 	<div id="container">
 		<div id="left">
 			<div id="image8"></div>
 			<div id="menu_left_admin">
 				<ul>
+					<li>
+						<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'auth', 'action'=>'logout'), null, true); ?>">Wyloguj</a>
+					</li>
 					<li>
 						<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'index', 'lang'=>'pl', 'where'=>'news'), null, true); ?>">Strona NEWS</a>
 					</li>

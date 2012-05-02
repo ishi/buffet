@@ -1,0 +1,14 @@
+<div id="ui-messages">
+	<?php foreach ($this->priorityMessenger() as $label => $messages) : ?>
+		<?php if (count($messages)) : ?> 
+			<?php foreach ($messages as $message) : ?>
+				<div class="ui-widget">
+					<div class="ui-message ui-message-<?php echo $label ?> ui-corner-all clearfix"> 
+						<span class="ui-icon"></span>
+						<?php echo $message ?>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	<?php endforeach; ?>
+</div>

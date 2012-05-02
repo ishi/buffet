@@ -2,10 +2,23 @@
 
 class Core_Model_MapperAbstract {
 
+	static private $_instance = array();
 	protected $_dbTable;
 	protected $_modelName;
 	public static $modelPrefix = 'Application_Model_';
 
+	/**
+	 * @param string $model
+	 * @return Core_Model_MapperAbstract 
+	 */
+	public static function getInstance($model = null) {
+		$class = get_called_class();
+		if (!isset(self::$_instance[$class])) {
+			self::$_instance[$class] = new $class($model);
+		}
+		return self::$_instance[$class];
+	}
+	
 	public function __construct($modelName = null) {
 		$this->_modelName = $modelName;
 	}

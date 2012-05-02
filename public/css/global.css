@@ -90,6 +90,11 @@ a {
 	background-position: 0 -144px;
 }
 
+ul.errors {
+	list-style: none;
+	color: red;
+}
+
 #container {
 	margin: 0;
 	padding: 0;

@@ -6,7 +6,7 @@
  * @author ishi
  *
  */
-class Core_Layout_Controller_Plugin_ModuleLayout extends Zend_Layout_Controller_Plugin_Layout {
+class Core_Controller_Plugin_ModuleLayout extends Zend_Layout_Controller_Plugin_Layout {
 
 	public function preDispatch(Zend_Controller_Request_Abstract $request) {
 		$bootstrap = Zend_Controller_Front::getInstance()->getParam('bootstrap');

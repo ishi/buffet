@@ -1,0 +1,39 @@
+<?php echo $this->doctype() ?> 
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Buffet</title>
+	<?php echo $this->headLink()
+		->appendStylesheet('/css/theme/jquery-ui-1.8.19.custom.css')	
+		->appendStylesheet('/css/global.css') ?>
+	<?php echo $this->headScript()
+		->prependFile('/js/admin.js')
+		->prependFile('/js/jquery-ui-1.8.18.min.js')
+		->prependFile('/js/jquery-1.7.2.min.js') ?>
+	
+	</script>
+</head>
+
+<body onload=chImg();>
+	<?php echo $this->partial('_messages.phtml'); ?>
+        
+	<div id="container">
+		<div id="left">
+			<div id="image8"></div>
+		</div>
+		
+		<div id="right">
+			<div id="image2356">
+				<a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'index', 'action'=>'index', 'lang'=>'pl'), null, true); ?>"><div id="image2"></div></a>
+			</div>
+			<div id="main">
+				<?php echo $this->layout()->content ?>
+			</div>
+			
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+</body>
+</html>
+
+				

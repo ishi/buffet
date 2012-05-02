@@ -228,6 +228,22 @@ DROP TABLE IF EXISTS `news`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `news` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`p`.`name` AS `picture_name` from (`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) where (`e`.`event_news` = 'T');
 
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli `user`
+--
+CREATE TABLE `user` (
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(255) NOT NULL,
+	`password` CHAR(40) NOT NULL,
+	`created_at` DATETIME NOT NULL,
+	`updated_at` DATETIME NOT NULL,
+	PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+-- Admin musi być
+INSERT INTO `user` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (NULL, 'buffetadmin', SHA1('P@ssw0rd'), CURDATE(), CURDATE());
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
