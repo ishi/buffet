@@ -8,8 +8,8 @@ class Core_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
 		
 		$controller = $request->getControllerName();
 		if (!Zend_Auth::getInstance()->hasIdentity()) {
-            // If they aren't, they can't logout, so that action should 
-            // redirect to the login form
+			// If they aren't, they can't logout, so that action should 
+			// redirect to the login form
 			if ('auth' != $controller) {
 				$redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('redirector');
 				$redirector->gotoSimple('index', 'auth', 'admin', 
@@ -17,7 +17,7 @@ class Core_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract {
 						);
 				$redirector->redirectAndExit();
 			}
-        }
+		}
 	}
 }
 ?>
