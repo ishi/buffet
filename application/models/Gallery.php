@@ -10,6 +10,11 @@ class Application_Model_Gallery extends Core_Model_Abstract {
 	private $_photos;
 	private $_activePhotos;
 
+	public function getFolderDate() {
+		return date("m.d.Y", strtotime(parent::getFolderDate()));
+	}
+
+
 	public function getPhotos() {
 		if (!$this->_photos) {
 			$mapper = new Application_Model_PhotoMapper();
