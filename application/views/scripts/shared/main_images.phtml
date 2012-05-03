@@ -1,13 +1,7 @@
 <div id="main_image"> 
 	<?php if ($this->pictures) : ?>
-		<img class="main" src="<?php echo $this->escape($this->pictures[0]->getName()) ?>" id="imgField" />
-		<?php
-		$imagesNames = array();
-		foreach ($this->pictures as $picture) {
-			$imagesNames[] = '"' . $this->escape($picture->getName()) . '"';
-		} ?>
-		<script type="text/javascript">
-			imgs = [<?php echo implode(', ', $imagesNames)?>];
-		</script>
+		<?php foreach ($this->pictures as $picture) : ?>
+			<img class="main" src="<?php echo $this->escape($picture->getName()) ?>" id="imgField" />
+		<?php endforeach ?>
 	<?php endif ?>
 </div>

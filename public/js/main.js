@@ -15,4 +15,10 @@ $(function () {
 	$('#galleries .thumbnail img').on('click', function () {
 		$(this).parents('.gallery').find('.preview img').attr('src', $(this).attr('src'));
 	});
+
+	$('#main_image').innerfade({ 
+		speed: 2000, 
+		timeout: 10000,
+		containerheight: '291px'
+	});
 });

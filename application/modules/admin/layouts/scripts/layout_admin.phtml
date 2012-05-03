@@ -14,28 +14,9 @@
 		->prependFile('/js/jquery.Jcrop.min.js')
 		->prependFile('/js/jquery-ui-1.8.18.min.js')
 		->prependFile('/js/jquery-1.7.2.min.js') ?>
-	
-	<script type="text/javascript">
-		imgs = [];
-		var pos  = 0;
-
-		function chImg() {
-			var i = document.getElementById( 'imgField' );
-			if (!i || !imgs.length) return;
-	
-			i.src = imgs[ pos++ ];
-	
-			if( pos >= imgs.length ) {
-				pos = 0;
-			}
-
-      window.setTimeout( 'chImg()', 3000 );
-   }
-
-	</script>
 </head>
 
-<body onload=chImg();>
+<body>
     <?php echo $this->partial('_messages.phtml'); ?>
     
 	<div id="container">
