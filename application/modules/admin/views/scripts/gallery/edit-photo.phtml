@@ -1,37 +1,43 @@
-<?php echo $this->partial('gallery/_gallery-info.phtml', array('gallery' => $this->gallery)); ?>
+<?php //echo $this->partial('gallery/_gallery-info.phtml', array('gallery' => $this->gallery)); ?>
 
 <div id="admin_event">
 	<p class="admin_tytul">Edycja zdjęcia</p>
 	<div>
-	<a href="<?php echo $this->url(array('action' => 'show', 'controller' => 'gallery', 'module' => 'admin', 'id' => $this->gallery->getId()), null, true)?>" class="button">Anuluj</a>
+	<?php
+		 
+	?>
+	<form id="crop-data" action="<?php echo $this->url(array('action' => 'crop-photo', 'controller' => 'gallery', 'module' => 'admin'), null, true)?>">
+		<a href="<?php echo $this->url(array('action' => 'show', 'controller' => 'gallery', 'module' => 'admin', 'id' => $this->gallery->getId()), null, true)?>" class="button">Anuluj</a>
+		
+		<input type="hidden" name="galleryId" value="<?php echo $this->gallery->getId() ?>" />
+		<input type="hidden" name="id" value="<?php echo $this->photo->getId() ?>" />
+		<input type="hidden" id="x1" name="crop[x1]" />
+		<input type="hidden" id="y1" name="crop[y1]" />
+		<input type="hidden" id="x2" name="crop[x2]" />
+		<input type="hidden" id="y2" name="crop[y2]" />
+		<input type="hidden" id="w" name="crop[w]" />
+		<input type="hidden" id="h" name="crop[h]" />
+		<input type="submit" value="Przytnij Zdjęcie" class="button" />
+	</form>
 	</div>
-	<table id="photo-edit">
-		<tr>
-			<td rowspan="2">
-				<h4>Zdjęcie oryginalne</h4>
-				<img src="<?php echo $this->photo->getName() ?>" id="source" />
-			</td>
-			<!--td>
-				<h4>Zdjęcie przeskalowane</h4>
-				<div id="scaled">
-					<img src="<?php echo $this->photo->getName() ?>-s.jpeg" />
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<h4>Miniaturka</h4>
-				<div id="thumb">
-                                	<img src="<?php echo $this->photo->getName() ?>-t.jpeg" />
-				</div>
-			</td-->
-		</tr>
-	</table>
+	<div id="photo-edit">
+		<h4>Zdjęcie oryginalne</h4>
+		<img src="<?php echo $this->photo->getName() ?>" id="source" />
+	</div>
 	<script language="Javascript">
 	    jQuery(function($) {
-		var $source = $('#source'), img = $source.attr('src'), width = 500;
+		var updateForm = function (c) {
+			$('#x1').val(c.x);
+			$('#y1').val(c.y);
+			$('#x2').val(c.x2);
+			$('#y2').val(c.y2);
+			$('#w').val(c.w);
+			$('#h').val(c.h);
+		}
 	        $('#source').Jcrop({
-			aspectRatio: 450/500
+			onSelect: updateForm,
+			aspectRatio: 450/500,
+			setSelect: [0, 0, 90, 100]
 		});
 	    });
 	</script>

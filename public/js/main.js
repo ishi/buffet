@@ -13,7 +13,7 @@ $(function () {
 	});
 	
 	$('#galleries .thumbnail img').on('click', function () {
-		$(this).parents('.gallery').find('.preview img').attr('src', $(this).attr('src'));
+		$(this).parents('.gallery').find('.preview img').attr('src', $(this).attr('src').replace(/-t\.(\w+)$/,"-s.$1"));
 	});
 
 	$('#main_image').innerfade({ 

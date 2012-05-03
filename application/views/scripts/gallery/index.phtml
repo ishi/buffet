@@ -5,11 +5,11 @@
 			<div class="gallery">
 				<div class="photos clearfix">
 					<div class="preview">
-						<img src="<?php echo $gallery->getMainPhoto()->getName() ?>" />
+						<img src="<?php echo $gallery->getMainPhoto()->getCroppedName() ?>" />
 					</div>
 					<div class="thumbnails clearfix">
 						<?php foreach ($gallery->getActivePhotos() as $photo) : ?>
-							<div class="thumbnail"><img src="<?php echo $photo->getName() ?>" /></div>
+							<div class="thumbnail"><img src="<?php echo $photo->getThumbnailName() ?>" /></div>
 						<?php endforeach ?>
 					</div>
 				</div>

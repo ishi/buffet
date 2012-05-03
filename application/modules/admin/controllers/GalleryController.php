@@ -214,6 +214,75 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		$this->_redirectToGallery($galleryId);
 	}
 
+	public function cropPhotoAction () {
+		$galleryId = $this->_getParam('galleryId');
+		if (!$galleryId) {
+			$this->view->priorityMessenger('Brak id galerii', 'error');
+			$this->_helper->redirector->gotoSimple('index')->redirectAndExit();
+		}
+		
+		$id = $this->_getParam('id');
+		if (!$id) {
+			$this->view->priorityMessenger('Brak id zdjęcia do edycji', 'error');
+			$this->_helper->redirector->gotoSimple('index')->redirectAndExit();
+		}
+		
+		$photo = Core_Model_MapperAbstract::getInstance('Photo')->find($id);
+		if (!$photo) {
+			$this->view->priorityMessenger('Zdjęcie o podanym id nie istnieje', 'error');
+			$this->_helper->redirector->gotoSimple('index')->redirectAndExit();
+		}
+		$crop = $this->_getParam('crop', array());
+		foreach ($crop as &$val)
+			$val = round($val);
+		
+		$crop['tw'] = $crop['w'];
+		$crop['th'] = $crop['h'];
+		$type = strtolower(substr(strrchr($src,"."),1));
+
+		$this->_resizePhoto(APPLICATION_PATH . '/../public/' . $photo->getName(), 
+			APPLICATION_PATH . '/../public/' . $photo->getCroppedName(), $crop);
+		
+		$crop['tw'] = $crop['th'] = 100;
+		$this->_resizePhoto(APPLICATION_PATH . '/../public/' . $photo->getName(), 
+			APPLICATION_PATH . '/../public/' . $photo->getThumbnailName(), $crop);
+		
+		$this->_redirectToGallery($galleryId);
+	}
+	
+	private function _resizePhoto($src, $dest, array $options) {
+		$type = strtolower(substr(strrchr($src,"."),1));
+  		if($type == 'jpg') $type = 'jpeg';
+  		switch($type){
+    			case 'bmp': $img = imagecreatefromwbmp($src); break;
+    			case 'gif': $img = imagecreatefromgif($src); break;
+    			case 'jpeg': $img = imagecreatefromjpeg($src); break;
+    			case 'png': $img = imagecreatefrompng($src); break;
+    			default : return "Unsupported picture type!";
+  		}
+
+		$new = ImageCreateTrueColor($options['tw'], $options['th']);
+		// preserve transparency
+  		if($type == "gif" or $type == "png"){
+    			imagecolortransparent($new, imagecolorallocatealpha($new, 0, 0, 0, 127));
+    			imagealphablending($new, false);
+    			imagesavealpha($new, true);
+  		}
+		
+		imagecopyresampled($new, $img, 0, 0, $options['x1'], $options['y1'],
+    			$options['tw'], $options['th'], $options['w'], $options['h']);
+
+		if (null == $dest) {
+			header("Content-type: image/$type");
+		}
+		switch($type){
+			case 'bmp': imagewbmp($new, $dest, 100); break;
+			case 'gif': imagegif($new, $dest, 100); break;
+			case 'jpeg': imagejpeg($new, $dest, 100); break;
+			case 'png': imagepng($new, $dest, 100); break;
+		}
+	}
+
 	private function _getPhotoForm($galleryId = null) {
 		$form = new Admin_Form_Photo();
 		$form->setAction($this->_helper->url('add-photo'));
