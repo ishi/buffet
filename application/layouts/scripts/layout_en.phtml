@@ -6,30 +6,14 @@
 	<?php echo $this->headLink()->appendStylesheet('/css/global.css') ?> 
 	<?php echo $this->headScript()
 		->prependFile('/js/main.js')
+		->prependFile('/js/jquery.innerfade.js')
 		->prependFile('/js/jquery-ui-1.8.18.min.js')
 		->prependFile('/js/jquery-1.7.2.min.js') ?>
 	
-	<script type="text/javascript">
-		imgs = [];
-		var pos  = 0;
-
-		function chImg() {
-			var i = document.getElementById( 'imgField' );
-			if (!i || !imgs.length) return;
-	
-			i.src = imgs[ pos++ ];
-	
-			if( pos >= imgs.length ) {
-				pos = 0;
-			}
-
-      window.setTimeout( 'chImg()', 3000 );
-   }
-
-	</script>
 </head>
 
-<body onload=chImg();>
+<body>
+<!-- <img id="constant" src="/images/elementy_stale.png"> -->
 	<div id="container">
 		<div id="left">
 			<div id="image8"></div>
