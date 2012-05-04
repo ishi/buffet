@@ -1,3 +1,20 @@
+#Validation
 Value is required and can't be empty;Pole nie może być puste
 Wrong password;Niepoprawne hasło
 User doesn't exists;Podany użytkownik nie istnieje
+
+#Layout
+OFFER;OFERTA
+PARTNERS;PARTNERZY
+NEWSLETTER;NEWSLETTER
+FACEBOOK;FACEBOOK
+VIMEO;VIMEO
+PODCAST;PODCAST
+HOME;HOME
+NEWS;NEWS
+ANNOUNCEMENT;ZAPOWIEDZI
+FOTO;FOTO
+VIDEO;VIDEO
+CARD;KARTA
+ARCHIVE;ARCHIWUM
+CONTACT;KONTAKT

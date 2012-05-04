@@ -23,7 +23,7 @@ class Core_Controller_Plugin_LangSelector extends Zend_Controller_Plugin_Abstrac
             $request->setParam('lang', 'pl');
 		}
         
-        $lang = $request->getParam('lang');
+        $lang = $_SESSION['lang'] = $request->getParam('lang');
         
         $locale = new Zend_Locale($request->getParam('lang'));
         Zend_Registry::set('Zend_Locale', $locale);

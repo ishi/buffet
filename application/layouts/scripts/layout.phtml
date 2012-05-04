@@ -20,22 +20,22 @@
 			<div id="menu_left">
 				<ul>
 					<li>
-						<!--<a href="<?php echo $this->url(array('controller'=>'offer', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">-->OFERTA<!--</a>-->
+						<!--<a href="<?php echo $this->url(array('controller'=>'offer', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">--><?php echo $this->translate('OFFER') ?><!--</a>-->
 					</li>
 					<li>
-						<!-- <a href="<?php echo $this->url(array('controller'=>'partners', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">-->PARTNERZY<!--</a>-->
+						<!-- <a href="<?php echo $this->url(array('controller'=>'partners', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">--><?php echo $this->translate('PARTNERS') ?><!--</a>-->
 					</li>
 					<li>
-						<!--a href="<?php echo $this->url(array('controller'=>'newsletter', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">-->NEWSLETTER<!--</a>-->
+						<!--a href="<?php echo $this->url(array('controller'=>'newsletter', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">--><?php echo $this->translate('NEWSLETTER') ?><!--</a>-->
 					</li>
 					<li>
-						<a href="http://www.facebook.com/BUFFETklub" target="_blank">FACEBOOK</a>
+						<a href="http://www.facebook.com/BUFFETklub" target="_blank"><?php echo $this->translate('FACEBOOK') ?></a>
 					</li>
 					<li>
-						<a href="http://vimeo.com/user10915565" target="_blank">VIMEO</a>
+						<a href="http://vimeo.com/user10915565" target="_blank"><?php echo $this->translate('VIMEO') ?></a>
 					</li>
 					<li>
-						<!--<a href="<?php echo $this->url(array('controller'=>'podcast', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">-->PODCAST<!--</a>-->
+						<!--<a href="<?php echo $this->url(array('controller'=>'podcast', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">--><?php echo $this->translate('PODCAST') ?><!--</a>-->
 					</li>
 				</ul>
 			</div>
@@ -49,37 +49,37 @@
 						<div id="menu_top">
 							<ul class="menu_poziome">
 								<li class="menu_poziome">
-									<a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">HOME</a>
+									<a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>"><?php echo $this->translate('HOME') ?></a>
 								</li>
 								<li class="menu_poziome">
-									<a href="<?php echo $this->url(array('controller'=>'news', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">NEWS</a>
+									<a href="<?php echo $this->url(array('controller'=>'news', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>"><?php echo $this->translate('NEWS') ?></a>
 								</li>
 								<li class="menu_poziome">
-									<a href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">ZAPOWIEDZI</a>
+									<a href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>"><?php echo $this->translate('ANNOUNCEMENT') ?></a>
 								</li>
 								<li class="menu_poziome">
-									<a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">FOTO</a>
+									<a href="<?php echo $this->url(array('controller'=>'gallery', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>"><?php echo $this->translate('FOTO') ?></a>
 								</li>
 								<li class="menu_poziome">
-									<!--<a href="<?php echo $this->url(array('controller'=>'video', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">-->VIDEO<!--</a>-->
+									<!--<a href="<?php echo $this->url(array('controller'=>'video', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">--><?php echo $this->translate('VIDEO') ?><!--</a>-->
 								</li>
 								<li class="menu_poziome">
-									<!--<a href="<?php echo $this->url(array('controller'=>'card', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">-->KARTA<!--</a>-->
+									<!--<a href="<?php echo $this->url(array('controller'=>'card', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">--><?php echo $this->translate('CARD') ?><!--</a>-->
 								</li>
 								<li class="menu_poziome">
-									<a href="<?php echo $this->url(array('controller'=>'archive', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">ARCHIWUM</a>
+									<a href="<?php echo $this->url(array('controller'=>'archive', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>"><?php echo $this->translate('ARCHIVE') ?></a>
 								</li>
 								<li class="menu_poziome">
-									<a href="<?php echo $this->url(array('controller'=>'contact', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>">KONTAKT</a>
+									<a href="<?php echo $this->url(array('controller'=>'contact', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>"><?php echo $this->translate('CONTACT') ?></a>
 								</li>
 							</ul>
 						</div>
 						<div id="menu_top_lng">
 							<ul class="menu_poziome2">
-								<li class="menu_poziome2">
+								<li<?php echo $_SESSION['lang'] == 'pl' ? ' class="menu_poziome2"' : '' ?>>
 									<a href="<?php echo $this->url(array('lang'=>'pl')); ?>">PL</a>
 								</li>
-								<li>
+								<li<?php echo $_SESSION['lang'] == 'en' ? ' class="menu_poziome2"' : '' ?>>
 									<a href="<?php echo $this->url(array('lang'=>'en')); ?>">EN</a>
 								</li>
 							</ul>	

@@ -1,3 +1,20 @@
+#Validation
 Value is required and can't be empty;Value is required and can't be empty
 Wrong password;Wrong password
 User doesn't exists;User doesn't exists
+
+#Layout
+OFFER;OFFER
+PARTNERS;PARTNERS
+NEWSLETTER;NEWSLETTER
+FACEBOOK;FACEBOOK
+VIMEO;VIMEO
+PODCAST;PODCAST
+HOME;HOME
+NEWS;NEWS
+ANNOUNCEMENT;ANNOUNCEMENT
+FOTO;FOTO
+VIDEO;VIDEO
+CARD;CARD
+ARCHIVE;ARCHIVE
+CONTACT;CONTACT
