@@ -5,6 +5,7 @@ class Admin_EventController extends Zend_Controller_Action
 	public function init()
     {
     	$this -> _helper->layout()->setLayout("layout_admin");    	
+    	$_SESSION['event_kind'] = $this->_getParam('where', 'news');
     	if(!isset($_SESSION['event_kind'])) $_SESSION['event_kind'] = $this->_getParam('where', 'news');
     }
     
@@ -274,7 +275,8 @@ class Admin_EventController extends Zend_Controller_Action
 			
 			$mapper->save($event);
 			$this->view->priorityMessenger('Zapisano event w bazie danych');
-			$this->_helper->redirector->gotoSimple('index');
+			echo $this->_getParam('where');
+			$this->_helper->redirector->gotoSimple('show', 'event', null, array('id' => $event->getId()));
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: ' 
 					. $e->getMessage());
@@ -304,7 +306,7 @@ class Admin_EventController extends Zend_Controller_Action
 			
 			$mapper->save($event);
 			$this->view->priorityMessenger('Zapisano event w bazie danych');
-			$this->_helper->redirector->gotoSimple('index');
+			$this->_helper->redirector->gotoSimple('index', 'event', null, array('where' => $this->_getParam('where')));
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: ' 
 					. $e->getMessage());
@@ -452,7 +454,7 @@ class Admin_EventController extends Zend_Controller_Action
 	
 	private function _getEditForm() {
 		$form = new Admin_Form_EventEdit();
-		$form->setAction($this->_helper->url('save-edit'));
+		$form->setAction($this->_helper->url('save-edit', 'event', null, array('where' => $this->_getParam('where'))));
 		return $form;
 	}
 	
