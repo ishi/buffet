@@ -7,10 +7,12 @@ class Admin_Form_Event extends Zend_Form {
 		$id = $this->createElement('hidden', 'id');
 		$pictureId = $this->createElement('hidden', 'picture_id');
 		
+		
 		$eventNews = $this->createElement('checkbox', 'event_news', array('checkedValue'=>'T', 'uncheckedValue'=>'N'))
 			->setLabel('News');
 		$eventAnnouncement = $this->createElement('checkbox', 'event_announcement', array('checkedValue'=>'T', 'uncheckedValue'=>'N'))
 			->setLabel('Zapowiedź');
+		
 		$title = $this->createElement('text', 'title')
 			->setLabel('Tytuł [pl]');
 		$titleEn = $this->createElement('text', 'title_en')
@@ -45,16 +47,15 @@ class Admin_Form_Event extends Zend_Form {
 			$dateFrom,
 			$dateTo,
 			$title,
-			$preContentPl,
-			$contentPl,
 			$titleEn,
+			$preContentPl,
 			$preContentEn,
+			$contentPl,
 			$contentEn,
 			$file,
 			$file2,
 			$submit
 		));
-
 		
 		$this->setDecorators(array(
 				'FormElements',
@@ -77,7 +78,8 @@ class Admin_Form_Event extends Zend_Form {
 			'ViewHelper', 
 			array('HtmlTag', array('tag' => 'td')),
 			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))));
-
+		
+			
 		$file->setDecorators(array(
 			'File',
 			array('Errors'),
@@ -93,7 +95,41 @@ class Admin_Form_Event extends Zend_Form {
 			array('Label', array('tag' => 'td')),
 			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
 			));
+
+			
 		
+		$title->setDecorators(array(
+			'ViewHelper',
+			array('Errors'),
+			array('HtmlTag', array('tag' => 'td')),
+			array('Label', array('tag' => 'td')),
+			//array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
+			));	
+			
+		$titleEn->setDecorators(array(
+			'ViewHelper',
+			array('Errors'),
+			array('HtmlTag', array('tag' => 'td')),
+			array('Label', array('tag' => 'td'))
+			//array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
+			));
+		
+		/*
+		$preContentPl->setDecorators(array(
+			'ViewHelper',
+			array('Errors'),
+			array('HtmlTag', array('tag' => 'td')),
+			array('Label', array('tag' => 'td')),
+			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
+			));
+		$preContentEn->setDecorators(array(
+			'ViewHelper',
+			array('Errors'),
+			array('HtmlTag', array('tag' => 'td')),
+			array('Label', array('tag' => 'td')),
+			array(array('row' => 'HtmlTag'), array('tag' => 'td'))
+			));
+		*/
 			
 	}
 }

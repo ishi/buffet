@@ -17,10 +17,18 @@ class Admin_EventController extends Zend_Controller_Action
         	$where = 'event_news = \'T\'';
         }
         elseif ($param=='announcement'){
-        	$where = 'event_announcement = \'T\' and ((date_to IS NOT NULL AND date_to >= now()) OR (date_to IS NULL AND date_from >= now()))';
+        	$where = 'event_announcement = \'T\' and ((
+										date_to IS NOT NULL AND date_format(date_to, \'%Y-%m-%d\') >= date_format(now(), \'%Y-%m-%d\')
+										)
+										OR (
+										date_to IS NULL AND date_format(date_from, \'%Y-%m-%d\') >= date_format(now(), \'%Y-%m-%d\')))';
         }
     	elseif ($param=='archive'){
-        	$where = 'event_announcement = \'T\' and ((date_to IS NOT NULL AND date_to < now( )) OR (date_to IS NULL AND date_from < now( )))';
+        	$where = 'event_announcement = \'T\' and ((
+										date_format(date_to, \'%Y-%m-%d\') IS NOT NULL AND date_format(date_to, \'%Y-%m-%d\') < date_format(now(), \'%Y-%m-%d\')
+										)
+										OR (
+										date_format(date_to, \'%Y-%m-%d\') IS NULL AND date_format(date_from, \'%Y-%m-%d\') < date_format(now(), \'%Y-%m-%d\')))';
         }
         else{
         	$where = 'event_news = \'T\'';
@@ -138,6 +146,16 @@ class Admin_EventController extends Zend_Controller_Action
 			$this->render('index');
 			return;
 		}
+		
+		/*
+		if ($this->view->form->event_news->getValue() == 'N'){
+			if ($this->view->form->event_news->getValue() == 'N'){
+				echo "Mam to!!!!";
+				break;
+			}
+		};
+		*/
+		
 		
 		//zdjecie duze
 		$fileName = $this->view->form->file->getValue();

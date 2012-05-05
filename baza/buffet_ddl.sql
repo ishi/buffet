@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 30 Kwi 2012, 15:56
+-- Czas wygenerowania: 05 May 2012, 15:10
 -- Wersja serwera: 5.5.20
 -- Wersja PHP: 5.3.10
 
@@ -30,17 +30,19 @@ CREATE TABLE IF NOT EXISTS `announcement` (
 ,`title` varchar(50)
 ,`date_from` date
 ,`date_to` date
-,`pre_content_pl` char(200)
-,`content_pl` varchar(2000)
-,`pre_content_en` varchar(100)
-,`content_en` varchar(2000)
+,`pre_content_pl` text
+,`content_pl` text
+,`pre_content_en` text
+,`content_en` text
 ,`event_news` varchar(1)
 ,`event_announcement` varchar(1)
 ,`picture_id` int(10)
 ,`arch_date` datetime
 ,`user` varchar(30)
 ,`title_en` varchar(50)
+,`picture_id_small` int(10)
 ,`picture_name` varchar(200)
+,`picture_name_small` varchar(200)
 );
 -- --------------------------------------------------------
 
@@ -52,17 +54,19 @@ CREATE TABLE IF NOT EXISTS `archive` (
 ,`title` varchar(50)
 ,`date_from` date
 ,`date_to` date
-,`pre_content_pl` char(200)
-,`content_pl` varchar(2000)
-,`pre_content_en` varchar(100)
-,`content_en` varchar(2000)
+,`pre_content_pl` text
+,`content_pl` text
+,`pre_content_en` text
+,`content_en` text
 ,`event_news` varchar(1)
 ,`event_announcement` varchar(1)
 ,`picture_id` int(10)
 ,`arch_date` datetime
 ,`user` varchar(30)
 ,`title_en` varchar(50)
+,`picture_id_small` int(10)
 ,`picture_name` varchar(200)
+,`picture_name_small` varchar(200)
 );
 -- --------------------------------------------------------
 
@@ -75,18 +79,19 @@ CREATE TABLE IF NOT EXISTS `event` (
   `title` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `date_from` date DEFAULT NULL,
   `date_to` date DEFAULT NULL,
-  `pre_content_pl` char(200) COLLATE utf8_polish_ci DEFAULT NULL,
-  `content_pl` varchar(2000) COLLATE utf8_polish_ci NOT NULL,
-  `pre_content_en` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL,
-  `content_en` varchar(2000) COLLATE utf8_polish_ci DEFAULT NULL,
+  `pre_content_pl` text COLLATE utf8_polish_ci,
+  `content_pl` text COLLATE utf8_polish_ci,
+  `pre_content_en` text COLLATE utf8_polish_ci,
+  `content_en` text COLLATE utf8_polish_ci,
   `event_news` varchar(1) COLLATE utf8_polish_ci DEFAULT NULL,
   `event_announcement` varchar(1) COLLATE utf8_polish_ci DEFAULT NULL,
   `picture_id` int(10) DEFAULT NULL,
   `arch_date` datetime DEFAULT NULL,
   `user` varchar(30) COLLATE utf8_polish_ci DEFAULT NULL,
   `title_en` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
+  `picture_id_small` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=68 ;
 
 -- --------------------------------------------------------
 
@@ -102,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `galery` (
   `arch_date` datetime NOT NULL,
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -113,11 +118,11 @@ CREATE TABLE IF NOT EXISTS `galery` (
 CREATE TABLE IF NOT EXISTS `information` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) COLLATE utf8_polish_ci NOT NULL,
-  `content` varchar(2000) COLLATE utf8_polish_ci NOT NULL,
+  `content` text COLLATE utf8_polish_ci,
   `picture_id` int(10) DEFAULT NULL,
   `arch_date` datetime NOT NULL,
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
-  `content_en` varchar(2000) COLLATE utf8_polish_ci DEFAULT NULL,
+  `content_en` text COLLATE utf8_polish_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=5 ;
 
@@ -129,11 +134,11 @@ CREATE TABLE IF NOT EXISTS `information` (
 CREATE TABLE IF NOT EXISTS `information_view` (
 `id` int(10)
 ,`type` varchar(50)
-,`content` varchar(2000)
+,`content` text
 ,`picture_id` int(10)
 ,`arch_date` datetime
 ,`user` varchar(30)
-,`content_en` varchar(2000)
+,`content_en` text
 ,`picture_name` varchar(200)
 );
 -- --------------------------------------------------------
@@ -146,17 +151,19 @@ CREATE TABLE IF NOT EXISTS `news` (
 ,`title` varchar(50)
 ,`date_from` date
 ,`date_to` date
-,`pre_content_pl` char(200)
-,`content_pl` varchar(2000)
-,`pre_content_en` varchar(100)
-,`content_en` varchar(2000)
+,`pre_content_pl` text
+,`content_pl` text
+,`pre_content_en` text
+,`content_en` text
 ,`event_news` varchar(1)
 ,`event_announcement` varchar(1)
 ,`picture_id` int(10)
 ,`arch_date` datetime
 ,`user` varchar(30)
 ,`title_en` varchar(50)
+,`picture_id_small` int(10)
 ,`picture_name` varchar(200)
+,`picture_name_small` varchar(200)
 );
 -- --------------------------------------------------------
 
@@ -171,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `newsletter` (
   `arch_date` date NOT NULL,
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -190,7 +197,22 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   `link` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=147 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=170 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla  `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_polish_ci NOT NULL,
+  `password` char(40) COLLATE utf8_polish_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -199,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `picture` (
 --
 DROP TABLE IF EXISTS `announcement`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `announcement` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`p`.`name` AS `picture_name` from (`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) where ((`e`.`event_announcement` = 'T') and (((`e`.`date_to` is not null) and (`e`.`date_to` >= now())) or (isnull(`e`.`date_to`) and (`e`.`date_from` >= now()))));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `announcement` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`e`.`picture_id_small` AS `picture_id_small`,`p`.`name` AS `picture_name`,`ps`.`name` AS `picture_name_small` from ((`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) left join `picture` `ps` on((`ps`.`id` = `e`.`picture_id_small`))) where ((`e`.`event_announcement` = 'T') and (((date_format(`e`.`date_to`,'%Y-%m-%d') is not null) and (date_format(`e`.`date_to`,'%Y-%m-%d') >= date_format(now(),'%Y-%m-%d'))) or (isnull(date_format(`e`.`date_to`,'%Y-%m-%d')) and (date_format(`e`.`date_from`,'%Y-%m-%d') >= date_format(now(),'%Y-%m-%d')))));
 
 -- --------------------------------------------------------
 
@@ -208,7 +230,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `archive`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `archive` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`p`.`name` AS `picture_name` from (`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) where ((`e`.`event_announcement` = 'T') and (((`e`.`date_to` is not null) and (`e`.`date_to` < now())) or (isnull(`e`.`date_to`) and (`e`.`date_from` < now()))));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `archive` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`e`.`picture_id_small` AS `picture_id_small`,`p`.`name` AS `picture_name`,`ps`.`name` AS `picture_name_small` from ((`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) left join `picture` `ps` on((`ps`.`id` = `e`.`picture_id_small`))) where ((`e`.`event_announcement` = 'T') and (((date_format(`e`.`date_to`,'%Y-%m-%d') is not null) and (date_format(`e`.`date_to`,'%Y-%m-%d') < date_format(now(),'%Y-%m-%d'))) or (isnull(date_format(`e`.`date_to`,'%Y-%m-%d')) and (date_format(`e`.`date_from`,'%Y-%m-%d') < date_format(now(),'%Y-%m-%d')))));
 
 -- --------------------------------------------------------
 
@@ -226,24 +248,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `news`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `news` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`p`.`name` AS `picture_name` from (`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) where (`e`.`event_news` = 'T');
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `news` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`e`.`picture_id_small` AS `picture_id_small`,`p`.`name` AS `picture_name`,`ps`.`name` AS `picture_name_small` from ((`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) left join `picture` `ps` on((`ps`.`id` = `e`.`picture_id_small`))) where (`e`.`event_news` = 'T');
 
--- --------------------------------------------------------
-
---
--- Struktura tabeli `user`
---
-CREATE TABLE `user` (
-	`id` int(10) NOT NULL AUTO_INCREMENT,
-	`username` VARCHAR(255) NOT NULL,
-	`password` CHAR(40) NOT NULL,
-	`created_at` DATETIME NOT NULL,
-	`updated_at` DATETIME NOT NULL,
-	PRIMARY KEY(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
--- Admin musi być
-INSERT INTO `user` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (NULL, 'buffetadmin', SHA1('P@ssw0rd'), CURDATE(), CURDATE());
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
