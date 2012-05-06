@@ -111,22 +111,42 @@ class Admin_EventController extends Zend_Controller_Action
 			return;
 		}
 		$mapper = new Application_Model_EventMapper();
-		if (!$mapper->delete($id)) {
-			$this->view->priorityMessenger('Błąd przy usuwaniu eventu');
-		} else {
-			$this->view->priorityMessenger('Usunięto event z bazy danych');
-		}
+		
+		$event = $mapper->find($id);
+		$picture_id = $event->getPictureId();
+		$picture_id_small = $event->getPictureIdSmall();
 		
 		if ($picture_id != 0){
 			$mapper2 = new Application_Model_PictureMapper();
-			if (!$mapper2->delete($picture_id)) {
+			$picture = $mapper2->find($picture_id);
+			$picture_name->$picture->getName();
+			//$this->remove_file(realpath(APPLICATION_PATH . "/../public/pictures/$picture_name"));
+			//$this->remove_file(realpath(APPLICATION_PATH . "/../public/pictures/") . "/$picture_name");
+			
+			if (!$mapper2->delete($picture_id)){
+				$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu');
+			} else{
+				$this->view->priorityMessenger('Usunięto zdjęcie eventu z bazy danych');
+			}			
+		}
+		
+		
+		if ($picture_id_small != 0){
+			$mapper2 = new Application_Model_PictureMapper();
+			if (!$mapper2->delete($picture_id_small)) {
 				$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu');
 			} else {
 				$this->view->priorityMessenger('Usunięto zdjęcie eventu z bazy danych');
 			}
 		}
 		
-		$this->_helper->redirector->gotoSimple('index');
+		if (!$mapper->delete($id)) {
+			$this->view->priorityMessenger('Błąd przy usuwaniu eventu');
+		} else {
+			$this->view->priorityMessenger('Usunięto event z bazy danych');
+		}
+		
+		$this->_helper->redirector->gotoSimple('index', 'event', null, array('where' => $this->_getParam('where')));
 	}
 	
 	public function saveAction() {

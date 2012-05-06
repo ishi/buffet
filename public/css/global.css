@@ -185,6 +185,13 @@ height		: 96px;
 background-image	: url(/images/www_leyout_buffet_buffet_text.gif);	
 }
 
+#buffet_image{
+float		: left;
+width		: 172px;
+height		: 140px;
+background-image	: url(/images/www_leyout_buffet_buffet_text2.gif);	
+}
+
 #image356{
 float		: left;
 width		: 508px;
@@ -537,8 +544,9 @@ border: 1px solid;
 padding-top: 5px;
 padding-bottom: 5px;
 padding-left: 5px;
-margin-bottom: 5px;
+margin-bottom: 20px;
 background-color: #FFFFCC;
+text-align: center;
 }
 
 p.admin_main{
@@ -554,6 +562,7 @@ padding-top: 5px;
 padding-bottom: 5px;
 padding-left: 5px;
 background-color: #FFFFCC;
+text-align: center;
 }
 
 dt.news{
@@ -706,12 +715,14 @@ width: 257px;
 #admin_event{
 padding-left: 20px;
 padding-right: 20px;
-margin-bottom: 20px;
+padding-top: 20px;
+padding-bottom: 50px;
 }
 
 #admin_main{
 padding-left: 20px;
 padding-right: 20px;
+padding-top: 20px;
 }
 
 input{
