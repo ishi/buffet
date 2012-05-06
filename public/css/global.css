@@ -95,6 +95,26 @@ ul.errors {
 	color: red;
 }
 
+#rectangle-yellow, #rectangle-red {
+	position: absolute;
+	z-index: 10;
+}
+#rectangle-yellow {
+	background-color: hsla(60, 100%, 50%, 0.5);
+	left: 567px;
+	top: 117px;
+	width: 62px;
+	height: 158px;
+}
+
+#rectangle-red {
+	background-color: hsla(0, 100%, 50%, 0.5);
+	left: 910px;
+	top: 389px;
+	width: 62px;
+	height: 42px;
+}
+
 #container {
 	margin: 0;
 	padding: 0;
@@ -827,13 +847,3 @@ padding: 5px;
 #photo-edit #source {
 	width: 500;
 }
-
-img#constant{
-	position: absolute;
-	z-index: 2;
-	opacity: 0.8;
-	filter: alpha(opacity=80);
-	left: 567px;
-	top: 117px;
-}
-
