@@ -847,3 +847,21 @@ padding: 5px;
 #photo-edit #source {
 	width: 500;
 }
+
+#admin_event #event td {
+	padding: 5px;
+}
+
+#admin_event #event td:first-child {
+	white-space: nowrap;
+	text-align: right;
+}
+
+
+#admin_event #event tr:last-child td {
+	text-align: left;
+}
+
+#admin_event #event #title-label + td input, #admin_event #event #title-label + td + td input {
+	width: 100%;
+}
