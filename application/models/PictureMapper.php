@@ -43,7 +43,7 @@ class Application_Model_PictureMapper extends Core_Model_MapperAbstract
     		
     	}
     }
-
+	/*
     public function find($id, Application_Model_Picture $picture)
     {
         $result = $this->getDbTable()->find($id);
@@ -55,7 +55,7 @@ class Application_Model_PictureMapper extends Core_Model_MapperAbstract
                   ->setName($row->name)
                   ->setLink($row->link);
     }
-
+	*/
     public function fetchAll($where)
     {
         $resultSet = $this->getDbTable()->fetchAll($where);

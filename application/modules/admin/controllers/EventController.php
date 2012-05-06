@@ -98,12 +98,13 @@ class Admin_EventController extends Zend_Controller_Action
 		$mapper = new Application_Model_EventMapper();
 		$entry = $mapper->find($id);
 		$this->view->form = $this->_getEditForm();
+		//$this->view->form = $this->_getForm();
 		$this->view->form->populate($entry->toArray());
+		$this->view->form->removeElement('file');
+		$this->view->form->removeElement('file2');
 	}
 	
 	public function removeAction() {
-		
-		$picture_id = $this->_getParam('pictureId');
 		
 		if (!($id = $this->_getParam('id'))) {
 			$this->view->priorityMessenger('Brak id eventu');
@@ -115,36 +116,59 @@ class Admin_EventController extends Zend_Controller_Action
 		$event = $mapper->find($id);
 		$picture_id = $event->getPictureId();
 		$picture_id_small = $event->getPictureIdSmall();
+		//var_dump($picture_id, $picture_id_small);
+		//exit;
 		
-		if ($picture_id != 0){
+		Zend_Db_Table::getDefaultAdapter()->beginTransaction();
+		if ($picture_id){
 			$mapper2 = new Application_Model_PictureMapper();
 			$picture = $mapper2->find($picture_id);
-			$picture_name->$picture->getName();
-			//$this->remove_file(realpath(APPLICATION_PATH . "/../public/pictures/$picture_name"));
-			//$this->remove_file(realpath(APPLICATION_PATH . "/../public/pictures/") . "/$picture_name");
+			$picture_name = $picture->getName();
 			
-			if (!$mapper2->delete($picture_id)){
-				$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu');
-			} else{
-				$this->view->priorityMessenger('Usunięto zdjęcie eventu z bazy danych');
-			}			
-		}
-		
-		
-		if ($picture_id_small != 0){
-			$mapper2 = new Application_Model_PictureMapper();
-			if (!$mapper2->delete($picture_id_small)) {
-				$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu');
-			} else {
-				$this->view->priorityMessenger('Usunięto zdjęcie eventu z bazy danych');
+			if ($picture_name != NULL){
+				if (!unlink(APPLICATION_PATH . "/../public$picture_name")){
+					$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
+				}
+				else{
+					if (!$mapper2->delete($picture_id)){
+						$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu');
+					} else{
+						null; //$this->view->priorityMessenger('Usunięto zdjęcie eventu z bazy danych');
+					}
+				}
 			}
+				
 		}
+		
+		
+		if ($picture_id_small){
+			$mapper3 = new Application_Model_PictureMapper();
+			$picture3 = $mapper3->find($picture_id_small);
+			$picture_name_small=$picture3->getName();
+			if ($picture_name_small != NULL){
+				if (!unlink(APPLICATION_PATH . "/../public$picture_name_small")){
+					$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
+				}
+				else{
+					if (!$mapper2->delete($picture_id_small)) {
+						$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu');
+					} else {
+						null; //$this->view->priorityMessenger('Usunięto zdjęcie eventu z bazy danych');
+					}
+				}
+			}
+			
+			
+		}
+		
 		
 		if (!$mapper->delete($id)) {
 			$this->view->priorityMessenger('Błąd przy usuwaniu eventu');
 		} else {
 			$this->view->priorityMessenger('Usunięto event z bazy danych');
 		}
+		
+		Zend_Db_Table::getDefaultAdapter()->commit();
 		
 		$this->_helper->redirector->gotoSimple('index', 'event', null, array('where' => $this->_getParam('where')));
 	}
@@ -308,6 +332,8 @@ class Admin_EventController extends Zend_Controller_Action
 	
 	public function saveEditAction() {
 		$this->view->form = $this->_getEditForm();
+		$this->view->form->removeElement('file');
+		$this->view->form->removeElement('file2');
 		if (!$this->view->form->isValid($this->_getAllParams())) {
 			$this->render('edit');
 			return;
@@ -473,10 +499,11 @@ class Admin_EventController extends Zend_Controller_Action
 	}
 	
 	private function _getEditForm() {
-		$form = new Admin_Form_EventEdit();
+		$form = new Admin_Form_Event();
 		$form->setAction($this->_helper->url('save-edit', 'event', null, array('where' => $this->_getParam('where'))));
 		return $form;
 	}
+	
 	
 	private function _getPhotoForm() {
 		$form = new Admin_Form_PhotoE();

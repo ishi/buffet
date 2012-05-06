@@ -74,7 +74,7 @@ class Core_Model_MapperAbstract {
 
 	public function delete($id) {
 		$primaryKey = $this->getDbTable()->getPrimary();
-		$this->getDbTable()->delete(array("$primaryKey = ?" => $id));
+		return $this->getDbTable()->delete(array("$primaryKey = ?" => $id));
 	}
 
 	public function find($id) {
