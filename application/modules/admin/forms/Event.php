@@ -3,6 +3,7 @@ class Admin_Form_Event extends Zend_Form {
 
 	public function init() {
 		$this->setName('event');
+
 		$this->setDecorators(array(
 				'FormElements',
 				array('HtmlTag', array('tag' => 'table')),

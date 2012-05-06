@@ -116,8 +116,6 @@ class Admin_EventController extends Zend_Controller_Action
 		$event = $mapper->find($id);
 		$picture_id = $event->getPictureId();
 		$picture_id_small = $event->getPictureIdSmall();
-		//var_dump($picture_id, $picture_id_small);
-		//exit;
 		
 		Zend_Db_Table::getDefaultAdapter()->beginTransaction();
 		if ($picture_id){
@@ -392,8 +390,8 @@ class Admin_EventController extends Zend_Controller_Action
 			//event	
 			$mapper2 = new Application_Model_EventMapper();
 			$event = $mapper2->find($eventId);
-			$id = $this->view->form->id->getValue();
-		
+			$id = $this->view->form->id->getValue();			
+			
 			$mapper = new Application_Model_PhotoMapper();
 			if ($mapper->fetchOne(array('name = ?' => "/pictures/$fileName"))) {
 				$this->view->priorityMessenger("W katalogu znajduje się już zdjęcie o nazwie $fileName");
@@ -412,7 +410,13 @@ class Admin_EventController extends Zend_Controller_Action
 					
 			$this->view->priorityMessenger("Przeniosłem plik z $location do $newLocation");
 			
-			$photo = new Application_Model_Photo();
+			$photo = $mapper->find($id);
+			$picture_name_old = $photo->getName();
+
+			if (!unlink(APPLICATION_PATH . "/../public$picture_name_old")){
+				$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
+			}
+			else{
 			try {
 				$photo->setName("/pictures/$fileName");
 				$photo->setGalleryId(null);
@@ -434,6 +438,7 @@ class Admin_EventController extends Zend_Controller_Action
 				$this->render('index');
 				return;
 			}	
+			}
 		}
 
 		//zdjecie male
@@ -463,7 +468,13 @@ class Admin_EventController extends Zend_Controller_Action
 					
 			$this->view->priorityMessenger("Przeniosłem plik z $locationS do $newLocationS");
 			
-			$photoS = new Application_Model_Photo();
+			$photoS = $mapperS->find($idS);
+			$picture_name_small_old = $photoS->getName();
+
+			if (!unlink(APPLICATION_PATH . "/../public$picture_name_small_old")){
+				$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
+			}
+			else{
 			try {
 				$photoS->setName("/pictures/$fileNameS");
 				$photoS->setGalleryId(null);
@@ -484,6 +495,7 @@ class Admin_EventController extends Zend_Controller_Action
 						. $e->getMessage());
 				unlink(APPLICATION_PATH . "/../public/pictures/$fileNameS");
 				$this->render('index');
+			}
 			}
 		}
 		
