@@ -37,7 +37,7 @@ elseif ($_SESSION['event_kind']=='announcement'){
     <td><?php echo date('d.m.Y', strtotime($this->escape($entry->getDateFrom()))) ?></td>
 	<td id="pre_content"><?php echo substr($this->escape($entry->getPreContentPl()),0, 75) ?> ...</td>
 	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'edit', 'id'=>$entry->getId(), 'lang'=>'pl', 'where'=>$_SESSION['event_kind']), null, true);?>"><img src="/images/edit.jpg" /></a></td>
-	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'remove', 'id'=>$entry->getId(), 'lang'=>'pl', 'where'=>$_SESSION['event_kind'], 'pictureId'=>$entry->getPictureId()), null, true);?>"><img src="/images/drop.jpg" /></a></td>
+	<td><a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'event', 'action'=>'remove', 'id'=>$entry->getId(), 'lang'=>'pl', 'where'=>$_SESSION['event_kind']), null, true);?>"><img src="/images/drop.jpg" /></a></td>
     
     </tr>
     <?php endforeach ?>
