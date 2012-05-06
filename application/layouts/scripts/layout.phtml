@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Buffet</title>
 	<?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
+	<?php echo $this->headStyle() ?>
 	<?php echo $this->headScript()
 		->prependFile('/js/main.js')
 		->prependFile('/js/jquery.innerfade.js')
@@ -13,7 +14,6 @@
 </head>
 
 <body>
-<!-- <img id="constant" src="/images/elementy_stale.png"> -->
 	<div id="container">
 		<div id="left">
 			<div id="image8"></div>
@@ -94,6 +94,8 @@
 		</div>
 		<div style="clear: both;"></div>
 	</div>
+	<div id="rectangle-yellow"></div>
+	<div id="rectangle-red"></div>
 </body>
 </html>
 

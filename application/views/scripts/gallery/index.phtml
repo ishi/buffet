@@ -1,3 +1,9 @@
+<?php $this->headStyle()->captureStart() ?>
+	#rectangle-yellow, #rectangle-red {
+		display: none;
+	}
+<?php $this->headStyle()->captureEnd() ?>
+
 <table id="galleries">
 	<tr>
 		<?php foreach ($this->galleries as $gallery) : ?>
