@@ -2,6 +2,7 @@
 Value is required and can't be empty;Pole nie może być puste
 Wrong password;Niepoprawne hasło
 User doesn't exists;Podany użytkownik nie istnieje
+'%value%' does not appear to be a valid date;'%value%';Nie jest poprawną datą
 
 #Layout
 OFFER;OFERTA

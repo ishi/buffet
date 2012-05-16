@@ -13,10 +13,12 @@
     
 	<dt class="announcement">
     <div id="main_content_announcement_cont">
+    <a href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>">
     <p class="announcement_title">
 		<?php echo $entry->getDate() ?>
     	<?php echo $entry->getTitleLng() ?>
     </p>
+    </a>
     
     <p class="announcement_pre_content"><?php echo $entry->getPreContent() ?></p>
     </div>

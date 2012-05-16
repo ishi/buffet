@@ -12,10 +12,12 @@
 		    </div>
 			
 		    <div id="main_content_archive_cont">
+			    <a href="<?php echo $this->url(array('controller'=>'archive', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>">
 			    <p class="archive_title">
 			    	<?php echo $entry->getDate() ?>
 			    	<?php echo $entry->getTitleLng() ?>	
 			    </p>
+			    </a>
 			    
 			    <p class="archive_pre_content"><?php echo $entry->getPreContent() ?></p>
 		    </div>

@@ -12,9 +12,11 @@
     </div>
     
     <div id="main_content_news_cont">
+    <a href="<?php echo $this->url(array('controller'=>'news', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>">
     <p class="news_title">
     <?php echo $entry->getDate() ?>
     <?php echo $entry->getTitleLng()?>
+    </a>
     
     </p>
     <p class="news_pre_content"><?php echo $entry->getPreContent() ?></p>

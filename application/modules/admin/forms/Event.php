@@ -12,16 +12,29 @@ class Admin_Form_Event extends Zend_Form {
 
 		// Tworzymy elementy formularza	
 		$this->addElements(array(
-			array('checkbox', 'event_news', 
-				array(	'label' => 'News',
-					'checkedValue'=>'T', 
-					'uncheckedValue'=>'N')),
-			array('checkbox', 'event_announcement', 
-				array(	'label' => 'Zapowiedź',
-					'checkedValue'=>'T',
-			 		'uncheckedValue'=>'N')),
+			/*
+			array('multiCheckbox', 'event', 
+				array(
+				'required' => true,
+				'multioptions' => array(
+					'news' => 'News',
+					'announcement'=>'Zapowiedź'))),*/
+			array('checkbox', 'event_news',
+				array('checkedValue' => 'T',
+				  	  'unCheckedValue' => 'N',
+				  	  'label' => 'News')),
+			array('checkbox', 'event_announcement',
+				array('checkedValue' => 'T',
+				  	  'unCheckedValue' => 'N',
+				  	  'label' => 'Zapowiedź')),
 			array('text', 'date_from', 
-				array(	'label' => 'Data (od)')),
+				array(
+					'required' => true,
+					'label' => 'Data (od)',
+					'validators' => array(
+						//array('date', array('format' => 'YYYY-MM-d')))
+						array('Date', false, array('YYYY-MM-dd')))
+					)),
 			array('text', 'date_to', 
 				array(	'label' => 'Data (do)')),
 			// Hack aby wyświetlić nagłówki dla kolumn językowych
@@ -67,8 +80,7 @@ class Admin_Form_Event extends Zend_Form {
 			->setDisplayGroupDecorators(array(
         			'FormElements',
 				array(array('row' => 'HtmlTag'), array('tag' => 'tr'))));
-		
-		
+
 		// Upload plików, każdy w osobnym wierszu
 		$file = $this->createElement('file', 'file')
 			->setLabel('Zdjęcie duże')
