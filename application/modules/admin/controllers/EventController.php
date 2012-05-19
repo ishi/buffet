@@ -190,14 +190,15 @@ class Admin_EventController extends Zend_Controller_Action
 			return;
 		}
 		
-		/*
+		
 		if ($this->view->form->event_news->getValue() == 'N'){
-			if ($this->view->form->event_news->getValue() == 'N'){
-				echo "Mam to!!!!";
-				break;
+			if ($this->view->form->event_announcement->getValue() == 'N'){
+				$this->view->priorityMessenger("Należy wybrać rodzaj eventu!");
+				$this->render('edit');
+				return;
 			}
 		};
-		*/
+		
 		
 		
 		//zdjecie duze
