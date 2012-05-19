@@ -17,10 +17,10 @@ class Admin_AuthController extends Zend_Controller_Action {
 		return $form; 
 	}
 	
-    public function indexAction() {
+	public function indexAction() {
 		$this->view->form = $this->getLoginForm();
 		$this->_helper->layout->setLayout('layout-login');
-    }
+	}
 
 	public function processAction() {
 		$request = $this->getRequest();
@@ -36,7 +36,7 @@ class Admin_AuthController extends Zend_Controller_Action {
 			$adapter = $this->getAuthAdapter($form->getValues());
 			
 			// do the authentication
-			$auth    = Zend_Auth::getInstance();
+			$auth = Zend_Auth::getInstance();
 			$result = $auth->authenticate($adapter); 
 			if ($result->isValid()) { 
 				// success: store database row to auth's storage 
@@ -68,17 +68,17 @@ class Admin_AuthController extends Zend_Controller_Action {
 	}
 	
 	public function logoutAction() {
-		 Zend_Auth::getInstance()->clearIdentity();
+		Zend_Auth::getInstance()->clearIdentity();
 		$this->_helper->redirector->gotoSimple('index'); // back main page
 	}
 	
 	public function getAuthAdapter(array $params) {
 		$authAdapter = new Zend_Auth_Adapter_DbTable(
-		            Zend_Db_Table::getDefaultAdapter(),
-				    'user',
-				    'username',
-				    'password',
-				    'sha1(?)'); 
+				Zend_Db_Table::getDefaultAdapter(),
+				'user',
+				'username',
+				'password',
+				'sha1(?)'); 
 		// collect the data from the user 
 		$f = new Zend_Filter_StripTags(); 
 		$username = $f->filter($params['username']);

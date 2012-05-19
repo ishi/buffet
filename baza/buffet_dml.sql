@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 -- Baza danych: `buffet`
 --
 
+-- Admin musi być
+INSERT INTO `user` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES (NULL, 'buffetadmin', SHA1('P@ssw0rd'), CURDATE(), CURDATE());
+
 --
 -- Zrzut danych tabeli `event`
 --

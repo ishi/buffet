@@ -46,7 +46,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
 		try {
 			$mapper->delete($id);
-			$this->remove_dir(realpath(APPLICATION_PATH . "/../public/gallery/$id"));
+			Core_Dir::remove_dir(realpath(APPLICATION_PATH . "/../public/gallery/$id"));
 			$this->view->priorityMessenger('Usunięto galerię z bazy danych', 'info');
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Błąd przy usuwaniu galerii', 'info');
@@ -151,12 +151,33 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		$this->view->priorityMessenger("Zapisałem plik pod nazwą $location", 'debug');
 		
 		$photo = new Application_Model_Photo();
+		$photo->setName("/gallery/$galleryId/$fileName");
+		$photo->setGalleryId($galleryId);
+		$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
+		
+		/* var Application_Model_User */
+		$user = Zend_Auth::getInstance()->getIdentity();
+		$photo->setUser($user->username);
+		$photo->setVisible(true);
+		
+		list($w, $h) = getimagesize($location);
+		$crop = array('tw' => 100, 'th' => 100, 'x1' => 0, 'y1' => 0);
+		if ($w > $h) {
+			$crop['x1'] = ($w - $h) / 2; 
+			$crop['w'] = $crop['h'] = $h;
+		} else {
+			$crop['y1'] = ($h - $w) / 2;
+			$crop['w'] = $crop['h'] = $w;
+		}
+		$src = APPLICATION_PATH . '/../public/' . $photo->getName();
+		$dest = APPLICATION_PATH . '/../public/' . $photo->getThumbnailName();
+		Core_Image::crop($src, $dest, $crop);
+		$crop['tw'] = $crop['th'] = $crop['w'];
+		$dest = APPLICATION_PATH . '/../public/' . $photo->getCroppedName();
+		Core_Image::crop($src, $dest, $crop);
+		
 		try {
-			$photo->setName("/gallery/$galleryId/$fileName");
-			$photo->setGalleryId($galleryId);
-			$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$photo->setUser('seta');
-			$photo->setVisible(true);
+			
 			$mapper->save($photo);
 			$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
 			$this->_redirectToGallery($galleryId);
@@ -240,47 +261,14 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		$crop['th'] = $crop['h'];
 		$type = strtolower(substr(strrchr($src,"."),1));
 
-		$this->_resizePhoto(APPLICATION_PATH . '/../public/' . $photo->getName(), 
+		Core_Image::crop(APPLICATION_PATH . '/../public/' . $photo->getName(), 
 			APPLICATION_PATH . '/../public/' . $photo->getCroppedName(), $crop);
 		
 		$crop['tw'] = $crop['th'] = 100;
-		$this->_resizePhoto(APPLICATION_PATH . '/../public/' . $photo->getName(), 
+		Core_Image::crop(APPLICATION_PATH . '/../public/' . $photo->getName(), 
 			APPLICATION_PATH . '/../public/' . $photo->getThumbnailName(), $crop);
 		
 		$this->_redirectToGallery($galleryId);
-	}
-	
-	private function _resizePhoto($src, $dest, array $options) {
-		$type = strtolower(substr(strrchr($src,"."),1));
-  		if($type == 'jpg') $type = 'jpeg';
-  		switch($type){
-    			case 'bmp': $img = imagecreatefromwbmp($src); break;
-    			case 'gif': $img = imagecreatefromgif($src); break;
-    			case 'jpeg': $img = imagecreatefromjpeg($src); break;
-    			case 'png': $img = imagecreatefrompng($src); break;
-    			default : return "Unsupported picture type!";
-  		}
-
-		$new = ImageCreateTrueColor($options['tw'], $options['th']);
-		// preserve transparency
-  		if($type == "gif" or $type == "png"){
-    			imagecolortransparent($new, imagecolorallocatealpha($new, 0, 0, 0, 127));
-    			imagealphablending($new, false);
-    			imagesavealpha($new, true);
-  		}
-		
-		imagecopyresampled($new, $img, 0, 0, $options['x1'], $options['y1'],
-    			$options['tw'], $options['th'], $options['w'], $options['h']);
-
-		if (null == $dest) {
-			header("Content-type: image/$type");
-		}
-		switch($type){
-			case 'bmp': imagewbmp($new, $dest, 100); break;
-			case 'gif': imagegif($new, $dest, 100); break;
-			case 'jpeg': imagejpeg($new, $dest, 100); break;
-			case 'png': imagepng($new, $dest, 100); break;
-		}
 	}
 
 	private function _getPhotoForm($galleryId = null) {
@@ -296,18 +284,4 @@ class Admin_GalleryController extends Zend_Controller_Action {
 	private function _redirectToGallery($galleryId) {
 		$this->_helper->redirector->gotoSimple('show', 'gallery', null, array('id' => $galleryId));
 	}
-	
-	function remove_dir($dir) { 
-		if (!is_dir($dir) || is_link($dir)) return unlink($dir); 
-		
-        foreach (scandir($dir) as $file) { 
-            if ($file == '.' || $file == '..') continue; 
-            if (!$this->remove_dir($dir . DIRECTORY_SEPARATOR . $file)) { 
-                chmod($dir . DIRECTORY_SEPARATOR . $file, 0777); 
-                if (!$this->remove_dir($dir . DIRECTORY_SEPARATOR . $file)) return false; 
-            }; 
-        } 
-        return rmdir($dir); 
-    } 
 }
-

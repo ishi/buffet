@@ -678,12 +678,11 @@ width: 257px;
 #galleries .gallery {
 	width: 230px;
 	overflow: hidden;
-	margin: 4px;
-	margin-top: 0px;
+	margin-right: 8px;
 }
 
 #galleries .gallery > .photos {
-	width: 590px;
+	width: 602px;
 	text-align: center;
 	margin-left: -55%;
 	height: 500px;
@@ -699,11 +698,11 @@ width: 257px;
 }
 
 #galleries .gallery.active {
-	width: 550px;
+	width: 602px;
 }
 
 #galleries .gallery .preview {
-	width: 450px;
+	width: 500px;
 	float: left;
 	overflow: hidden;
 	position: relative;
@@ -715,19 +714,21 @@ width: 257px;
 
 #galleries .gallery .thumbnails {
 	float: left;
-	width: 100px;
+	width: 102px;
 	overflow: hidden;
 }
 
-#galleries .gallery .thumbnail {
+#galleries .thumbnail {
 	float: left;
-	width: 40px;
+	width: 43px;
 	overflow: hidden;
-	margin: 5px;
+	margin-left: 8px;
+	margin-bottom: 8px;
+	cursor: pointer;
 }
 
 #galleries .gallery .thumbnail img {
-	height: 40px;
+	height: 43px;
 	display: block;
 	margin: auto;
 }

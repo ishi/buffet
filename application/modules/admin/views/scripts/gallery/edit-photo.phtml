@@ -25,20 +25,20 @@
 		<img src="<?php echo $this->photo->getName() ?>" id="source" />
 	</div>
 	<script language="Javascript">
-	    jQuery(function($) {
-		var updateForm = function (c) {
-			$('#x1').val(c.x);
-			$('#y1').val(c.y);
-			$('#x2').val(c.x2);
-			$('#y2').val(c.y2);
-			$('#w').val(c.w);
-			$('#h').val(c.h);
-		}
-	        $('#source').Jcrop({
-			onSelect: updateForm,
-			aspectRatio: 450/500,
-			setSelect: [0, 0, 90, 100]
+		jQuery(function($) {
+			var updateForm = function (c) {
+				$('#x1').val(c.x);
+				$('#y1').val(c.y);
+				$('#x2').val(c.x2);
+				$('#y2').val(c.y2);
+				$('#w').val(c.w);
+				$('#h').val(c.h);
+			}
+			$('#source').Jcrop({
+				onSelect: updateForm,
+				aspectRatio: 1,
+				setSelect: [0, 0, 100, 100]
+			});
 		});
-	    });
 	</script>
 </div>
