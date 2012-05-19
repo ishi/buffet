@@ -8,7 +8,8 @@
 	<div class="gallery-photos clearfix">
 		<?php foreach ($this->gallery->getPhotos() as $photo) : ?>
 		<div class="gallery-photo<?php echo $photo->isVisible() ? '' : ' invisible' ?>">
-			<img src="<?php echo $this->escape($photo->getCroppedName()) ?>" height="150" />
+			<img src="<?php echo $this->escape($photo->getCroppedName()) ?>" height="150"
+				 title="<?php echo $this->escape($photo->getName()) ?>"/>
 			<a href="<?php echo $this->url(
 				array('module' => 'admin', 'controller' => 'gallery', 'action' => 'remove-photo',
 					'galleryId' => $this->gallery->getId(), 'id' => $photo->getId()), null, true) ?>" class="button">

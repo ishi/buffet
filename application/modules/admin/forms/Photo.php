@@ -14,7 +14,7 @@ class Admin_Form_Photo extends Zend_Form {
 			->setValueDisabled(true)
 			->setRequired()
 			// only JPEG, PNG, and GIFs
-			->addValidator('Extension', false, 'jpg,png,gif');
+			->addValidator('Extension', false, 'jpg,png,gif,zip');
 		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Dodaj zdjęcie')

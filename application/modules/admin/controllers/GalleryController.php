@@ -1,6 +1,6 @@
 <?php
 
-class Admin_GalleryController extends Zend_Controller_Action {
+class Admin_GalleryController extends Core_Controller_Action {
 
 	public function indexAction() {
 		$this->view->entries = Core_Model_MapperAbstract::getInstance('Gallery')
@@ -67,7 +67,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		try {
 			$gallery->setFolderDate(new Zend_Db_Expr('CURDATE()'));
 			$gallery->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$gallery->setUser('seta');
+			$gallery->setUser($this->getLoggedUserName());
 			$mapper->save($gallery);
 			$this->view->priorityMessenger('Zapisano galerię w bazie danych', 'info');
 			
@@ -77,11 +77,6 @@ class Admin_GalleryController extends Zend_Controller_Action {
 				mkdir($dir);
 			}
 			$dir .= $gallery->getId() . '/';
-			if (!file_exists($dir)) {
-				$this->view->priorityMessenger('Tworzę katalog: ' . $dir, 'debug');
-				mkdir($dir);
-			}
-			$dir .= 'thumb/';
 			if (!file_exists($dir)) {
 				$this->view->priorityMessenger('Tworzę katalog: ' . $dir, 'debug');
 				mkdir($dir);
@@ -134,13 +129,6 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		}
 		$fileName = $this->view->form->file->getValue();
 		
-		$mapper = new Application_Model_PhotoMapper();
-		if ($mapper->fetchOne(array('name = ?' => "/gallery/$galleryId/$fileName"))) {
-			$this->view->priorityMessenger("W galerii znajduje się już zdjęcie o nazwie $fileName", 'error');
-			$this->_redirectToGallery($galleryId);
-			return;
-		}
-		
 		if (!$this->view->form->file->receive()) {
 			$this->view->priorityMessenger('Problem podczas pobierania pliku', 'error');
 			$this->render('show');
@@ -150,17 +138,60 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		$location = $this->view->form->file->getFileName();
 		$this->view->priorityMessenger("Zapisałem plik pod nazwą $location", 'debug');
 		
+		try {
+			if ('.zip' == substr($fileName, -4)) {
+				$allowedExt = array('jpg', 'png', 'gif');
+				$archive = new ZipArchive();
+				$archive->open($location);
+				$toExtract = array();
+				for( $i = 0; $i < $archive->numFiles; $i++ ){ 
+					$stat = $archive->statIndex( $i );
+					if (!in_array(substr($stat['name'], -3), $allowedExt))
+							continue;
+					$toExtract[] = $stat['name'];
+				}
+				if (!$archive->extractTo(APPLICATION_PATH . "/../public/gallery/$galleryId/", $toExtract)) {
+					$archive->close();
+					throw new Exception('Problem przy rozpakowywaniu archiwum');
+				}
+				
+				foreach ($toExtract as $file) {
+					$this->_savePhoto($galleryId, $file);
+				}
+				unlink(APPLICATION_PATH . "/../public/gallery/$galleryId/$fileName");
+				$archive->close();
+			} else {
+				// Zwykłe zdjęcie
+				$this->_savePhoto($galleryId, $fileName);
+			}
+			$this->_redirectToGallery($galleryId);
+		} catch (Exception $e) {
+			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
+					. $e->getMessage());
+			unlink(APPLICATION_PATH . "/../public/gallery/$galleryId/$fileName");
+			$this->render('show');
+		}
+	}
+	
+	private function _savePhoto($galleryId, $fileName) {
+		$mapper = new Application_Model_PhotoMapper();
+		if ($mapper->fetchOne(array('name = ?' => "/gallery/$galleryId/$fileName"))) {
+			$this->view->priorityMessenger("W galerii znajduje się już zdjęcie o nazwie $fileName", 'error');
+			return;
+		}
+		
 		$photo = new Application_Model_Photo();
 		$photo->setName("/gallery/$galleryId/$fileName");
 		$photo->setGalleryId($galleryId);
 		$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
 		
-		/* var Application_Model_User */
-		$user = Zend_Auth::getInstance()->getIdentity();
-		$photo->setUser($user->username);
+		$photo->setUser($this->getLoggedUserName());
 		$photo->setVisible(true);
+		$src = APPLICATION_PATH . '/../public/' . $photo->getName();
+		$destThumb = APPLICATION_PATH . '/../public/' . $photo->getThumbnailName();
+		$destCrop = APPLICATION_PATH . '/../public/' . $photo->getCroppedName();
 		
-		list($w, $h) = getimagesize($location);
+		list($w, $h) = getimagesize($src);
 		$crop = array('tw' => 100, 'th' => 100, 'x1' => 0, 'y1' => 0);
 		if ($w > $h) {
 			$crop['x1'] = ($w - $h) / 2; 
@@ -169,24 +200,13 @@ class Admin_GalleryController extends Zend_Controller_Action {
 			$crop['y1'] = ($h - $w) / 2;
 			$crop['w'] = $crop['h'] = $w;
 		}
-		$src = APPLICATION_PATH . '/../public/' . $photo->getName();
-		$dest = APPLICATION_PATH . '/../public/' . $photo->getThumbnailName();
-		Core_Image::crop($src, $dest, $crop);
-		$crop['tw'] = $crop['th'] = $crop['w'];
-		$dest = APPLICATION_PATH . '/../public/' . $photo->getCroppedName();
-		Core_Image::crop($src, $dest, $crop);
 		
-		try {
-			
-			$mapper->save($photo);
-			$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
-			$this->_redirectToGallery($galleryId);
-		} catch (Exception $e) {
-			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
-					. $e->getMessage());
-			unlink(APPLICATION_PATH . "/../public/gallery/$galleryId/$fileName");
-			$this->render('show');
-		}
+		Core_Image::crop($src, $destThumb, $crop);
+		$crop['tw'] = $crop['th'] = $crop['w'];
+		Core_Image::crop($src, $destCrop, $crop);
+		
+		$mapper->save($photo);
+		$this->view->priorityMessenger("Zapisano zdjęcie w bazie danych $fileName");
 	}
 	
 	public function removePhotoAction() {
@@ -259,8 +279,6 @@ class Admin_GalleryController extends Zend_Controller_Action {
 		
 		$crop['tw'] = $crop['w'];
 		$crop['th'] = $crop['h'];
-		$type = strtolower(substr(strrchr($src,"."),1));
-
 		Core_Image::crop(APPLICATION_PATH . '/../public/' . $photo->getName(), 
 			APPLICATION_PATH . '/../public/' . $photo->getCroppedName(), $crop);
 		
@@ -282,6 +300,7 @@ class Admin_GalleryController extends Zend_Controller_Action {
 	}
 	
 	private function _redirectToGallery($galleryId) {
-		$this->_helper->redirector->gotoSimple('show', 'gallery', null, array('id' => $galleryId));
+		$this->_helper->redirector->gotoSimple('show', 'gallery', null, array('id' => $galleryId))
+			->redirectAndExit();
 	}
 }
