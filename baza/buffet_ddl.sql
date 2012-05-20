@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Czas wygenerowania: 05 May 2012, 15:10
+-- Czas wygenerowania: 20 May 2012, 18:22
 -- Wersja serwera: 5.5.20
 -- Wersja PHP: 5.3.10
 
@@ -41,8 +41,10 @@ CREATE TABLE IF NOT EXISTS `announcement` (
 ,`user` varchar(30)
 ,`title_en` varchar(50)
 ,`picture_id_small` int(10)
+,`picture_id_archive` int(10)
 ,`picture_name` varchar(200)
 ,`picture_name_small` varchar(200)
+,`picture_name_archive` varchar(200)
 );
 -- --------------------------------------------------------
 
@@ -65,8 +67,10 @@ CREATE TABLE IF NOT EXISTS `archive` (
 ,`user` varchar(30)
 ,`title_en` varchar(50)
 ,`picture_id_small` int(10)
+,`picture_id_archive` int(10)
 ,`picture_name` varchar(200)
 ,`picture_name_small` varchar(200)
+,`picture_name_archive` varchar(200)
 );
 -- --------------------------------------------------------
 
@@ -90,8 +94,9 @@ CREATE TABLE IF NOT EXISTS `event` (
   `user` varchar(30) COLLATE utf8_polish_ci DEFAULT NULL,
   `title_en` varchar(50) COLLATE utf8_polish_ci DEFAULT NULL,
   `picture_id_small` int(10) DEFAULT NULL,
+  `picture_id_archive` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=68 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=98 ;
 
 -- --------------------------------------------------------
 
@@ -107,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `galery` (
   `arch_date` datetime NOT NULL,
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -197,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `user` varchar(30) COLLATE utf8_polish_ci NOT NULL,
   `link` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=170 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=226 ;
 
 -- --------------------------------------------------------
 
@@ -221,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 DROP TABLE IF EXISTS `announcement`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `announcement` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`e`.`picture_id_small` AS `picture_id_small`,`p`.`name` AS `picture_name`,`ps`.`name` AS `picture_name_small` from ((`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) left join `picture` `ps` on((`ps`.`id` = `e`.`picture_id_small`))) where ((`e`.`event_announcement` = 'T') and (((date_format(`e`.`date_to`,'%Y-%m-%d') is not null) and (date_format(`e`.`date_to`,'%Y-%m-%d') >= date_format(now(),'%Y-%m-%d'))) or (isnull(date_format(`e`.`date_to`,'%Y-%m-%d')) and (date_format(`e`.`date_from`,'%Y-%m-%d') >= date_format(now(),'%Y-%m-%d')))));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `announcement` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`e`.`picture_id_small` AS `picture_id_small`,`e`.`picture_id_archive` AS `picture_id_archive`,`p`.`name` AS `picture_name`,`ps`.`name` AS `picture_name_small`,`pa`.`name` AS `picture_name_archive` from (((`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) left join `picture` `ps` on((`ps`.`id` = `e`.`picture_id_small`))) left join `picture` `pa` on((`pa`.`id` = `e`.`picture_id_archive`))) where ((`e`.`event_announcement` = 'T') and (((`e`.`date_to` is not null) and (date_format(`e`.`date_to`,'%Y-%m-%d') >= date_format(now(),'%Y-%m-%d'))) or (isnull(`e`.`date_to`) and (date_format(`e`.`date_from`,'%Y-%m-%d') >= date_format(now(),'%Y-%m-%d')))));
 
 -- --------------------------------------------------------
 
@@ -230,7 +235,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `archive`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `archive` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`e`.`picture_id_small` AS `picture_id_small`,`p`.`name` AS `picture_name`,`ps`.`name` AS `picture_name_small` from ((`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) left join `picture` `ps` on((`ps`.`id` = `e`.`picture_id_small`))) where ((`e`.`event_announcement` = 'T') and (((date_format(`e`.`date_to`,'%Y-%m-%d') is not null) and (date_format(`e`.`date_to`,'%Y-%m-%d') < date_format(now(),'%Y-%m-%d'))) or (isnull(date_format(`e`.`date_to`,'%Y-%m-%d')) and (date_format(`e`.`date_from`,'%Y-%m-%d') < date_format(now(),'%Y-%m-%d')))));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `archive` AS select `e`.`id` AS `id`,`e`.`title` AS `title`,`e`.`date_from` AS `date_from`,`e`.`date_to` AS `date_to`,`e`.`pre_content_pl` AS `pre_content_pl`,`e`.`content_pl` AS `content_pl`,`e`.`pre_content_en` AS `pre_content_en`,`e`.`content_en` AS `content_en`,`e`.`event_news` AS `event_news`,`e`.`event_announcement` AS `event_announcement`,`e`.`picture_id` AS `picture_id`,`e`.`arch_date` AS `arch_date`,`e`.`user` AS `user`,`e`.`title_en` AS `title_en`,`e`.`picture_id_small` AS `picture_id_small`,`e`.`picture_id_archive` AS `picture_id_archive`,`p`.`name` AS `picture_name`,`ps`.`name` AS `picture_name_small`,`pa`.`name` AS `picture_name_archive` from (((`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) left join `picture` `ps` on((`ps`.`id` = `e`.`picture_id_small`))) left join `picture` `pa` on((`pa`.`id` = `e`.`picture_id_archive`))) where ((`e`.`event_announcement` = 'T') and (((date_format(`e`.`date_to`,'%Y-%m-%d') is not null) and (date_format(`e`.`date_to`,'%Y-%m-%d') < date_format(now(),'%Y-%m-%d'))) or (isnull(date_format(`e`.`date_to`,'%Y-%m-%d')) and (date_format(`e`.`date_from`,'%Y-%m-%d') < date_format(now(),'%Y-%m-%d')))));
 
 -- --------------------------------------------------------
 

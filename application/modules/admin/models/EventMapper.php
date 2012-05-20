@@ -37,10 +37,12 @@ class Application_Model_EventMapper
 	        	'pre_content_en' => $event->getPreContentEn(),
 	        	'picture_id' => $event->getPictureId(),
 	        	'picture_id_small' => $event->getPictureIdSmall(),
+	        	'picture_id_archive' => $event->getPictureIdArchive(),
 	        	'event_news' => $event->getEventNews(),
 	        	'event_announcement' => $event->getEventAnnouncement(),
 	        	'picture_name' => $event->getPictureName(),
 	        	'picture_name_small' => $event->getPictureNameSmall(),
+	        	'picture_name_archive' => $event->getPictureNameArchive(),
 	        	'date_from' => $event->getDateFrom(),
 	        );
 	
@@ -71,10 +73,12 @@ class Application_Model_EventMapper
                   ->setPreContentEn($row->pre_content_en)
                   ->setPictureId($row->picture_id)
                   ->setPictureIdSmall($row->picture_id_small)
+                  ->setPictureIdArchive($row->picture_id_archive)
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
                   ->setPictureName($row->picture_name)
                   ->setPictureNameSmall($row->picture_name_small)
+                  ->setPictureNameArchive($row->picture_name_archive)
                   ->setDateFrom($row->date_from);
     }
 
@@ -93,10 +97,12 @@ class Application_Model_EventMapper
                   ->setPreContentEn($row->pre_content_en)
                   ->setPictureId($row->picture_id)
                   ->setPictureIdSmall($row->picture_id_small)
+                  ->setPictureIdArchive($row->picture_id_archive)
                   ->setEventNews($row->event_news)
                   ->setEventAnnouncement($row->event_announcement)
                   ->setPictureName($row->picture_name)
                   ->setPictureNameSmall($row->picture_name_small)
+                  ->setPictureNameArchive($row->picture_name_archive)
                   ->setDateFrom($row->date_from);
             $entries[] = $entry;
         }

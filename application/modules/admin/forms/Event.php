@@ -19,6 +19,7 @@ class Admin_Form_Event extends Zend_Form {
 				'multioptions' => array(
 					'news' => 'News',
 					'announcement'=>'Zapowiedź'))),*/
+		/*
 			array('checkbox', 'event_news',
 				array('checkedValue' => 'T',
 				  	  'unCheckedValue' => 'N',
@@ -27,6 +28,13 @@ class Admin_Form_Event extends Zend_Form {
 				array('checkedValue' => 'T',
 				  	  'unCheckedValue' => 'N',
 				  	  'label' => 'Zapowiedź')),
+		*/
+			array('radio', 'event_kind', 
+				array('label' => 'Rodzaj eventu',
+					  'required' => true,
+					  'multioptions' => array(
+						'N' => 'News',
+						'Z' => 'Zapowiedź'))),
 			array('text', 'date_from', 
 				array(
 					'required' => true,
@@ -96,16 +104,27 @@ class Admin_Form_Event extends Zend_Form {
 				array('Label', array('tag' => 'td')),
 				array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
 				));
+		$file3 = $this->createElement('file', 'file3')
+			->setLabel('Zdjęcie archiwum')
+			->addDecorators(array(
+				array('HtmlTag', array('tag' => 'td')),
+				array('Label', array('tag' => 'td')),
+				array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
+				));
 
 		$submit = $this->createElement('submit', 'save', 
 			array('label' => 'Zapisz', 'class' => 'button'))
 			->addDecorator('HtmlTag', array('tag' => 'td', 'colspan' => '3'));
-		$this->addElements(array($file, $file2, $submit));
+		$this->addElements(array($file, $file2, $file3, $submit));
 		
 		//elementy ukryte
 		$this->addElements(array(
 			array('hidden', 'id', array('decorators' => array('ViewHelper'))),
-			array('hidden', 'picture_id', array('decorators' => array('ViewHelper')))
+			array('hidden', 'event_news', array('decorators' => array('ViewHelper'))),
+			array('hidden', 'event_announcement', array('decorators' => array('ViewHelper'))),
+			array('hidden', 'picture_id', array('decorators' => array('ViewHelper'))),
+			array('hidden', 'picture_id_small', array('decorators' => array('ViewHelper'))),
+			array('hidden', 'picture_id_archive', array('decorators' => array('ViewHelper')))
 		));
 	}
 }

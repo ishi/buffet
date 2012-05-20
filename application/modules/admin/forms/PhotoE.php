@@ -11,6 +11,8 @@ class Admin_Form_PhotoE extends Zend_Form {
 		$idS = $this->createElement('hidden', 'idS');
 		//->setValue($_SESSION['pict_id_small']);
 		
+		$idA = $this->createElement('hidden', 'idA');
+		
 		$eventId = $this->createElement('hidden', 'eventId');
 		//->setValue($_SESSION['event_id']);
 				
@@ -20,6 +22,9 @@ class Admin_Form_PhotoE extends Zend_Form {
 		$file2 = $this->createElement('file', 'file2')
 		->setLabel('Zdjęcie małe');
 		
+		$file3 = $this->createElement('file', 'file3')
+		->setLabel('Zdjęcie archiwum');
+		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Dodaj zdjęcie')
 			->setOptions(array('class' => 'button'));
@@ -27,9 +32,11 @@ class Admin_Form_PhotoE extends Zend_Form {
 		$this->addElements(array(
 			$id,
 			$idS,
+			$idA,
 			$eventId,
 			$file,
 			$file2,
+			$file3,
 			$submit
 		));
 
@@ -55,6 +62,12 @@ class Admin_Form_PhotoE extends Zend_Form {
 			array('Label', array('tag' => 'td')),
 			));
 		$file2->setDecorators(array(
+			'File',
+			array('Errors'),
+			array('HtmlTag', array('tag' => 'td')),
+			array('Label', array('tag' => 'td')),
+			));
+		$file3->setDecorators(array(
 			'File',
 			array('Errors'),
 			array('HtmlTag', array('tag' => 'td')),

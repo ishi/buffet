@@ -17,6 +17,7 @@ class Application_Model_Event
     protected $_picture_name;
     protected $_date_from;
     protected $_picture_id_small;
+    protected $_picture_id_archive;
 
     public function __construct(array $options = null)
     {
