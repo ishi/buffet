@@ -178,6 +178,14 @@ class Admin_EventController extends Zend_Controller_Action
 			return;
 		}
 		
+		if ($this->view->form->event_news->getValue() == 'N'){
+			if ($this->view->form->event_announcement->getValue() == 'N'){
+				$this->view->priorityMessenger("Należy wybrać rodzaj eventu!");
+				$this->render('edit');
+				return;
+			}
+		};
+		
 		if (!$this->view->form->file->receive()) {
 			$this->view->priorityMessenger('Problem podczas wysyłania pliku');
 			$this->render('index');
@@ -189,16 +197,7 @@ class Admin_EventController extends Zend_Controller_Action
 			$this->render('index');
 			return;
 		}
-		
-		
-		if ($this->view->form->event_news->getValue() == 'N'){
-			if ($this->view->form->event_announcement->getValue() == 'N'){
-				$this->view->priorityMessenger("Należy wybrać rodzaj eventu!");
-				$this->render('edit');
-				return;
-			}
-		};
-		
+
 		
 		
 		//zdjecie duze

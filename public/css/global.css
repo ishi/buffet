@@ -706,6 +706,11 @@ width: 257px;
 	float: left;
 	overflow: hidden;
 	position: relative;
+	cursor: pointer;
+}
+
+#galleries .gallery.active .preview {
+	cursor: default;
 }
 
 #galleries .gallery .preview img {
