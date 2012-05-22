@@ -17,13 +17,16 @@ class Admin_Form_PhotoE extends Zend_Form {
 		//->setValue($_SESSION['event_id']);
 				
 		$file = $this->createElement('file', 'file')
-		->setLabel('Zdjęcie duże');
+				->setLabel('Zdjęcie duże')
+				->setValueDisabled(true);
 		
 		$file2 = $this->createElement('file', 'file2')
-		->setLabel('Zdjęcie małe');
+				->setLabel('Zdjęcie małe')
+				->setValueDisabled(true);
 		
 		$file3 = $this->createElement('file', 'file3')
-		->setLabel('Zdjęcie archiwum');
+				->setLabel('Zdjęcie archiwum')
+				->setValueDisabled(true);
 		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Dodaj zdjęcie')

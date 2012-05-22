@@ -49,4 +49,33 @@ class Core_Image {
 			case 'png': imagepng($new, $dest, 100); break;
 		}
 	}
+	
+	/**
+	 *
+	 * @param type $src Ścieżka do obrazka który przeskalować
+	 * @param type $dest Ścieżka pod którą zapisać nowy plik
+	 * @param array $options Parametry dla skalowania 
+	 * <pre>
+	 *		array(
+	 *			'ratio' => ratio obrazka wynikowego,
+	 *		)
+	 * </pre>
+	 */
+	static function autocrop($src, $dest, array $options) {
+		$ratio = $options['ratio'];
+		
+		$options['x1'] = $options['y1'] = 0;
+		
+		list($w, $h) = getimagesize($src);
+		if ($w > $h * $ratio) {
+			$options['x1'] = ($w - ($h * $ratio)) / 2; 
+			$options['tw'] = $options['w'] = $h * $ratio;
+			$options['th'] = $options['h'] = $h;
+		} else {
+			$options['y1'] = ($h - $w) / 2;
+			$options['tw'] = $options['w'] = $w;
+			$options['th'] = $options['h'] = $w * $ratio;
+		}
+		self::crop($src, $dest, $options);
+	}
 }

@@ -7,11 +7,43 @@
 	<?php echo $this->form ?>
 
 	<div class="gallery-photos clearfix">
-		<?php foreach ($this->entries as $picture) : ?>
 		<div class="gallery-photo">
-			<img src="<?php echo $this->escape($picture->getName()) ?>" width="250" />
+			<h4>Zdjęcie duże</h4>
+			<?php if ($this->event->hasLargePicture()) : ?>
+				<img src="<?php echo $this->escape($this->event->getLargePictureName()) ?>" width="250" />
+				<a href="<?php echo $this->url(
+					array('module' => 'admin', 'controller' => 'event', 'action' => 'edit-photo',
+						'eventId' => $this->event->getId(), 'id' => $this->event->getLargePictureId()), null, true) ?>" class="button">
+					<img src="/images/edit.jpg" />
+				</a>
+			<?php else : ?>
+				Brak;
+			<?php endif; ?>
 		</div>
-		<?php endforeach; ?>
+		<div class="gallery-photo">
+			<h4>Zdjęcie małe</h4>
+			<?php if ($this->event->hasSmallPicture()) : ?>
+				<img src="<?php echo $this->escape($this->event->getSmallPictureName()) ?>" width="250" />
+				<a href="<?php echo $this->url(
+					array('module' => 'admin', 'controller' => 'event', 'action' => 'edit-photo',
+						'eventId' => $this->event->getId(), 'id' => $this->event->getSmallPictureId(),
+						'type' => 'small'), null, true) ?>" class="button">
+					<img src="/images/edit.jpg" />
+				</a>
+			<?php endif; ?>
+		</div>
+		<div class="gallery-photo">
+			<h4>Zdjęcie dla archiwum</h4>
+			<?php if ($this->event->hasArchivePicture()) : ?>
+				<img src="<?php echo $this->escape($this->event->getArchivePictureName()) ?>" width="250" />
+				<a href="<?php echo $this->url(
+					array('module' => 'admin', 'controller' => 'event', 'action' => 'edit-photo',
+						'eventId' => $this->event->getId(), 'id' => $this->event->getArchivePictureId(),
+						'type' => 'archive'), null, true) ?>" class="button">
+					<img src="/images/edit.jpg" />
+				</a>
+			<?php endif; ?>
+		</div>
 	<div>
 	
 </div>

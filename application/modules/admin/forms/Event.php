@@ -92,6 +92,7 @@ class Admin_Form_Event extends Zend_Form {
 		// Upload plików, każdy w osobnym wierszu
 		$file = $this->createElement('file', 'file')
 			->setLabel('Zdjęcie duże')
+			->setValueDisabled(true)
 			->addDecorators(array(
 				array('HtmlTag', array('tag' => 'td')),
 				array('Label', array('tag' => 'td')),
@@ -99,6 +100,7 @@ class Admin_Form_Event extends Zend_Form {
 				));
 		$file2 = $this->createElement('file', 'file2')
 			->setLabel('Zdjęcie małe')
+			->setValueDisabled(true)
 			->addDecorators(array(
 				array('HtmlTag', array('tag' => 'td')),
 				array('Label', array('tag' => 'td')),
@@ -106,6 +108,7 @@ class Admin_Form_Event extends Zend_Form {
 				));
 		$file3 = $this->createElement('file', 'file3')
 			->setLabel('Zdjęcie archiwum')
+			->setValueDisabled(true)
 			->addDecorators(array(
 				array('HtmlTag', array('tag' => 'td')),
 				array('Label', array('tag' => 'td')),
