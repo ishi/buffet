@@ -170,30 +170,16 @@ class Admin_EventController extends Core_Controller_Action {
 			$this->render('edit');
 			return;
 		}
-		$id = $this->view->form->picture_id->getValue();
-		$idS = $this->view->form->picture_id_small->getValue();
-		$idA = $this->view->form->picture_id_archive->getValue();
 
 		try {
-			//zdjecie duze
-			$picture_id = $this->_savePhoto($id, $this->view->form->file);
-			//zdjecie male
-			$picture_id_small = $this->_savePhoto($idS, $this->view->form->file2);
-			//zdjecie archiwum
-			$picture_id_archive = $this->_savePhoto($idA, $this->view->form->file3);
-
 			//event
 			$event = new Application_Model_Event($this->_getAllParams());
 			$mapper = new Application_Model_EventMapper();
 			$event->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$event->setUser('ola');
-			$event->setPictureId($picture_id);
-			$event->setPictureIdSmall($picture_id_small);
-			$event->setPictureIdArchive($picture_id_archive);
-			if ($event->getDateTo() == null) {
-				$event->setDateTo(null);
-			};
-
+			$event->setUser($this->getLoggedUserName());
+			//zdjecie duze
+			$event = $this->_processEventFormPhotos($event, $this->view->form);
+			
 			$event_kind = $this->view->form->event_kind->getValue();
 			if ($event_kind == 'N') {
 				$event->setEventNews('T');
@@ -237,7 +223,7 @@ class Admin_EventController extends Core_Controller_Action {
 			if ($event_kind == 'N') {
 				$event->setEventNews('T');
 				$event->setEventAnnouncement('N');
-			} elseif ($event_kind = 'Z') {
+			} elseif ($event_kind == 'Z') {
 				$event->setEventNews('N');
 				$event->setEventAnnouncement('T');
 			}
@@ -267,28 +253,8 @@ class Admin_EventController extends Core_Controller_Action {
 
 		Zend_Db_Table::getDefaultAdapter()->beginTransaction();
 		try {
-			//zdjecie duze
-			$id = $this->view->form->id->getValue();
-			$mainPhoto = $this->_savePhoto($id, $this->view->form->file);
-			if ($mainPhoto && $mainPhoto->getId()) {
-				$event->setPictureId($mainPhoto->getId());
-				Core_Image::autocrop($this->_getPhotoPath($mainPhoto->getName()),
-						$this->_getPhotoPath($event->getLargePictureName()),
-						array('ratio' => 370/517));
-			}
-			//zdjecie male
-			$idS = $this->view->form->idS->getValue();
-			$photo = $this->_savePhoto($idS, $this->view->form->file2);
-			if ($photo && $photo->getId()) {
-				$event->setPictureIdSmall($photo->getId());
-			}
-			//zdjecie archiwum
-			$idA = $this->view->form->idA->getValue();
-			$photo = $this->_savePhoto($idA, $this->view->form->file3);
-			if ($photo && $photo->getId()) {
-				$event->setPictureIdArchive($photo->getId());
-			}
-
+			
+			$event = $this->_processEventFormPhotos($event, $this->view->form);
 			$mapper->save($event);
 
 			$this->view->priorityMessenger('Zapisano zdjęcia w bazie danych');
@@ -301,6 +267,51 @@ class Admin_EventController extends Core_Controller_Action {
 		Zend_Db_Table::getDefaultAdapter()->commit();
 
 		$this->_helper->redirector->gotoSimple('show', 'event', null, array('id' => $eventId));
+	}
+
+	private function _processEventFormPhotos($event, $form) {
+		//zdjecie duze
+		$form->id && $id = $form->id->getValue();
+		$photo = $this->_savePhoto($id, $form->file);
+		if ($photo && $photo->getId()) {
+			$event->setPictureId($photo->getId());
+			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
+					$this->_getPhotoPath($event->getLargePictureName()),
+					array('ratio' => 370/517));
+
+			// Generujemy tylko jeśli event nie ma dedykowanej małej miniaturki
+			if (!$event->hasPictureIdSmall()) {
+				Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
+					$this->_getPhotoPath($event->getSmallPictureName()),
+					array('ratio' => 370/170));
+			}
+
+			// Generujemy tylko jeśli event nie ma dedykowanej miniaturki dla archiwum
+			if (!$event->hasPictureIdArchive()) {
+				Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
+					$this->_getPhotoPath($event->getArchivePictureName()),
+					array('ratio' => 257/62));
+			}
+		}
+		//zdjecie male
+		$form->idS && $idS = $form->idS->getValue();
+		$photo = $this->_savePhoto($idS, $form->file2);
+		if ($photo && $photo->getId()) {
+			$event->setPictureIdSmall($photo->getId());
+			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
+					$this->_getPhotoPath($event->getSmallPictureName()),
+					array('ratio' => 370/170));
+		}
+		//zdjecie archiwum
+		$form->idA && $idA = $form->idA->getValue();
+		$photo = $this->_savePhoto($idA, $form->file3);
+		if ($photo && $photo->getId()) {
+			$event->setPictureIdArchive($photo->getId());
+			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
+					$this->_getPhotoPath($event->getArchivePictureName()),
+					array('ratio' => 257/62));
+		}
+		return $event;
 	}
 
 	public function editPhotoAction() {
@@ -407,12 +418,6 @@ class Admin_EventController extends Core_Controller_Action {
 		$photo->setId($id ? : null);
 
 		$mapper->save($photo);
-
-		if ($id) {
-			if (!unlink($this->_getPhotoPath($oldPictureName))) {
-				$this->view->priorityMessenger('Błąd przy usuwaniu starego zdjęcia eventu z dysku');
-			}
-		}
 
 		return $photo;
 	}
