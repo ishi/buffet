@@ -1,34 +1,35 @@
 <div id="main_content_news">
 
-<dl>
-    <?php foreach ($this->entries as $entry): ?>
-    <dt class="news">
-    
-    <div id="main_content_news_picture">
-    <?php 
-    	$sciezka = $entry->getPictureNameSmall();
-    	echo "<img  class=\"news\" src=\"$sciezka\">" ;
-    ?>
-    </div>
-    
-    <div id="main_content_news_cont">
-    <a href="<?php echo $this->url(array('controller'=>'news', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>">
-    <p class="news_title">
-    <?php echo $entry->getDate() ?>
-    <?php echo $entry->getTitleLng()?>
-    </a>
-    
-    </p>
-    <p class="news_pre_content"><?php echo $entry->getPreContent() ?></p>
-    </div>
-    
-    <div id="main_content_news_go">
-    	<div id="main_content_go">...</div>
-    	<a class="main_content_rectangle_go" href="<?php echo $this->url(array('controller'=>'news', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>"> </a>
-    </div>
-    
-    </dt>
-    <?php endforeach ?>
-</dl>
+	<dl>
+		<?php foreach ($this->entries as $entry): ?>
+			<dt class="news">
+
+			<div id="main_content_news_picture">
+				<img class="news" src="<?php echo $entry->getSmallPictureName() ?>">
+			</div>
+
+			<div id="main_content_news_cont">
+				<a href="<?php echo $this->url(
+						array('controller' => 'news', 'action' => 'details',
+							'id' => $entry->getId(), 'lang' => $_SESSION['lang']), null, true); ?>">
+					<p class="news_title">
+						<?php echo $entry->getDate() ?>
+						<?php echo $entry->getTitleLng() ?>
+					</p>
+				</a>
+
+				<p class="news_pre_content"><?php echo $entry->getPreContent() ?></p>
+			</div>
+
+			<div id="main_content_news_go">
+				<div id="main_content_go">...</div>
+				<a class="main_content_rectangle_go" href="<?php echo $this->url(
+						array('controller' => 'news', 'action' => 'details',
+							'id' => $entry->getId(), 'lang' => $_SESSION['lang']), null, true); ?>"> </a>
+			</div>
+
+			</dt>
+		<?php endforeach ?>
+	</dl>
 
 </div>

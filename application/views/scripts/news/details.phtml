@@ -1,38 +1,27 @@
 <div id="details">
-
-
-	<?php foreach ($this->entries as $entry): ?>
-
 	<div id="details_picture">
-		<?php 
-		if ($entry->getPictureName() == null)
-    		{
-    			echo "<img  class=\"details\" src=\"/images/www_leyout_buffet_buffet_text.gif\">";
-    		}
-    	else
-    	{
-    	$sciezka = $entry->getPictureName();
-    	echo "<img  class=\"details\" src=\"$sciezka\">";
-    	} 
-    	?>
+		<?php if ($this->entry->hasLargePicture()) : ?>
+			<img class="details" src="<?php echo $this->entry->getLargePictureName() ?>">
+		<?php else : ?>
+			<img class="details" src="/images/www_leyout_buffet_buffet_text.gif">
+		<?php endif; ?>
 	</div>
-	
+
 	<div id="details_cont">
 		<div id="details_title">
-			<?php echo $entry->getDate() ?>
-			<?php echo $entry->getTitleLng() ?>
+			<?php echo $this->entry->getDate() ?>
+			<?php echo $this->entry->getTitleLng() ?>
 		</div>
-    
-    	<div id="details_content">
-    		<?php echo $entry->getContent() ?>
-    	</div>
-    	
-    	<div id="details_main_back">
-    		<a href="<?php echo $this->url(array('controller'=>'news', 'action'=>'index', 'lang'=>$_SESSION['lang']), null, true); ?>"><div id="details_rectangle_back"></div></a>
-    		<div id="details_back">...</div>
-    	</div>
-    </div>
-    <?php endforeach ?>
-    
-    
+
+		<div id="details_content">
+			<?php echo $this->entry->getContent() ?>
+		</div>
+
+		<div id="details_main_back">
+			<a href="<?php echo $this->url(
+					array('controller' => 'news', 'action' => 'index',
+						'lang' => $_SESSION['lang']), null, true); ?>"><div id="details_rectangle_back"></div></a>
+			<div id="details_back">...</div>
+		</div>
+	</div>
 </div>

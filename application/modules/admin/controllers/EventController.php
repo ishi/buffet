@@ -277,20 +277,20 @@ class Admin_EventController extends Core_Controller_Action {
 			$event->setPictureId($photo->getId());
 			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
 					$this->_getPhotoPath($event->getLargePictureName()),
-					array('ratio' => 370/517));
+					array('ratio' => $event->getLargePictureRatio()));
 
 			// Generujemy tylko jeśli event nie ma dedykowanej małej miniaturki
 			if (!$event->hasPictureIdSmall()) {
 				Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
 					$this->_getPhotoPath($event->getSmallPictureName()),
-					array('ratio' => 370/170));
+					array('ratio' => $event->getSmallPictureRatio()));
 			}
 
 			// Generujemy tylko jeśli event nie ma dedykowanej miniaturki dla archiwum
 			if (!$event->hasPictureIdArchive()) {
 				Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
 					$this->_getPhotoPath($event->getArchivePictureName()),
-					array('ratio' => 257/62));
+					array('ratio' => $event->getArchivePictureRatio()));
 			}
 		}
 		//zdjecie male
@@ -300,7 +300,7 @@ class Admin_EventController extends Core_Controller_Action {
 			$event->setPictureIdSmall($photo->getId());
 			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
 					$this->_getPhotoPath($event->getSmallPictureName()),
-					array('ratio' => 370/170));
+					array('ratio' => $event->getSmallPictureRatio()));
 		}
 		//zdjecie archiwum
 		$form->idA && $idA = $form->idA->getValue();
@@ -309,7 +309,7 @@ class Admin_EventController extends Core_Controller_Action {
 			$event->setPictureIdArchive($photo->getId());
 			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
 					$this->_getPhotoPath($event->getArchivePictureName()),
-					array('ratio' => 257/62));
+					array('ratio' => $event->getArchivePictureRatio()));
 		}
 		return $event;
 	}
@@ -327,20 +327,22 @@ class Admin_EventController extends Core_Controller_Action {
 			return;
 		}
 		
+		$event = Core_Model_MapperAbstract::getInstance('Event')->find($eventId);
+		
 		$this->view->photo = Core_Model_MapperAbstract::getInstance('Photo')->find($photoId);
 		$this->view->controller = 'event';
 		$this->view->sourceId = $eventId;
 		switch ($this->_getParam('type', 'large')) {
 			case 'large':
-				$this->view->ratio = 370/517;
+				$this->view->ratio = $event->getLargePictureRatio();
 				$this->view->type = 'large';
 				break;
 			case 'small':
-				$this->view->ratio = 370/170;
+				$this->view->ratio = $event->getSmallPictureRatio();
 				$this->view->type = 'small';
 				break;
 			case 'archive':
-				$this->view->ratio = 257/62;
+				$this->view->ratio = $event->getArchivePictureRatio();
 				$this->view->type = 'archive';
 				break;
 		};

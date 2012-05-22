@@ -23,8 +23,9 @@ class Core_Model_Abstract {
 		return $this->_values;
 	}
 	
-	public function __call($name, $params) {
+	public function __call($metchodName, $params) {
 		$bool = false;
+		$name = $metchodName;
 		if ('is' == substr($name, 0, 2)) {
 			$name = "_$name";
 		}
@@ -49,7 +50,7 @@ class Core_Model_Abstract {
 			/* Wyjątek oznacza że nie było parametru więc ostatecznie wyrzucamy wyjątek o braku metody */
 		}
 		
-		throw new BadMethodCallException('Invalid method: ' . get_class($this) . "->$name()");
+		throw new BadMethodCallException('Invalid method: ' . get_class($this) . "->$metchodName()");
 	}
 	
 	public function __set($name, $value) {
