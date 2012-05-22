@@ -240,6 +240,9 @@ class Admin_EventController extends Zend_Controller_Action
 		$idS = $this->view->form->picture_id_small->getValue();
 		$idA = $this->view->form->picture_id_archive->getValue();
 		
+		$zajawkaPl = strlen(strip_tags($this->view->form->pre_content_pl->getValue()));
+		$zajawkaEn = strlen(strip_tags($this->view->form->pre_content_en->getValue()));
+		
 		/*
 		if ($this->view->form->event_news->getValue() == 'N'){
 			if ($this->view->form->event_announcement->getValue() == 'N'){
