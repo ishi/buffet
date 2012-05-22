@@ -10,7 +10,7 @@
 		<div class="gallery-photo">
 			<h4>Zdjęcie duże</h4>
 			<?php if ($this->event->hasLargePicture()) : ?>
-				<img src="<?php echo $this->escape($this->event->getLargePictureName()) ?>" width="250" />
+				<img src="<?php echo $this->escape($this->event->getLargePictureName()) ?>?s=<?php echo time() ?>" width="250" />
 				<a href="<?php echo $this->url(
 					array('module' => 'admin', 'controller' => 'event', 'action' => 'edit-photo',
 						'eventId' => $this->event->getId(), 'id' => $this->event->getLargePictureId()), null, true) ?>" class="button">
@@ -23,7 +23,7 @@
 		<div class="gallery-photo">
 			<h4>Zdjęcie małe</h4>
 			<?php if ($this->event->hasSmallPicture()) : ?>
-				<img src="<?php echo $this->escape($this->event->getSmallPictureName()) ?>" width="250" />
+				<img src="<?php echo $this->escape($this->event->getSmallPictureName()) ?>?s=<?php echo time() ?>" width="250" />
 				<a href="<?php echo $this->url(
 					array('module' => 'admin', 'controller' => 'event', 'action' => 'edit-photo',
 						'eventId' => $this->event->getId(), 'id' => $this->event->getSmallPictureId(),
@@ -35,7 +35,7 @@
 		<div class="gallery-photo">
 			<h4>Zdjęcie dla archiwum</h4>
 			<?php if ($this->event->hasArchivePicture()) : ?>
-				<img src="<?php echo $this->escape($this->event->getArchivePictureName()) ?>" width="250" />
+				<img src="<?php echo $this->escape($this->event->getArchivePictureName()) ?>?s=<?php echo time() ?>" width="250" />
 				<a href="<?php echo $this->url(
 					array('module' => 'admin', 'controller' => 'event', 'action' => 'edit-photo',
 						'eventId' => $this->event->getId(), 'id' => $this->event->getArchivePictureId(),

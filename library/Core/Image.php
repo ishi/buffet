@@ -67,14 +67,14 @@ class Core_Image {
 		$options['x1'] = $options['y1'] = 0;
 		
 		list($w, $h) = getimagesize($src);
-		if ($w > $h * $ratio) {
+		if ($w >= $h * $ratio) {
 			$options['x1'] = ($w - ($h * $ratio)) / 2; 
 			$options['tw'] = $options['w'] = $h * $ratio;
 			$options['th'] = $options['h'] = $h;
 		} else {
-			$options['y1'] = ($h - $w) / 2;
+			$options['y1'] = ($h - ($w / $ratio)) / 2;
 			$options['tw'] = $options['w'] = $w;
-			$options['th'] = $options['h'] = $w * $ratio;
+			$options['th'] = $options['h'] = $w / $ratio;
 		}
 		self::crop($src, $dest, $options);
 	}
