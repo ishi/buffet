@@ -1,35 +1,31 @@
 <div id="main_content_announcement">
 
-<dl>
-    <?php foreach ($this->entries as $entry): ?>
-    
-    <div id="main_content_announcement_picture">
-    <?php 
-        $sciezka = $entry->getPictureNameSmall();
-    	echo "<img  class=\"announcement\" src=\"$sciezka\">";
-    ?>
- 
-    </div>
-    
-	<dt class="announcement">
-    <div id="main_content_announcement_cont">
-    <a href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>">
-    <p class="announcement_title">
-		<?php echo $entry->getDate() ?>
-    	<?php echo $entry->getTitleLng() ?>
-    </p>
-    </a>
-    
-    <p class="announcement_pre_content"><?php echo $entry->getPreContent() ?></p>
-    </div>
-    
-    <div class="main_content_announcement_go">
-    	<div class="announcement_content_go">...</div>
-    	<a class="main_content_rectangle_go" href="<?php echo $this->url(array('controller'=>'announcement', 'action'=>'details', 'id'=>$entry->getId(), 'lang'=>$_SESSION['lang']), null, true);?>"> </a>
-    </div>
-    
-    </dt>
-    <?php endforeach ?>
-</dl>
+	<dl>
+		<?php foreach ($this->entries as $entry): ?>
+
+			<div id="main_content_announcement_picture">
+				<img  class="announcement" src="<?php echo $entry->getSmallPictureName() ?>">
+			</div>
+
+			<dt class="announcement">
+			<div id="main_content_announcement_cont">
+				<a href="<?php echo $this->url(array('controller' => 'announcement', 'action' => 'details', 'id' => $entry->getId(), 'lang' => $_SESSION['lang']), null, true); ?>">
+					<p class="announcement_title">
+						<?php echo $entry->getDate() ?>
+						<?php echo $entry->getTitleLng() ?>
+					</p>
+				</a>
+
+				<p class="announcement_pre_content"><?php echo $entry->getPreContent() ?></p>
+			</div>
+
+			<div class="main_content_announcement_go">
+				<div class="announcement_content_go">...</div>
+				<a class="main_content_rectangle_go" href="<?php echo $this->url(array('controller' => 'announcement', 'action' => 'details', 'id' => $entry->getId(), 'lang' => $_SESSION['lang']), null, true); ?>"> </a>
+			</div>
+
+			</dt>
+		<?php endforeach ?>
+	</dl>
 
 </div>

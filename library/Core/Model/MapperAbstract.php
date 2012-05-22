@@ -13,10 +13,10 @@ class Core_Model_MapperAbstract {
 	 */
 	public static function getInstance($model = null) {
 		$class = get_called_class();
-		if (!isset(self::$_instance[$class])) {
-			self::$_instance[$class] = new $class($model);
+		if (!isset(self::$_instance[$class . $model])) {
+			self::$_instance[$class . $model] = new $class($model);
 		}
-		return self::$_instance[$class];
+		return self::$_instance[$class . $model];
 	}
 	
 	public function __construct($modelName = null) {

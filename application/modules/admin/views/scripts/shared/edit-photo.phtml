@@ -1,16 +1,14 @@
-<?php //echo $this->partial('gallery/_gallery-info.phtml', array('gallery' => $this->gallery)); ?>
-
 <div id="admin_event">
 	<p class="admin_tytul">Edycja zdjęcia</p>
-	<div>
-	<?php
-		 
-	?>
-	<form id="crop-data" action="<?php echo $this->url(array('action' => 'crop-photo', 'controller' => 'gallery', 'module' => 'admin'), null, true)?>">
-		<a href="<?php echo $this->url(array('action' => 'show', 'controller' => 'gallery', 'module' => 'admin', 'id' => $this->gallery->getId()), null, true)?>" class="button">Anuluj</a>
+	<form id="crop-data" action="<?php echo $this->url(
+			array('action' => 'crop-photo', 'controller' => $this->controller, 'module' => 'admin'), null, true)?>">
+		<a href="<?php echo $this->url(
+				array('action' => 'show', 'controller' => $this->controller, 'module' => 'admin',
+					'id' => $this->sourceId), null, true)?>" class="button">Anuluj</a>
 		
-		<input type="hidden" name="galleryId" value="<?php echo $this->gallery->getId() ?>" />
+		<input type="hidden" name="sourceId" value="<?php echo $this->sourceId ?>" />
 		<input type="hidden" name="id" value="<?php echo $this->photo->getId() ?>" />
+		<input type="hidden" name="type" value="<?php echo $this->type ?>" />
 		<input type="hidden" id="x1" name="crop[x1]" />
 		<input type="hidden" id="y1" name="crop[y1]" />
 		<input type="hidden" id="x2" name="crop[x2]" />
@@ -19,7 +17,7 @@
 		<input type="hidden" id="h" name="crop[h]" />
 		<input type="submit" value="Przytnij Zdjęcie" class="button" />
 	</form>
-	</div>
+	
 	<div id="photo-edit">
 		<h4>Zdjęcie oryginalne</h4>
 		<img src="<?php echo $this->photo->getName() ?>" id="source" />
@@ -36,8 +34,8 @@
 			}
 			$('#source').Jcrop({
 				onSelect: updateForm,
-				aspectRatio: 1,
-				setSelect: [0, 0, 100, 100]
+				aspectRatio: <?php echo $this->ratio ?: 1 ?>,
+				setSelect: [0, 0, 100, 100 * <?php echo $this->ratio ?: 1 ?>]
 			});
 		});
 	</script>

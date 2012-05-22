@@ -101,7 +101,10 @@ ul.errors {
 	z-index: 10;
 }
 #rectangle-yellow {
-	background-color: hsla(60, 100%, 50%, 0.5);
+	background-color: yellow;
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
 	left: 567px;
 	top: 117px;
 	width: 62px;
@@ -109,7 +112,10 @@ ul.errors {
 }
 
 #rectangle-red {
-	background-color: hsla(0, 100%, 50%, 0.5);
+	background-color: red;
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
 	left: 910px;
 	top: 389px;
 	width: 62px;

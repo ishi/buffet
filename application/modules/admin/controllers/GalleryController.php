@@ -101,8 +101,6 @@ class Admin_GalleryController extends Core_Controller_Action {
 			$this->_helper->redirector->gotoSimple('index');
 			return;
 		}
-		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
-		$this->view->gallery = $mapper->find($galleryId);
 
 		$photoId = $this->_getParam('id');
 		if (!$photoId) {
@@ -111,6 +109,9 @@ class Admin_GalleryController extends Core_Controller_Action {
 		}
 		$mapperP = new Application_Model_PhotoMapper();
 		$this->view->photo = $mapperP->find($photoId);
+		$this->view->controller = 'gallery';
+		$this->view->sourceId = $galleryId;
+		$this->render('shared/edit-photo', null, true);
 	}
 
 	public function addPhotoAction() {
@@ -191,19 +192,8 @@ class Admin_GalleryController extends Core_Controller_Action {
 		$destThumb = APPLICATION_PATH . '/../public/' . $photo->getThumbnailName();
 		$destCrop = APPLICATION_PATH . '/../public/' . $photo->getCroppedName();
 		
-		list($w, $h) = getimagesize($src);
-		$crop = array('tw' => 100, 'th' => 100, 'x1' => 0, 'y1' => 0);
-		if ($w > $h) {
-			$crop['x1'] = ($w - $h) / 2; 
-			$crop['w'] = $crop['h'] = $h;
-		} else {
-			$crop['y1'] = ($h - $w) / 2;
-			$crop['w'] = $crop['h'] = $w;
-		}
-		
-		Core_Image::crop($src, $destThumb, $crop);
-		$crop['tw'] = $crop['th'] = $crop['w'];
-		Core_Image::crop($src, $destCrop, $crop);
+		Core_Image::autocrop($src, $destThumb, array('ratio' => 1));
+		Core_Image::autocrop($src, $destCrop, array('ratio' => 1));
 		
 		$mapper->save($photo);
 		$this->view->priorityMessenger("Zapisano zdjęcie w bazie danych $fileName");
@@ -256,7 +246,7 @@ class Admin_GalleryController extends Core_Controller_Action {
 	}
 
 	public function cropPhotoAction () {
-		$galleryId = $this->_getParam('galleryId');
+		$galleryId = $this->_getParam('sourceId');
 		if (!$galleryId) {
 			$this->view->priorityMessenger('Brak id galerii', 'error');
 			$this->_helper->redirector->gotoSimple('index')->redirectAndExit();
