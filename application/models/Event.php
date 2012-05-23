@@ -68,6 +68,10 @@ class Application_Model_Event extends Core_Model_Abstract {
 		}
 		return $this->getPictureId();
 	}
+	
+	public function getLargePictureRatio() {
+		return 370/517;
+	}
 
 	public function hasSmallPicture() {
 		return $this->hasPictureIdSmall() || $this->hasPictureId();
@@ -92,6 +96,10 @@ class Application_Model_Event extends Core_Model_Abstract {
 		}
 		return $this->hasPictureIdSmall() ? $this->getPictureIdSmall() : $this->getPictureId();
 	}
+	
+	public function getSmallPictureRatio() {
+		return 'T' == $this->getEventAnnouncement() ? 370/170 : 257/292;
+	}
 
 	public function hasArchivePicture() {
 		return $this->hasPictureIdArchive() || $this->hasPictureId();
@@ -115,6 +123,10 @@ class Application_Model_Event extends Core_Model_Abstract {
 			return null;
 		}
 		return $this->hasPictureIdArchive() ? $this->getPictureIdArchive() : $this->getPictureId();
+	}
+	
+	public function getArchivePictureRatio() {
+		return 257/62;
 	}
 
 	private function _getPictureName($id) {

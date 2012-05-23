@@ -1,23 +1,20 @@
 <?php
 
-class NewsController extends Zend_Controller_Action
-{
+class NewsController extends Zend_Controller_Action {
 
-    public function indexAction()
-    {
-    	
-        $news = new Application_Model_NewsMapper();
-        $order = 'date_from DESC';
-        $this->view->entries = $news->fetchAll("id", $order);
-    }
-    
-    public function detailsAction()
-    {
-    	$news = new Application_Model_NewsMapper();
-    	$id = $this->_getParam('id', 1);
-        $this->view->entries = $news->fetchAll("id=$id", "id");
-    }
+	public function indexAction() {
+		$order = 'date_from DESC';
+		$this->view->entries =
+				Application_Model_NewsMapper::getInstance()->fetchAll(null, $order);
+	}
 
+	public function detailsAction() {
+		$id = $this->_getParam('id');
+		if (!$id) {
+			$this->_helper->redirector->gotoSimple('index')->redirectAndExit();
+		}
+		$this->view->entry = Application_Model_NewsMapper::getInstance()->find($id);
+	}
 
 }
 
