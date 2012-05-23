@@ -193,6 +193,14 @@ class Admin_EventController extends Core_Controller_Action {
 				$event->setDateTo(null);
 			};
 
+			$length = Core_Length::checkLengthPreContent($this->view->form->pre_content_pl->getValue());
+			if ($length == -1){
+					$this->view->priorityMessenger('Treść zajawki jest zbyt długa (maksymalna liczba znaków - 90)');
+					$this->render('edit');
+					return;
+			}
+			
+			
 			$mapper->save($event);
 			$this->view->priorityMessenger('Zapisano event w bazie danych');
 			$this->_helper->redirector->gotoSimple('show', 'event', null, array('id' => $event->getId()));

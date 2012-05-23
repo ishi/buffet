@@ -52,11 +52,11 @@ class Admin_Form_Event extends Zend_Form {
 				array(
     					'description' => '<tr><td></td><td>PL</td><td>EN</td></tr>',
     					'ignore' => true)),
-			array('text', 'title', array('label' => 'Tytuł')),
+			array('text', 'title', array('label' => 'Tytuł', 'required' => true,)),
 			array('text', 'title_en'),
-			array('textarea', 'pre_content_pl', array('label' => 'Zajawka')),
+			array('textarea', 'pre_content_pl', array('label' => 'Zajawka', 'required' => true,)),
 			array('textarea', 'pre_content_en'),
-			array('textarea', 'content_pl', array('label' => 'Treść')),
+			array('textarea', 'content_pl', array('label' => 'Treść', 'required' => true,)),
 			array('textarea', 'content_en')
 		));
 		// Elementy językowe wyświetlamy w dwóch kolumnach, tworzymy grupy kolumn
