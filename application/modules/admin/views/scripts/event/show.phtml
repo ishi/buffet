@@ -16,6 +16,11 @@
 						'eventId' => $this->event->getId(), 'id' => $this->event->getLargePictureId()), null, true) ?>" class="button">
 					<img src="/images/edit.jpg" />
 				</a>
+				<a href="<?php echo $this->url(
+					array('module' => 'admin', 'controller' => 'event', 'action' => 'remove-photo',
+						'eventId' => $this->event->getId(), 'id' => $this->event->getLargePictureId()), null, true) ?>" class="button">
+					<img src="/images/drop.jpg" />
+				</a>
 			<?php else : ?>
 				Brak;
 			<?php endif; ?>
@@ -30,6 +35,13 @@
 						'type' => 'small'), null, true) ?>" class="button">
 					<img src="/images/edit.jpg" />
 				</a>
+				<a href="<?php echo $this->url(
+					array('module' => 'admin', 'controller' => 'event', 'action' => 'remove-photo',
+						'eventId' => $this->event->getId(), 'id' => $this->event->getSmallPictureId(),
+						'type' => 'small'), null, true) ?>" class="button">
+					<img src="/images/drop.jpg" />
+				</a>
+				
 			<?php endif; ?>
 		</div>
 		<div class="gallery-photo">
@@ -41,6 +53,12 @@
 						'eventId' => $this->event->getId(), 'id' => $this->event->getArchivePictureId(),
 						'type' => 'archive'), null, true) ?>" class="button">
 					<img src="/images/edit.jpg" />
+				</a>
+				<a href="<?php echo $this->url(
+					array('module' => 'admin', 'controller' => 'event', 'action' => 'remove-photo',
+						'eventId' => $this->event->getId(), 'id' => $this->event->getArchivePictureId(),
+						'type' => 'archive'), null, true) ?>" class="button">
+					<img src="/images/drop.jpg" />
 				</a>
 			<?php endif; ?>
 		</div>

@@ -44,7 +44,9 @@ class Admin_Form_Event extends Zend_Form {
 						array('Date', false, array('YYYY-MM-dd')))
 					)),
 			array('text', 'date_to', 
-				array(	'label' => 'Data (do)')),
+				array(	'label' => 'Data (do)'),
+						'validators' => array(
+							array('Date', false, array('YYYY-MM-dd')))),
 			// Hack aby wyświetlić nagłówki dla kolumn językowych
 			array('hidden', 'test', 
 				array(
