@@ -76,6 +76,6 @@ class Core_Model_Abstract {
 	}
 
 	protected function _get($name) {
-		return $this->_values[$name];
+		return isset($this->_values[$name]) ? $this->_values[$name] : null;
 	}
 }
