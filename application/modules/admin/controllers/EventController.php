@@ -171,77 +171,6 @@ class Admin_EventController extends Core_Controller_Action {
 			return;
 		}
 
-		
-		
-		
-		/*
-		if ($this->view->form->event_news->getValue() == 'N'){
-			if ($this->view->form->event_announcement->getValue() == 'N'){
-				$this->view->priorityMessenger("Należy wybrać rodzaj eventu!");
-				$this->render('edit');
-				return;
-			}
-		};
-		*/
-		
-		if (!$this->view->form->file->receive()) {
-			$this->view->priorityMessenger('Problem podczas wysyłania pliku');
-			$this->render('index');
-			return;
-		}
-		
-		if (!$this->view->form->file2->receive()) {
-			$this->view->priorityMessenger('Problem podczas wysyłania pliku');
-			$this->render('index');
-			return;
-		}
-		
-		if (!$this->view->form->file3->receive()) {
-			$this->view->priorityMessenger('Problem podczas wysyłania pliku');
-			$this->render('index');
-			return;
-		}
-		
-		
-		
-		//zdjecie duze
-		$fileName = $this->view->form->file->getValue();
-		
-		if ($fileName != null){
-		
-		$mapper2 = new Application_Model_PhotoMapper();
-		if ($mapper2->fetchOne(array('name = ?' => "/pictures/$fileName"))) {
-			$this->view->priorityMessenger("W katalogu znajduje się już zdjęcie o nazwie $fileName");
-			$this->_helper->redirector->gotoSimple('index', 'event', null);
-			return;
-		}
-		
-		$location = $this->view->form->file->getFileName();
-		$newLocation = realpath(APPLICATION_PATH . "/../public/pictures/") . "/$fileName";
-		
-		if (!copy($location, $newLocation)) {
-			$this->view->priorityMessenger("Błąd podczas przenoszenia pliku $location do $newLocation");
-			$this->render('index');
-			return;
-		}
-				
-		$this->view->priorityMessenger("Przeniosłem plik z $location do $newLocation");
-		
-		$photo = new Application_Model_Photo();
-		try {
-			$photo->setName("/pictures/$fileName");
-			$photo->setGalleryId(null);
-			$photo->setInformation(null);
-			$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$photo->setUser('ola');
-			if ($id == 0){
-				$photo->setId(null);	
-			}
-			else{
-				$photo->setId($id);
-			}
-
-
 		try {
 			//event
 			$event = new Application_Model_Event($this->_getAllParams());
@@ -286,7 +215,7 @@ class Admin_EventController extends Core_Controller_Action {
 		$mapper = new Application_Model_EventMapper();
 		try {
 			$event->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$event->setUser('ola');
+			$event->setUser($this->getLoggedUserName());
 			if ($event->getDateTo() == null) {
 				$event->setDateTo(null);
 			};
