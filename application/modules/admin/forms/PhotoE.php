@@ -62,24 +62,25 @@ class Admin_Form_PhotoE extends Zend_Form {
 			'File',
 			array('Errors'),
 			array('HtmlTag', array('tag' => 'td')),
-			array('Label', array('tag' => 'td')),
+			array('Label', array('tag' => 'dt')),
 			));
 		$file2->setDecorators(array(
 			'File',
 			array('Errors'),
 			array('HtmlTag', array('tag' => 'td')),
-			array('Label', array('tag' => 'td')),
+			array('Label', array('tag' => 'dt')),
 			));
 		$file3->setDecorators(array(
 			'File',
 			array('Errors'),
 			array('HtmlTag', array('tag' => 'td')),
-			array('Label', array('tag' => 'td')),
+			array('Label', array('tag' => 'dt')),
 			));
 			
 		$submit->setDecorators(array(
 			'ViewHelper', 
 			array('HtmlTag', array('tag' => 'td')),
-			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))));
+			array(array('row' => 'HtmlTag'), array('tag' => 'tr'))
+			));
 	}
 }
