@@ -177,8 +177,6 @@ class Admin_EventController extends Core_Controller_Action {
 			$mapper = new Application_Model_EventMapper();
 			$event->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$event->setUser($this->getLoggedUserName());
-			//zdjecie duze
-			$event = $this->_processEventFormPhotos($event, $this->view->form);
 			
 			$event_kind = $this->view->form->event_kind->getValue();
 			if ($event_kind == 'N') {
@@ -188,6 +186,8 @@ class Admin_EventController extends Core_Controller_Action {
 				$event->setEventNews('N');
 				$event->setEventAnnouncement('T');
 			}
+			// Zapisujemy zdjęcia
+			$event = $this->_processEventFormPhotos($event, $this->view->form);
 
 			$mapper->save($event);
 			$this->view->priorityMessenger('Zapisano event w bazie danych');
