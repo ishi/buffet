@@ -745,7 +745,9 @@ width: 257px;
 
 #galleries .gallery .description {
 	margin: 20px;
+	font-family: Arial;
 }
+
 
 #admin_event{
 padding-left: 20px;
