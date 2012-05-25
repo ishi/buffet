@@ -44,17 +44,19 @@ class Admin_Form_Event extends Zend_Form {
 						array('Date', false, array('YYYY-MM-dd')))
 					)),
 			array('text', 'date_to', 
-				array(	'label' => 'Data (do)')),
+				array(	'label' => 'Data (do)'),
+						'validators' => array(
+							array('Date', false, array('YYYY-MM-dd')))),
 			// Hack aby wyświetlić nagłówki dla kolumn językowych
 			array('hidden', 'test', 
 				array(
     					'description' => '<tr><td></td><td>PL</td><td>EN</td></tr>',
     					'ignore' => true)),
-			array('text', 'title', array('label' => 'Tytuł')),
+			array('text', 'title', array('label' => 'Tytuł', 'required' => true,)),
 			array('text', 'title_en'),
-			array('textarea', 'pre_content_pl', array('label' => 'Zajawka')),
+			array('textarea', 'pre_content_pl', array('label' => 'Zajawka', 'required' => true,)),
 			array('textarea', 'pre_content_en'),
-			array('textarea', 'content_pl', array('label' => 'Treść')),
+			array('textarea', 'content_pl', array('label' => 'Treść', 'required' => true,)),
 			array('textarea', 'content_en')
 		));
 		// Elementy językowe wyświetlamy w dwóch kolumnach, tworzymy grupy kolumn

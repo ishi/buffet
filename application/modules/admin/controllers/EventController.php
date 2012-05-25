@@ -189,6 +189,14 @@ class Admin_EventController extends Core_Controller_Action {
 			// Zapisujemy zdjęcia
 			$event = $this->_processEventFormPhotos($event, $this->view->form);
 
+			$length = Core_Length::checkLengthPreContent($this->view->form->pre_content_pl->getValue());
+			if ($length == -1){
+					$this->view->priorityMessenger('Treść zajawki jest zbyt długa (maksymalna liczba znaków - 90)');
+					$this->render('edit');
+					return;
+			}
+			
+			
 			$mapper->save($event);
 			$this->view->priorityMessenger('Zapisano event w bazie danych');
 			$this->_helper->redirector->gotoSimple('show', 'event', null, array('id' => $event->getId()));
@@ -198,6 +206,7 @@ class Admin_EventController extends Core_Controller_Action {
 			$this->render('edit');
 		}
 	}
+
 
 	public function saveEditAction() {
 		$this->view->form = $this->_getEditForm();
@@ -214,7 +223,7 @@ class Admin_EventController extends Core_Controller_Action {
 		$mapper = new Application_Model_EventMapper();
 		try {
 			$event->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$event->setUser('ola');
+			$event->setUser($this->getLoggedUserName());
 			if ($event->getDateTo() == null) {
 				$event->setDateTo(null);
 			};
@@ -461,6 +470,86 @@ class Admin_EventController extends Core_Controller_Action {
 	
 	private function _getPhotoPath($photoName) {
 		return APPLICATION_PATH . "/../public$photoName";
+	}
+	
+	
+	public function removePhotoAction() {
+		$eventId = $this->_getParam('eventId');
+		if (!$eventId) {
+			$this->_helper->redirector->gotoSimple('index');
+			return;
+		}
+
+		$photoId = $this->_getParam('id');
+		if (!$photoId) {
+			$this->_helper->redirector->gotoSimple('show', null, null, array('id' => $eventId));
+			return;
+		}
+		
+		$photoKind = $this->_getParam('type', 'large');
+
+		
+		//usuwanie zdjecia
+		$mapper = new Application_Model_PictureMapper();
+		$picture = $mapper->find($photoId);
+		$photoName = $picture->getName();
+		if ($photoName != NULL) {
+				if (!unlink(APPLICATION_PATH . "/../public$photoName")) {
+					$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
+				} else {
+					if (!$mapper->delete($photoId)) {
+						$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu');
+					} else {
+						null;//$this->view->priorityMessenger('Usunięto zdjęcie eventu z bazy danych');
+					}
+				}
+			}
+
+		//update na evencie
+	    $mapper2 = new Application_Model_EventMapper();
+		try {
+			$event = $mapper2->find($eventId);
+			
+
+			if ($photoKind == 'large'){
+				$event->setPictureId(0);
+			}
+			elseif ($photoKind == 'small'){
+				$event->setPictureIdSmall(0);
+			}
+			elseif ($photoKind == 'archive'){
+				$event->setPictureIdArchive(0);
+			}
+				$mapper2->save($event);
+		}	
+		catch(Exception $e){
+			$this->view->priorityMessenger('Błąd przy zdjęcia z eventu eventu');
+			$this->_helper->redirector->gotoSimple('show', null, null, array('id' => $eventId));
+		}
+			
+		
+		/*
+		$event = Core_Model_MapperAbstract::getInstance('Event')->find($eventId);
+		
+		$this->view->photo = Core_Model_MapperAbstract::getInstance('Photo')->find($photoId);
+		$this->view->controller = 'event';
+		$this->view->sourceId = $eventId;
+		switch ($this->_getParam('type', 'large')) {
+			case 'large':
+				$this->view->ratio = $event->getLargePictureRatio();
+				$this->view->type = 'large';
+				break;
+			case 'small':
+				$this->view->ratio = $event->getSmallPictureRatio();
+				$this->view->type = 'small';
+				break;
+			case 'archive':
+				$this->view->ratio = $event->getArchivePictureRatio();
+				$this->view->type = 'archive';
+				break;
+		};
+		*/
+		$this->_helper->redirector->gotoSimple('show', null, null, array('id' => $eventId));
 	}
 }
 
