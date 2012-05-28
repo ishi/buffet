@@ -186,6 +186,7 @@ class Admin_EventController extends Core_Controller_Action {
 				$event->setEventNews('N');
 				$event->setEventAnnouncement('T');
 			}
+			
 			// Zapisujemy zdjęcia
 			$event = $this->_processEventFormPhotos($event, $this->view->form);
 
@@ -224,9 +225,7 @@ class Admin_EventController extends Core_Controller_Action {
 		try {
 			$event->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$event->setUser($this->getLoggedUserName());
-			if ($event->getDateTo() == null) {
-				$event->setDateTo(null);
-			};
+			
 
 			$event_kind = $this->view->form->event_kind->getValue();
 			if ($event_kind == 'N') {

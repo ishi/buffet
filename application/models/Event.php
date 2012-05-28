@@ -9,12 +9,18 @@ class Application_Model_Event extends Core_Model_Abstract {
 		'event_news', 'event_announcement', 'date_from', 'date_to', 'arch_date',
 		'user', 'picture_id_small', 'picture_id_archive');
 
+	public function __construct($options=null){
+		$options['date_to'] = $options['date_to'] ?: null; 
+		parent::__construct($options);
+	}
 	/**
 	 * Funkcja do pobierania tresci newsa w zaleznosci od tego czy jest 
 	 * menu polskie czy angielskie
 	 * 
 	 * @return string Treść newsa
 	 */
+	
+	
 	public function getContent() {
 		if ($_SESSION['lang'] == 'en') {
 			return $this->getContentEn();
@@ -148,5 +154,7 @@ class Application_Model_Event extends Core_Model_Abstract {
 
 		return $data;
 	}
+	
+	
 
 }
