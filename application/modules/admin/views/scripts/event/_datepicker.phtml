@@ -1,0 +1,11 @@
+<script>
+	$(function() {
+		$('[id^="date_"]').datetimepicker({
+			dateFormat: 'yy-mm-dd',
+			showTime: false,
+			showTimepicker: false,
+			timezone: '+0001'
+			//onClose: function(dateText, inst) { $(this).parents('form').get(0).submit(); }
+		});
+	});
+</script>
