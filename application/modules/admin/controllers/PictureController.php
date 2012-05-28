@@ -69,7 +69,7 @@ class Admin_PictureController extends Zend_Controller_Action
 			$photo->setGalleryId(null);
 			$photo->setInformation('MAIN');
 			$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$photo->setUser('ola');
+			$photo->setUser($this->getLoggedUserName());
 			$mapper->save($photo);
 			$this->view->priorityMessenger('Zapisano zdjęcie w bazie danych');
 			$this->_helper->redirector->gotoSimple('index', 'picture', null);

@@ -23,7 +23,7 @@ class NewsletterController extends Zend_Controller_Action
 		try {
 			echo "111";
 			$newsletter->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$newsletter->setUser('ola');
+			$newsletter->setUser($this->getLoggedUserName());
 			$newsletter->setPotwierdzenie('N');
 			echo "222";
 			$mapper->save($newsletter);

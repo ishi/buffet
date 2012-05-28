@@ -42,7 +42,7 @@ class Admin_Information2Controller extends Zend_Controller_Action
 		$mapper = new Application_Model_Information2Mapper();
 		try {
 			$information->setArchDate(new Zend_Db_Expr('CURDATE()'));
-			$information->setUser('ola');
+			$information->setUser($this->getLoggedUserName());
 			$information->getPictureId();
 			
 			$mapper->save($information);
