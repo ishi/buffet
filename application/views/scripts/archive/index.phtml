@@ -1,6 +1,6 @@
 <div id="main_content_archive">
 
-	<table>
+	<table id="archive">
 		<?php foreach ($this->entriesTable as $entries): ?>
 			<tr class="archive">
 				<?php foreach ($entries as $entry) : ?>
@@ -22,13 +22,14 @@
 
 							<p class="archive_pre_content"><?php echo $entry->getPreContent() ?></p>
 						</div>
-
+						<!-- 
 						<div id="main_content_news_go">
 							<div id="main_content_go">...</div>
 							<a class="main_content_rectangle_go" href="<?php echo $this->url(
 									array('controller' => 'archive', 'action' => 'details',
 										'id' => $entry->getId(), 'lang' => $_SESSION['lang']), null, true); ?>"> </a>
 						</div>
+						 -->
 					</td>
 			<?php endforeach; ?>
 			</tr>

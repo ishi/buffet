@@ -1,7 +1,7 @@
 * {
-	padding: 0;
-	margin: 0;
-	border: 0;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
 }
 
 body, html {
@@ -272,6 +272,8 @@ padding-left	: 30px;
 padding-top		: 25px;
 padding-right	: 30px;
 padding-bottom	: 50px;
+word-wrap:break-word;
+overflow: hidden;
 }
 
 #card_button{
@@ -297,7 +299,9 @@ height: 292px;
 }
 
 #main_content_news_cont{
-width: 257px;	
+width: 257px;
+word-wrap:break-word;
+overflow: hidden;
 }
 
 #main_content_news_go{
@@ -341,8 +345,10 @@ padding-top: 4px;
 
 
 #main_content_archive{
+<!-- background-image: url(/images/111.jpg);-->
 width		: 798px;
 padding-bottom: 50px;
+height: 186px;
 }
 
 #main_content_archive td {
@@ -538,7 +544,7 @@ font-size	: 9pt;
 font-family	: Arial;
 text-align	: left;
 font-weight	: bold;
-padding-top	: 27px;
+padding-top	: 25px;
 padding-left: 27px;
 }
 
@@ -609,6 +615,8 @@ height: 169px;
 width: 354px;
 float: left;
 margin-bottom: 8px;
+word-wrap:break-word;
+overflow: hidden;
 }
 
 dt.archive{
@@ -633,8 +641,8 @@ height: 292px;
 }
 
 img.announcement{
-width: 369px;
-height: 169px;	
+width: 370px;
+height: 170px;	
 }
 
 img.archive{
@@ -669,6 +677,10 @@ height: 62px;
 
 #main_content_archive_cont{
 width: 257px;
+height: 98px;
+word-wrap:break-word;
+overflow: hidden;
+margin-bottom: 26px;
 }
 
 #galleries {
@@ -800,6 +812,21 @@ padding: 2px;
 font-weight: bold;
 }
 
+table#archive td{
+padding-right: 8px;
+}
+table#archive{
+border: 0px none;
+padding: 0px;
+margin: 0px;
+}
+
+tbody{
+margin: 0px;
+padding: 0px;
+border: 0px;
+}
+	
 table#information tr#naglowek{
 background-color: #FFFF99;
 padding: 2px;

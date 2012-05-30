@@ -189,13 +189,15 @@ class Admin_EventController extends Core_Controller_Action {
 			
 			// Zapisujemy zdjęcia
 			$event = $this->_processEventFormPhotos($event, $this->view->form);
-
+			
+			/*
 			$length = Core_Length::checkLengthPreContent($this->view->form->pre_content_pl->getValue());
 			if ($length == -1){
 					$this->view->priorityMessenger('Treść zajawki jest zbyt długa (maksymalna liczba znaków - 90)');
 					$this->render('edit');
 					return;
 			}
+			*/
 			
 			
 			$mapper->save($event);
