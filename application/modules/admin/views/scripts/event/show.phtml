@@ -16,11 +16,13 @@
 						'eventId' => $this->event->getId(), 'id' => $this->event->getLargePictureId()), null, true) ?>" class="button">
 					<img src="/images/edit.jpg" />
 				</a>
+				<?php if ($this->event->getPictureId() != 0): ?>
 				<a href="<?php echo $this->url(
 					array('module' => 'admin', 'controller' => 'event', 'action' => 'remove-photo',
 						'eventId' => $this->event->getId(), 'id' => $this->event->getLargePictureId()), null, true) ?>" class="button">
 					<img src="/images/drop.jpg" />
 				</a>
+				<?php endif; ?>
 			<?php else : ?>
 				Brak;
 			<?php endif; ?>
@@ -35,12 +37,14 @@
 						'type' => 'small'), null, true) ?>" class="button">
 					<img src="/images/edit.jpg" />
 				</a>
+				<?php if ($this->event->getPictureIdSmall() != 0): ?>
 				<a href="<?php echo $this->url(
 					array('module' => 'admin', 'controller' => 'event', 'action' => 'remove-photo',
 						'eventId' => $this->event->getId(), 'id' => $this->event->getSmallPictureId(),
 						'type' => 'small'), null, true) ?>" class="button">
 					<img src="/images/drop.jpg" />
 				</a>
+				<?php endif; ?>
 				
 			<?php endif; ?>
 		</div>
@@ -54,12 +58,14 @@
 						'type' => 'archive'), null, true) ?>" class="button">
 					<img src="/images/edit.jpg" />
 				</a>
+				<?php if ($this->event->getPictureIdArchive() != 0): ?>
 				<a href="<?php echo $this->url(
 					array('module' => 'admin', 'controller' => 'event', 'action' => 'remove-photo',
 						'eventId' => $this->event->getId(), 'id' => $this->event->getArchivePictureId(),
 						'type' => 'archive'), null, true) ?>" class="button">
 					<img src="/images/drop.jpg" />
 				</a>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 	<div>
