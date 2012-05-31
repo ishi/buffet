@@ -818,6 +818,8 @@ table#archive{
 border: 0px none;
 padding: 0px;
 margin: 0px;
+border-collapse: collapse;
+border-spacing: 0px;
 }
 
 tbody{
