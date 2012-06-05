@@ -1,6 +1,6 @@
 <?php
 
-class Admin_PartnerController extends Zend_Controller_Action
+class Admin_PartnerController extends Core_Controller_Action
 {
 	public function init()
     {

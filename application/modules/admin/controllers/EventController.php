@@ -104,8 +104,13 @@ class Admin_EventController extends Core_Controller_Action {
 			$mapper2 = new Application_Model_PictureMapper();
 			$picture = $mapper2->find($picture_id);
 			$picture_name = $picture->getName();
-
+			$rozszerzeniePliku = substr($picture_name, (strrpos($picture_name, '.' ) + 1));
+			$nazwaPliku = substr($picture_name, 1, strrpos($picture_name, '.' )-1);
+			
 			if ($picture_name != NULL) {
+				unlink(APPLICATION_PATH . "/../public/$nazwaPliku"."-a".".".$rozszerzeniePliku);
+				unlink(APPLICATION_PATH . "/../public/$nazwaPliku"."-s".".".$rozszerzeniePliku);
+				unlink(APPLICATION_PATH . "/../public/$nazwaPliku"."-c".".".$rozszerzeniePliku);
 				if (!unlink(APPLICATION_PATH . "/../public$picture_name")) {
 					$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
 				} else {
@@ -117,13 +122,18 @@ class Admin_EventController extends Core_Controller_Action {
 				}
 			}
 		}
-
+		
 
 		if ($picture_id_small) {
 			$mapper3 = new Application_Model_PictureMapper();
 			$picture3 = $mapper3->find($picture_id_small);
 			$picture_name_small = $picture3->getName();
+			$rozszerzeniePlikuSmall = substr($picture_name_small, (strrpos($picture_name_small, '.' ) + 1));
+			$nazwaPlikuSmall = substr($picture_name_small, 1, strrpos($picture_name_small, '.' )-1);
 			if ($picture_name_small != NULL) {
+				unlink(APPLICATION_PATH . "/../public/$nazwaPlikuSmall"."-a".".".$rozszerzeniePlikuSmall);
+				unlink(APPLICATION_PATH . "/../public/$nazwaPlikuSmall"."-s".".".$rozszerzeniePlikuSmall);
+				unlink(APPLICATION_PATH . "/../public/$nazwaPlikuSmall"."-c".".".$rozszerzeniePlikuSmall);
 				if (!unlink(APPLICATION_PATH . "/../public$picture_name_small")) {
 					$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
 				} else {
@@ -140,7 +150,12 @@ class Admin_EventController extends Core_Controller_Action {
 			$mapper4 = new Application_Model_PictureMapper();
 			$picture4 = $mapper4->find($picture_id_archive);
 			$picture_name_archive = $picture4->getName();
+			$rozszerzeniePlikuArchive = substr($picture_name_archive, (strrpos($picture_name_archive, '.' ) + 1));
+			$nazwaPlikuArchive = substr($picture_name_archive, 1, strrpos($picture_name_archive, '.' )-1);
 			if ($picture_name_archive != NULL) {
+				unlink(APPLICATION_PATH . "/../public/$nazwaPlikuArchive"."-a".".".$rozszerzeniePlikuArchive);
+				unlink(APPLICATION_PATH . "/../public/$nazwaPlikuArchive"."-s".".".$rozszerzeniePlikuArchive);
+				unlink(APPLICATION_PATH . "/../public/$nazwaPlikuArchive"."-c".".".$rozszerzeniePlikuArchive);
 				if (!unlink(APPLICATION_PATH . "/../public$picture_name_archive")) {
 					$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
 				} else {
@@ -186,6 +201,7 @@ class Admin_EventController extends Core_Controller_Action {
 				$event->setEventNews('N');
 				$event->setEventAnnouncement('T');
 			}
+			$mapper->save($event);
 			
 			// Zapisujemy zdjęcia
 			$event = $this->_processEventFormPhotos($event, $this->view->form);
@@ -249,7 +265,6 @@ class Admin_EventController extends Core_Controller_Action {
 	}
 
 	public function savePhotoAction() {
-
 		$this->view->form = $this->_getPhotoForm();
 		if (!$this->view->form->isValid($this->_getAllParams())) {
 			$this->render('index');
@@ -281,8 +296,9 @@ class Admin_EventController extends Core_Controller_Action {
 
 	private function _processEventFormPhotos($event, $form) {
 		//zdjecie duze
+
 		$form->id && $id = $form->id->getValue();
-		$photo = $this->_savePhoto($id, $form->file);
+		$photo = $this->_savePhoto($id, $form->file, $event->getId(), 'Normal');
 		if ($photo && $photo->getId()) {
 			$event->setPictureId($photo->getId());
 			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
@@ -305,7 +321,7 @@ class Admin_EventController extends Core_Controller_Action {
 		}
 		//zdjecie male
 		$form->idS && $idS = $form->idS->getValue();
-		$photo = $this->_savePhoto($idS, $form->file2);
+		$photo = $this->_savePhoto($idS, $form->file2, $event->getId(), 'Small');
 		if ($photo && $photo->getId()) {
 			$event->setPictureIdSmall($photo->getId());
 			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
@@ -314,7 +330,7 @@ class Admin_EventController extends Core_Controller_Action {
 		}
 		//zdjecie archiwum
 		$form->idA && $idA = $form->idA->getValue();
-		$photo = $this->_savePhoto($idA, $form->file3);
+		$photo = $this->_savePhoto($idA, $form->file3, $event->getId(), 'Archive');
 		if ($photo && $photo->getId()) {
 			$event->setPictureIdArchive($photo->getId());
 			Core_Image::autocrop($this->_getPhotoPath($photo->getName()),
@@ -399,21 +415,28 @@ class Admin_EventController extends Core_Controller_Action {
 	 * @return null|\Application_Model_Photo
 	 * @throws Exception 
 	 */
-	private function _savePhoto($id, $fileFormElement) {
+	private function _savePhoto($id, $fileFormElement, $eventId, $pictureKind) {
 		$fileName = $fileFormElement->getValue();
+		$rozszerzeniePliku = substr($fileName, (strrpos($fileName, '.' ) + 1));
+		$fileNameNew = $eventId.$pictureKind.".".$rozszerzeniePliku;
 		if ($fileName == null) {
 			return null;
 		}
 
 		$mapper = new Application_Model_PhotoMapper();
-		if ($mapper->fetchOne(array('name = ?' => "/pictures/$fileName"))) {
-			throw new Exception("W katalogu znajduje się już zdjęcie o nazwie $fileName");
+		/*
+		if ($mapper->fetchOne(array('name = ?' => "/pictures/$fileNameNew"))) {
+			throw new Exception("W katalogu znajduje się już zdjęcie o nazwie $fileNameNew");
 		}
+		*/
 
 		// metoda receive kopiuje już do odpowiedniego katalogu
 		// see _getForm()
 		if (!$fileFormElement->receive()) {
-			throw new Exception("Problem podczas wysyłania pliku $fileName");
+			throw new Exception("Problem podczas wysyłania pliku $fileNameNew");
+		}
+		else{
+			rename(APPLICATION_PATH . "/../public/pictures/$fileName", APPLICATION_PATH . "/../public/pictures/$fileNameNew");
 		}
 
 		if ($id) {
@@ -422,7 +445,7 @@ class Admin_EventController extends Core_Controller_Action {
 		}
 
 		$photo = new Application_Model_Photo();
-		$photo->setName("/pictures/$fileName");
+		$photo->setName("/pictures/$fileNameNew");
 		$photo->setGalleryId(null);
 		$photo->setInformation(null);
 		$photo->setArchDate(new Zend_Db_Expr('CURDATE()'));
@@ -494,7 +517,14 @@ class Admin_EventController extends Core_Controller_Action {
 		$mapper = new Application_Model_PictureMapper();
 		$picture = $mapper->find($photoId);
 		$photoName = $picture->getName();
+		
+		$rozszerzeniePliku = substr($photoName, (strrpos($photoName, '.' ) + 1));
+		$nazwaPliku = substr($photoName, 1, strrpos($photoName, '.' )-1);
+		
 		if ($photoName != NULL) {
+				unlink(APPLICATION_PATH . "/../public/$nazwaPliku"."-a".".".$rozszerzeniePliku);
+				unlink(APPLICATION_PATH . "/../public/$nazwaPliku"."-s".".".$rozszerzeniePliku);
+				unlink(APPLICATION_PATH . "/../public/$nazwaPliku"."-c".".".$rozszerzeniePliku);
 				if (!unlink(APPLICATION_PATH . "/../public$photoName")) {
 					$this->view->priorityMessenger('Błąd przy usuwaniu zdjęcia eventu z dysku');
 				} else {

@@ -62,6 +62,7 @@ class Application_Model_Event extends Core_Model_Abstract {
 	}
 
 	public function getLargePictureName() {
+
 		if (!$this->hasLargePicture()) {
 			return null;
 		}

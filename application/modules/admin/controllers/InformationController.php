@@ -1,6 +1,6 @@
 <?php
 
-class Admin_InformationController extends Zend_Controller_Action
+class Admin_InformationController extends Core_Controller_Action
 {
 	public function init()
     {

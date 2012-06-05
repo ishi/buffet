@@ -1,6 +1,6 @@
 <?php
 
-class NewsletterController extends Zend_Controller_Action
+class NewsletterController extends Core_Controller_Action
 {
 
     public function indexAction()

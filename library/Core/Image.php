@@ -19,6 +19,7 @@ class Core_Image {
 	 */
 	static function crop($src, $dest, array $options) {
 		$type = strtolower(substr(strrchr($src,"."),1));
+
 		if($type == 'jpg') $type = 'jpeg';
 		switch($type){
 				case 'bmp': $img = imagecreatefromwbmp($src); break;

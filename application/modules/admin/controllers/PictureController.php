@@ -1,6 +1,6 @@
 <?php
 
-class Admin_PictureController extends Zend_Controller_Action
+class Admin_PictureController extends Core_Controller_Action
 {
 	public function init()
     {
