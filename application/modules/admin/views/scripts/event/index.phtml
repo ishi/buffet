@@ -28,7 +28,7 @@ elseif ($_SESSION['event_kind']=='announcement'){
 	<?php $lp = 1 ?>
 	<?php foreach ($this->entries as $entry): ?>
     <tr onMouseOver="this.style.background='#FFFFCC'" onMouseOut="this.style.background='none'">
-    <td><?php echo $lp++?></td>
+    <td id="lp"><?php echo $lp++?></td>
     <td id="tytul">
     	<a href="<?php echo $this->url(array('action' => 'show', 'id' => $entry->getId(), 'pictureId' => $entry->getPictureId())); ?>">
     		<?php echo $this->escape($entry->getTitle())?>

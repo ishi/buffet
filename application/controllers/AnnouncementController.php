@@ -3,7 +3,7 @@
 class AnnouncementController extends Zend_Controller_Action {
 
 	public function indexAction() {
-		$order = 'date_from DESC';
+		$order = 'date_from ASC';
 		$this->view->entries =
 				Application_Model_AnnouncementMapper::getInstance()->fetchAll(null, $order);
 	}

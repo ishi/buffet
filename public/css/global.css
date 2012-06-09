@@ -370,11 +370,13 @@ padding-bottom	: 50px;
 float	: left;
 width	: 353px;
 padding-bottom	: 50px;
+word-wrap:break-word;
+
 }
 
 #details_title{
-width	: 353px;
-height	: 33px;
+width	: 328px;
+height	: 20px;
 font-size	: 9pt;
 font-family	: Arial;
 text-align	: justify;
@@ -385,12 +387,13 @@ padding-top: 15px;
 }
 
 #details_content{
-width	: 353px;
+width	: 328px;
 font-size	: 8pt;
 font-family	: Arial;
 text-align	: justify;
 padding-left: 25px;
 padding-top: 0px;
+line-height: 15px;
 }
 
 #details_main_back{
@@ -497,7 +500,7 @@ p.main_text{
 font-size	: 8pt;
 font-family	: Arial;
 text-align	: justify;
-line-height	: 180%;
+line-height	: 170%;
 }
 
 p.news_title{
@@ -518,6 +521,7 @@ text-align	: justify;
 padding-left: 20px;
 padding-top	: 0px;
 margin-top	: 0px;
+line-height: 15px;
 }
 
 p.announcement_title{
@@ -527,6 +531,7 @@ text-align	: left;
 font-weight	: bold;
 padding-top	: 15px;
 padding-left: 25px;
+height	    : 20px;
 }
 
 p.announcement_pre_content{
@@ -536,6 +541,7 @@ text-align	: justify;
 padding-left: 25px;
 padding-top	: 0px;
 margin-top	: 0px;
+line-height: 15px;
 }
 
 p.archive_title{
@@ -843,6 +849,10 @@ table#event td#tytul{
 width: 320px;
 border: 1px solid black;
 padding: 5px;
+}
+
+table#event td#lp{
+text-align: left;
 }
 
 table#information  td#content{
