@@ -197,9 +197,11 @@ class Admin_EventController extends Core_Controller_Action {
 			if ($event_kind == 'N') {
 				$event->setEventNews('T');
 				$event->setEventAnnouncement('N');
+				$eventType = 'news';
 			} elseif ($event_kind == 'Z') {
 				$event->setEventNews('N');
 				$event->setEventAnnouncement('T');
+				$eventType = 'zapowiedź';
 			}
 			$mapper->save($event);
 			
@@ -217,7 +219,7 @@ class Admin_EventController extends Core_Controller_Action {
 			
 			
 			$mapper->save($event);
-			$this->view->priorityMessenger('Zapisano event w bazie danych');
+			$this->view->priorityMessenger('Zapisano '.$eventType.' w bazie danych');
 			$this->_helper->redirector->gotoSimple('show', 'event', null, array('id' => $event->getId()));
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
@@ -249,13 +251,15 @@ class Admin_EventController extends Core_Controller_Action {
 			if ($event_kind == 'N') {
 				$event->setEventNews('T');
 				$event->setEventAnnouncement('N');
+				$eventType = 'news';
 			} elseif ($event_kind == 'Z') {
 				$event->setEventNews('N');
 				$event->setEventAnnouncement('T');
+				$eventType = 'zapowiedź';
 			}
 
 			$mapper->save($event);
-			$this->view->priorityMessenger('Zapisano event w bazie danych');
+			$this->view->priorityMessenger('Zapisano '.$eventType.' w bazie danych');
 			$this->_helper->redirector->gotoSimple('index', 'event', null, array('where' => $this->_getParam('where')));
 		} catch (Exception $e) {
 			$this->view->priorityMessenger('Problemy przy zapisie do bazy: '
