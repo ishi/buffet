@@ -336,10 +336,7 @@ CREATE VIEW `news` AS
 		`e`.`picture_id_small` AS `picture_id_small`,
 		`p`.`name` AS `picture_name`,
 		`ps`.`name` AS `picture_name_small` 
-from 
-	`event` `e` left join `picture` `p` on(`p`.`id` = `e`.`picture_id`)
-	left join `picture` `ps` on(`ps`.`id` = `e`.`picture_id_small`)
-where `e`.`event_news` = 'T';
+from ((`event` `e` left join `picture` `p` on((`p`.`id` = `e`.`picture_id`))) left join `picture` `ps` on((`ps`.`id` = `e`.`picture_id_small`))) where (`e`.`event_news` = 'T');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

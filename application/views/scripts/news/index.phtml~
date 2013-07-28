@@ -18,7 +18,7 @@
 					</p>
 				</a>
 
-				<div class="news_pre_content"><?php echo $entry->getPreContent() ?></div>
+				<p class="news_pre_content"><?php echo $entry->getPreContent() ?></p>
 			</div>
 
 			<div id="main_content_news_go">
