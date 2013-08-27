@@ -2,6 +2,7 @@
 
 	<dl>
 		<?php foreach ($this->entries as $entry): ?>
+			<?php $url = $this->url(array('controller' => 'news', 'action' => 'details', 'id' => $entry->getId(), 'lang' => $_SESSION['lang']), null, true); ?>
 			<dt class="news">
 
 			<div id="main_content_news_picture">
@@ -9,23 +10,14 @@
 			</div>
 
 			<div id="main_content_news_cont">
-				<a href="<?php echo $this->url(
-						array('controller' => 'news', 'action' => 'details',
-							'id' => $entry->getId(), 'lang' => $_SESSION['lang']), null, true); ?>">
-					<p class="news_title">
-						<?php echo $entry->getDate() ?>
-						<?php echo $entry->getTitleLng() ?>
-					</p>
-				</a>
-
+				<p class="news_title"><a href="<?php echo $url ?>"><?php echo $entry->getDate() ?></a></p>
+				<p class="news_title"><a href="<?php echo $url ?>"><?php echo strtoupper($entry->getTitleLng()) ?></a></p>
 				<div class="news_pre_content"><?php echo $entry->getPreContent() ?></div>
 			</div>
 
 			<div id="main_content_news_go">
 				<div id="main_content_go">...</div>
-				<a class="main_content_rectangle_go" href="<?php echo $this->url(
-						array('controller' => 'news', 'action' => 'details',
-							'id' => $entry->getId(), 'lang' => $_SESSION['lang']), null, true); ?>"> </a>
+				<a class="main_content_rectangle_go" href="<?php echo $url ?>"> </a>
 			</div>
 
 			</dt>
