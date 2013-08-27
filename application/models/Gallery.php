@@ -11,7 +11,7 @@ class Application_Model_Gallery extends Core_Model_Abstract {
 	private $_activePhotos;
 
 	public function getFolderDate() {
-		return date("m.d.Y", strtotime(parent::getFolderDate()));
+		return date("d.m.Y", strtotime(parent::getFolderDate()));
 	}
 
 

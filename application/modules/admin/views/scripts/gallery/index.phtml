@@ -21,7 +21,7 @@
 						<?php echo $this->escape($entry->getFolderName()) ?>
 					</a>
 				</td>
-				<td><?php echo date('d.m.Y', strtotime($this->escape($entry->getFolderDate()))) ?></td>
+				<td><?php echo $this->escape($entry->getFolderDate()) ?></td>
 				<td id="pre_content"><?php echo substr($entry->getFolderContent(), 0, 80) ?></td>
 				<td>
 					<a href="<?php echo $this->url(array('action' => 'edit', 'id' => $entry->getId())); ?>">

@@ -12,23 +12,6 @@ class Admin_Form_Event extends Zend_Form {
 
 		// Tworzymy elementy formularza	
 		$this->addElements(array(
-			/*
-			array('multiCheckbox', 'event', 
-				array(
-				'required' => true,
-				'multioptions' => array(
-					'news' => 'News',
-					'announcement'=>'Zapowiedź'))),*/
-		/*
-			array('checkbox', 'event_news',
-				array('checkedValue' => 'T',
-				  	  'unCheckedValue' => 'N',
-				  	  'label' => 'News')),
-			array('checkbox', 'event_announcement',
-				array('checkedValue' => 'T',
-				  	  'unCheckedValue' => 'N',
-				  	  'label' => 'Zapowiedź')),
-		*/
 			array('radio', 'event_kind', 
 				array('label' => 'Rodzaj eventu',
 					  'required' => true,

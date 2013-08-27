@@ -4,7 +4,7 @@ class Admin_GalleryController extends Core_Controller_Action {
 
 	public function indexAction() {
 		$this->view->entries = Core_Model_MapperAbstract::getInstance('Gallery')
-				->fetchAll(null, 'folder_name ASC');
+				->fetchAll(null, 'folder_date DESC');
 	}
 
 	public function showAction() {
@@ -65,7 +65,6 @@ class Admin_GalleryController extends Core_Controller_Action {
 		$gallery = new Application_Model_Gallery($this->_getAllParams());
 		$mapper = Core_Model_MapperAbstract::getInstance('Gallery');
 		try {
-			$gallery->setFolderDate(new Zend_Db_Expr('CURDATE()'));
 			$gallery->setArchDate(new Zend_Db_Expr('CURDATE()'));
 			$gallery->setUser($this->getLoggedUserName());
 			$mapper->save($gallery);

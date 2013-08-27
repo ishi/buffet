@@ -11,6 +11,10 @@ class Admin_Form_Gallery extends Zend_Form {
 		$folderContent = $this->createElement('textarea', 'folder_content')
 			->setLabel('Opis Galerii');
 		
+		$folderDate = $this->createElement('text', 'folder_date')
+			->setLabel('Data')
+			->addValidator('date', false, array('YYYY-MM-dd'));
+		
 		$submit = $this->createElement('submit', 'save')
 			->setLabel('Zapisz galerię')
 			->setAttrib('class', 'button');
@@ -19,6 +23,7 @@ class Admin_Form_Gallery extends Zend_Form {
 			$id,
 			$folderName,
 			$folderContent,
+			$folderDate,
 			$submit
 		));
 
