@@ -426,7 +426,7 @@ margin-bottom	: 50px;
 
 #partner_picture{
 float	: left;
-height	: 45px;
+/*height	: 45px;*/
 padding-right: 40px;
 padding-bottom: 27px;
 }
@@ -660,7 +660,7 @@ height	: 517px;
 }
 
 img.partner{
-height	: 45px;
+/*height	: 45px;*/
 }
 
 #main_content_announcement_picture{
@@ -704,7 +704,7 @@ margin-bottom: 26px;
 #galleries .gallery > .photos {
 	width: 568px;
 	text-align: center;
-	margin-left: -55%;
+	margin-left: -148px;
 	height: 472px;
 	overflow: hidden;
 }

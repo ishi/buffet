@@ -1,13 +1,12 @@
 <?php echo $this->partial('shared/main_images.phtml', array('pictures' => $this->entries2)); ?>
 
-<div id="partners_content">
+<div id="partners_content" class="clearfix">
 	<?php foreach ($this->partners as $partner): ?>
 	
 	<div id="partner_picture">
-	<?php 
-    $sciezka = $partner->getName();
-    $link = $partner->getLink();
-    echo "<a href=$link target=\"_blank\"><img  class=\"partner\" src=\"$sciezka\"></a>" ?>
+		<a href="<?php echo $partner->getLink()?>" target="_blank">
+			<img  class="partner" src="<?php echo $partner->getName()/*phpThumbURL('src='.$partner->getName().'&h=100');*/ ?>">
+		</a>
 	</div>
 
     <?php endforeach ?>

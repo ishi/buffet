@@ -6,8 +6,7 @@
 	<div class="gallery-photos clearfix">	
 		<?php foreach ($this->entries as $entry): ?>
 		<div class="gallery-photo">
-		<?php $sciezka = $this->escape($entry->getName());
-    	echo "<img src=\"$sciezka\" height=\"45\" />" ?>
+    	<img src="<?php echo $this->escape($entry->getName());?>" />
     	<a href="<?php echo $this->url(
 				array('module' => 'admin', 'controller' => 'partner', 'action' => 'remove-photo',
 					'id' => $entry->getId()), null, true) ?>" class="button" >

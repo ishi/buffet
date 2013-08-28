@@ -17,6 +17,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
 /** Zend_Application */
 require_once 'Zend/Application.php';
 require_once 'Zend/Config/Ini.php';
+require_once 'thumbs/phpThumb.config.php';
 
 $config = new Zend_Config_Ini(
     APPLICATION_PATH.'/configs/application.ini', 

@@ -11,11 +11,13 @@
 			<div class="gallery">
 				<div class="photos clearfix">
 					<div class="preview">
-						<img src="<?php echo $gallery->getMainPhoto()->getCroppedName() ?>" />
+						<img src="<?php echo phpThumbURL('src='.$gallery->getMainPhoto()->getCroppedName().'&h=472&w=472&zc=C'); ?>" />
 					</div>
 					<div class="thumbnails clearfix">
 						<?php foreach ($gallery->getActivePhotos() as $photo) : ?>
-							<div class="thumbnail"><img src="<?php echo $photo->getThumbnailName() ?>" /></div>
+							<div class="thumbnail">
+								<img src="<?php echo phpThumbURL('src='.$photo->getCroppedName().'&h=40&w=40&zc=C'); ?>" data-orig="<?php echo phpThumbURL('src='.$photo->getCroppedName().'&h=472&w=472&zc=C'); ?>"/>
+							</div>
 						<?php endforeach ?>
 					</div>
 				</div>
